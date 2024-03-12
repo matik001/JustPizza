@@ -1,4 +1,4 @@
-package command;
+package dev.justpizza.command;
 
 public class CommandParamSchema{
     public String paramFullName; /// i.e. "help" for --help

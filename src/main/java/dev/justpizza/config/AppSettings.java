@@ -1,4 +1,4 @@
-package config;
+package dev.justpizza.config;
 
 public class AppSettings {
     public final String programName = "JustPizza";

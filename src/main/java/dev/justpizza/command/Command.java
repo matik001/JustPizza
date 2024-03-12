@@ -1,4 +1,4 @@
-package command;
+package dev.justpizza.command;
 
 import java.util.List;
 

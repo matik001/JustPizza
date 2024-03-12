@@ -1,4 +1,4 @@
-package command;
+package dev.justpizza.command;
 
 public class CommandParam{
     public CommandParamSchema schema;
