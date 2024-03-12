@@ -1,10 +1,10 @@
-package command.list;
+package dev.justpizza.command.list;
 
-import command.Command;
-import command.CommandManager;
-import command.CommandParam;
-import command.CommandParamSchema;
-import config.AppSettings;
+import dev.justpizza.command.Command;
+import dev.justpizza.command.CommandManager;
+import dev.justpizza.command.CommandParam;
+import dev.justpizza.command.CommandParamSchema;
+import dev.justpizza.config.AppSettings;
 
 import java.util.ArrayList;
 import java.util.List;

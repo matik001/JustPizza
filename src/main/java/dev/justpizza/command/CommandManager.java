@@ -1,7 +1,7 @@
-package command;
+package dev.justpizza.command;
 
-import command.list.HelpCommand;
-import command.list.VersionCommand;
+import dev.justpizza.command.list.HelpCommand;
+import dev.justpizza.command.list.VersionCommand;
 
 import java.util.ArrayList;
 import java.util.List;
