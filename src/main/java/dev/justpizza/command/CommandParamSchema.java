@@ -1,5 +1,6 @@
 package dev.justpizza.command;
 
+
 /** This class is currently unused **/
 public class CommandParamSchema{
     public String paramFullName; /// i.e. "help" for --help

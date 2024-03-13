@@ -3,7 +3,6 @@ package dev.justpizza.command.list;
 import dev.justpizza.command.Command;
 import dev.justpizza.command.CommandManager;
 import dev.justpizza.command.CommandParam;
-
 import java.util.List;
 
 public class HelpCommand extends Command {
