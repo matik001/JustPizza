@@ -3,12 +3,13 @@ package dev.justpizza.command;
 import java.util.List;
 
 abstract public class Command {
-    final public List<CommandParamSchema> paramSchemaList;
     final public String name;
-    protected Command(String name, List<CommandParamSchema> paramSchemaList){
-        this.paramSchemaList = paramSchemaList;
+    final public String description;
+
+    protected Command(String name, String description){
         this.name = name;
+        this.description = description;
     }
 
-    public abstract void execute(List<CommandParam> params, CommandManager commandManager);
+    public abstract void execute(String commandName, List<CommandParam> params);
 }
