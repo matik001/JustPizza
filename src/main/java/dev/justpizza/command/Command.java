@@ -1,7 +1,5 @@
 package dev.justpizza.command;
 
-import java.util.List;
-
 abstract public class Command {
     final public String name;
     final public String description;

@@ -10,11 +10,9 @@ public class SquareCommand extends Command {
         super(name, "calculates square characteristics");
     }
 
-    private double side;
+    public double side;
     private double diagonal;
     private double area;
-
-
     @Override
     public void execute(String commandName, String[] params) {
         String errorMessage = "Command usage: square [side | diagonal | area] {non-negative value}\n";
