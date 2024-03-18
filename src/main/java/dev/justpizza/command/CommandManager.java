@@ -1,6 +1,7 @@
 package dev.justpizza.command;
 
 import dev.justpizza.command.list.HelpCommand;
+import dev.justpizza.command.list.SquareCommand;
 import dev.justpizza.command.list.VersionCommand;
 
 import java.util.*;
@@ -9,6 +10,7 @@ public class CommandManager {
     final public static List<Command> commands = new ArrayList<>() {{
         add(new HelpCommand());
         add(new VersionCommand());
+        add(new SquareCommand());
     }};
 
     public Command getCommand(String commandName) {
@@ -21,9 +23,9 @@ public class CommandManager {
         return command.orElseThrow(); /// throw should not happen
     }
 
-    public List<CommandParam> getCommandParams(String[] args) {
+    public String[] getCommandParams(String[] args) {
         // We don't know yet how parameters should be handled, so I left implementation empty
-        return List.of();
+        return args;
     }
 
     public void run() {

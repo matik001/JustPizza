@@ -13,7 +13,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute(String commandName, List<CommandParam> params) {
+    public void execute(String commandName, String[] params) {
         if (!commandName.equals(name)) {
             System.out.println("Unknown command");
         }

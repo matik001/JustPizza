@@ -11,5 +11,5 @@ abstract public class Command {
         this.description = description;
     }
 
-    public abstract void execute(String commandName, List<CommandParam> params);
+    public abstract void execute(String commandName, String[] params);
 }
