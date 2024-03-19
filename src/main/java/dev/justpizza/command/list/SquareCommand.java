@@ -15,28 +15,32 @@ public class SquareCommand extends Command {
         double side = 0;
         double diagonal = 0;
         double area = 0;
+        double input = 0;
         String errorMessage = "Command usage: square [side | diagonal | area] {non-negative value}\n";
         if (params.length != 3) {
             System.out.print(errorMessage);
             return;
         }
-        if (Double.parseDouble(params[2]) < 0) {
-            System.out.print(errorMessage);
+        try{
+            input = Double.parseDouble(params[2]);
+        }
+        catch (NumberFormatException exc){
+            System.out.println(errorMessage);
             return;
         }
         switch (params[1].toLowerCase()) {
             case "side" -> {
-                side = Double.parseDouble(params[2].toLowerCase());
+                side = input;
                 diagonal = calculateDiagonal(side);
                 area = calculateArea(side);
             }
             case "diagonal" -> {
-                diagonal = Double.parseDouble(params[2].toLowerCase());
+                diagonal = input;
                 side = calculateSide(diagonal);
                 area = calculateArea(side);
             }
             case "area" -> {
-                area = Double.parseDouble(params[2].toLowerCase());
+                area = input;
                 side = Math.sqrt(area);
                 diagonal = calculateDiagonal(side);
             }

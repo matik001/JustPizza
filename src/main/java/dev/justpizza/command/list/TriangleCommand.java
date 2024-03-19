@@ -14,28 +14,34 @@ public class TriangleCommand extends Command {
         double side = 0;
         double height = 0;
         double area = 0;
+        double input = 0;
         String errorMessage = "Command usage: triangle [side | height | area] {non-negative value}\n";
         if (params.length != 3) {
             System.out.print(errorMessage);
             return;
         }
-        if (Double.parseDouble(params[2]) < 0) {
-            System.out.print(errorMessage);
+
+        try{
+            input = Double.parseDouble(params[2]);
+        }
+        catch (NumberFormatException exc){
+            System.out.println(errorMessage);
             return;
         }
+
         switch (params[1].toLowerCase()) {
             case "side" -> {
-                side = Double.parseDouble(params[2].toLowerCase());
+                side = input;
                 height = calculateHeight(side);
                 area = calculateArea(side, height);
             }
             case "height" -> {
-                height = Double.parseDouble(params[2].toLowerCase());
+                height = input;
                 side = calculateSideFromHeight(height);
                 area = calculateArea(side, height);
             }
             case "area" -> {
-                area = Double.parseDouble(params[2].toLowerCase());
+                area = input;
                 side = calculateSideFromArea(area);
                 height = calculateHeight(side);
             }
