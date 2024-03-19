@@ -23,6 +23,10 @@ public class SquareCommand extends Command {
         }
         try{
             input = Double.parseDouble(params[2]);
+            if(input < 0) {
+                System.out.println(errorMessage);
+                return;
+            }
         }
         catch (NumberFormatException exc){
             System.out.println(errorMessage);
