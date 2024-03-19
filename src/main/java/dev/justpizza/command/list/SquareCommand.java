@@ -10,7 +10,6 @@ public class SquareCommand extends Command {
         super(name, "calculates square characteristics");
     }
 
-
     @Override
     public void execute(String commandName, String[] params) {
         double side = 0;
