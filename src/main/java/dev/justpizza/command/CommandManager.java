@@ -2,6 +2,7 @@ package dev.justpizza.command;
 
 import dev.justpizza.command.list.HelpCommand;
 import dev.justpizza.command.list.SquareCommand;
+import dev.justpizza.command.list.TriangleCommand;
 import dev.justpizza.command.list.VersionCommand;
 
 import java.util.*;
@@ -11,6 +12,7 @@ public class CommandManager {
         add(new HelpCommand());
         add(new VersionCommand());
         add(new SquareCommand());
+        add(new TriangleCommand());
     }};
 
     public Command getCommand(String commandName) {
