@@ -10,11 +10,12 @@ public class SquareCommand extends Command {
         super(name, "calculates square characteristics");
     }
 
-    public double side;
-    private double diagonal;
-    private double area;
+
     @Override
     public void execute(String commandName, String[] params) {
+        double side = 0;
+        double diagonal = 0;
+        double area = 0;
         String errorMessage = "Command usage: square [side | diagonal | area] {non-negative value}\n";
         if (params.length != 3) {
             System.out.print(errorMessage);
@@ -27,25 +28,36 @@ public class SquareCommand extends Command {
         switch (params[1].toLowerCase()) {
             case "side" -> {
                 side = Double.parseDouble(params[2].toLowerCase());
-                diagonal = Math.sqrt(2) * side;
-                area = side * side;
+                diagonal = calculateDiagonal(side);
+                area = calculateArea(side);
             }
             case "diagonal" -> {
                 diagonal = Double.parseDouble(params[2].toLowerCase());
-                side = diagonal / Math.sqrt(2);
-                area = side * side;
+                side = calculateSide(diagonal);
+                area = calculateArea(side);
             }
             case "area" -> {
                 area = Double.parseDouble(params[2].toLowerCase());
                 side = Math.sqrt(area);
-                diagonal = Math.sqrt(2) * side;
+                diagonal = calculateDiagonal(side);
             }
             default -> System.out.println(errorMessage);
         }
-        System.out.print(this);
+        System.out.print(printCharacteristic(side, diagonal, area));
     }
 
-    public String toString(){
+    public double calculateDiagonal(double side){
+        return Math.sqrt(2) * side;
+    }
+
+    public double calculateArea(double side){
+        return side * side;
+    }
+
+    public double calculateSide(double diagonal){
+        return Math.sqrt(diagonal);
+    }
+    public String printCharacteristic(double side, double diagonal, double area){
         return (STR."Square characteristics:\n\tside: \{side}\n\tdiagonal: \{diagonal}\n\tarea: \{area}\n");
     }
 }
