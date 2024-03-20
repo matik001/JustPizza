@@ -33,8 +33,6 @@ public class TriangleCommand extends Command {
             return;
         }
 
-
-
         switch (params[1].toLowerCase()) {
             case "side" -> {
                 side = input;
@@ -51,7 +49,10 @@ public class TriangleCommand extends Command {
                 side = calculateSideFromArea(area);
                 height = calculateHeight(side);
             }
-            default -> System.out.println(errorMessage);
+            default -> {
+                System.out.println(errorMessage);
+                return;
+            }
         }
         System.out.print(printCharacteristic(side, height, area));
     }

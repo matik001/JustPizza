@@ -48,7 +48,10 @@ public class SquareCommand extends Command {
                 side = Math.sqrt(area);
                 diagonal = calculateDiagonal(side);
             }
-            default -> System.out.println(errorMessage);
+            default -> {
+                System.out.println(errorMessage);
+                return;
+            }
         }
         System.out.print(printCharacteristic(side, diagonal, area));
     }
