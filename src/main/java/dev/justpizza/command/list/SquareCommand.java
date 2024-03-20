@@ -65,7 +65,7 @@ public class SquareCommand extends Command {
     }
 
     public double calculateSide(double diagonal){
-        return Math.sqrt(diagonal);
+        return diagonal/Math.sqrt(2);
     }
     public String printCharacteristic(double side, double diagonal, double area){
         return (STR."Square characteristics:\n\tside: \{side}\n\tdiagonal: \{diagonal}\n\tarea: \{area}\n");
