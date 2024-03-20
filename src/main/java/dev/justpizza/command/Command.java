@@ -1,7 +1,5 @@
 package dev.justpizza.command;
 
-import java.util.List;
-
 abstract public class Command {
     final public String name;
     final public String description;
@@ -11,5 +9,5 @@ abstract public class Command {
         this.description = description;
     }
 
-    public abstract void execute(String commandName, List<CommandParam> params);
+    public abstract void execute(String commandName, String[] params);
 }
