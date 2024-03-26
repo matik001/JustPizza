@@ -1,6 +1,7 @@
 package dev.justpizza.command.list;
 
 import dev.justpizza.command.Command;
+import dev.justpizza.shape.Square;
 
 public class SquareCommand extends Command {
 
@@ -12,62 +13,32 @@ public class SquareCommand extends Command {
 
     @Override
     public void execute(String commandName, String[] params) {
-        double side = 0;
-        double diagonal = 0;
-        double area = 0;
-        double input = 0;
+        double input;
         String errorMessage = "Command usage: square [side | diagonal | area] {non-negative value}\n";
         if (params.length != 3) {
             System.out.print(errorMessage);
             return;
         }
-        try{
+        try {
             input = Double.parseDouble(params[2]);
-            if(input < 0) {
+            if (input < 0) {
                 System.out.println(errorMessage);
                 return;
             }
-        }
-        catch (NumberFormatException exc){
+        } catch (NumberFormatException exc) {
             System.out.println(errorMessage);
             return;
         }
+        Square square;
         switch (params[1].toLowerCase()) {
-            case "side" -> {
-                side = input;
-                diagonal = calculateDiagonal(side);
-                area = calculateArea(side);
-            }
-            case "diagonal" -> {
-                diagonal = input;
-                side = calculateSide(diagonal);
-                area = calculateArea(side);
-            }
-            case "area" -> {
-                area = input;
-                side = Math.sqrt(area);
-                diagonal = calculateDiagonal(side);
-            }
+            case "side" -> square = Square.fromSide(input);
+            case "diagonal" -> square = Square.fromDiagonal(input);
+            case "area" -> square = Square.fromArea(input);
             default -> {
                 System.out.println(errorMessage);
                 return;
             }
         }
-        System.out.print(printCharacteristic(side, diagonal, area));
-    }
-
-    public double calculateDiagonal(double side){
-        return Math.sqrt(2) * side;
-    }
-
-    public double calculateArea(double side){
-        return side * side;
-    }
-
-    public double calculateSide(double diagonal){
-        return Math.sqrt(diagonal);
-    }
-    public String printCharacteristic(double side, double diagonal, double area){
-        return (STR."Square characteristics:\n\tside: \{side}\n\tdiagonal: \{diagonal}\n\tarea: \{area}\n");
+        square.printCharacteristic();
     }
 }
