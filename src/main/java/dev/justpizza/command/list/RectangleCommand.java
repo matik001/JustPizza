@@ -41,7 +41,7 @@ public class RectangleCommand extends Command {
             shape = Rectangle.fromDiagonalAndSide(diagonal, side);
         } else if (side != null && area != null) {
             shape = Rectangle.fromAreaAndSide(area, side);
-        } else if (diagonal != null || area != null) {
+        } else if (diagonal != null && area != null) {
             try {
                 shape = Rectangle.fromDiagonalAndArea(diagonal, area);
             } catch (IllegalShapeException e) {
