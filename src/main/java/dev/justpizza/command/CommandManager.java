@@ -1,6 +1,7 @@
 package dev.justpizza.command;
 
 import dev.justpizza.command.list.HelpCommand;
+import dev.justpizza.command.list.ExitCommand;
 import dev.justpizza.command.list.SquareCommand;
 import dev.justpizza.command.list.TriangleCommand;
 import dev.justpizza.command.list.VersionCommand;
@@ -13,21 +14,17 @@ public class CommandManager {
         add(new VersionCommand());
         add(new SquareCommand());
         add(new TriangleCommand());
+        add(new ExitCommand());
     }};
 
     public Command getCommand(String commandName) {
         var command = commands.stream()
-                              .filter(a -> a.name.equals(commandName))
-                              .findAny();
+                .filter(a -> a.name.equals(commandName))
+                .findAny();
 
         if (command.isEmpty())
             command = Optional.of(getCommand("help"));
         return command.orElseThrow(); /// throw should not happen
-    }
-
-    public String[] getCommandParams(String[] args) {
-        // We don't know yet how parameters should be handled, so I left implementation empty
-        return args;
     }
 
     public void run() {
@@ -36,11 +33,19 @@ public class CommandManager {
         while (input.hasNext()) {
             var line = input.nextLine();
             var arguments = line.split("\\s+");
-            var commandName = arguments.length > 0 ? arguments[0].toLowerCase() : "";
+            if (arguments.length == 0) {
+                continue;
+            }
+
+            var commandName = arguments[0].toLowerCase();
 
             var command = getCommand(commandName);
-            var params = getCommandParams(arguments);
-            command.execute(commandName, params);
+            if (command == null) {
+                System.out.println("Unknown command");
+                getCommand("help").execute(new String[0]);
+                continue;
+            }
+            command.execute(Arrays.copyOfRange(arguments, 1, arguments.length));
         }
     }
 }

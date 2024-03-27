@@ -1,7 +1,11 @@
 package dev.justpizza.command.list;
 
+import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
 import dev.justpizza.shape.Square;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SquareCommand extends Command {
 
@@ -12,30 +16,27 @@ public class SquareCommand extends Command {
     }
 
     @Override
-    public void execute(String commandName, String[] params) {
-        double input;
-        String errorMessage = "Command usage: square [side | diagonal | area] {non-negative value}\n";
-        if (params.length != 3) {
-            System.out.print(errorMessage);
-            return;
-        }
+    public void execute(String[] params) {
+        ArgParser argParser = new ArgParser();
+        List<List<String>> possibleParams = new ArrayList();
+        possibleParams.add(List.of("side", "diagonal", "area"));
+
         try {
-            input = Double.parseDouble(params[2]);
-            if (input < 0) {
-                System.out.println(errorMessage);
-                return;
-            }
-        } catch (NumberFormatException exc) {
-            System.out.println(errorMessage);
+            argParser.parseParams(possibleParams, params, name);
+        } catch (IllegalArgumentException exc) {
+            System.out.println(exc.getMessage());
             return;
         }
+
         Square square;
-        switch (params[1].toLowerCase()) {
-            case "side" -> square = Square.fromSide(input);
-            case "diagonal" -> square = Square.fromDiagonal(input);
-            case "area" -> square = Square.fromArea(input);
+        String argName = argParser.argValues.keySet().iterator().next();
+        Double value = argParser.argValues.get(argName);
+        switch (argName) {
+            case "side" -> square = Square.fromSide(value);
+            case "diagonal" -> square = Square.fromDiagonal(value);
+            case "area" -> square = Square.fromArea(value);
             default -> {
-                System.out.println(errorMessage);
+                assert false;
                 return;
             }
         }

@@ -1,7 +1,12 @@
 package dev.justpizza.command.list;
 
+import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
 import dev.justpizza.shape.EquilateralTriangle;
+import dev.justpizza.shape.Square;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TriangleCommand extends Command {
     public static final String name = "triangle";
@@ -11,31 +16,27 @@ public class TriangleCommand extends Command {
     }
 
     @Override
-    public void execute(String commandName, String[] params) {
-        double input;
-        String errorMessage = "Command usage: triangle [side | height | area] {non-negative value}\n";
-        if (params.length != 3) {
-            System.out.print(errorMessage);
+    public void execute(String[] params) {
+        ArgParser argParser = new ArgParser();
+        List<List<String>> possibleParams = new ArrayList();
+        possibleParams.add(List.of("side", "height", "area"));
+
+        try {
+            argParser.parseParams(possibleParams, params, name);
+        } catch (IllegalArgumentException exc) {
+            System.out.println(exc.getMessage());
             return;
         }
 
-        try {
-            input = Double.parseDouble(params[2]);
-            if (input < 0) {
-                System.out.println(errorMessage);
-                return;
-            }
-        } catch (NumberFormatException exc) {
-            System.out.println(errorMessage);
-            return;
-        }
         EquilateralTriangle triangle;
-        switch (params[1].toLowerCase()) {
-            case "side" -> triangle = EquilateralTriangle.fromSide(input);
-            case "height" -> triangle = EquilateralTriangle.fromHeight(input);
-            case "area" -> triangle = EquilateralTriangle.fromArea(input);
+        String argName = argParser.argValues.keySet().iterator().next();
+        Double value = argParser.argValues.get(argName);
+        switch (argName) {
+            case "side" -> triangle = EquilateralTriangle.fromSide(value);
+            case "height" -> triangle = EquilateralTriangle.fromHeight(value);
+            case "area" -> triangle = EquilateralTriangle.fromArea(value);
             default -> {
-                System.out.println(errorMessage);
+                assert false;
                 return;
             }
         }

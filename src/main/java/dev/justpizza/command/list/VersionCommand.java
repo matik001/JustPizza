@@ -11,7 +11,7 @@ public class VersionCommand extends Command {
     }
 
     @Override
-    public void execute(String commandName, String[] params) {
+    public void execute(String[] params) {
         System.out.println(STR."\{AppSettings.global.programName} \{AppSettings.global.version}");
     }
 }

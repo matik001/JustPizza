@@ -13,14 +13,10 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute(String commandName, String[] params) {
-        if (!commandName.equals(name)) {
-            System.out.println("Unknown command");
-        }
+    public void execute(String[] params) {
         System.out.println("Allowed usages:");
         for (var command : CommandManager.commands) {
-            var line = new StringBuilder(STR."\{command.name} - \{command.description}");
-            System.out.println(line);
+            System.out.println(STR."\{command.name} - \{command.description}");
         }
     }
 }
