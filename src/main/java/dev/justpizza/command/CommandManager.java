@@ -3,9 +3,11 @@ package dev.justpizza.command;
 import dev.justpizza.command.list.*;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class CommandManager {
-    final public static List<Command> commands = new ArrayList<>() {{
+    final private static List<Command> commandsList = new ArrayList<>() {{
         add(new HelpCommand());
         add(new VersionCommand());
         add(new SquareCommand());
@@ -15,13 +17,8 @@ public class CommandManager {
         add(new RhombusCommand());
     }};
 
-    public Command getCommand(String commandName) {
-        var command = commands.stream()
-                              .filter(a -> a.name.equals(commandName))
-                              .findAny();
-
-        return command.orElseThrow(); /// throw should not happen
-    }
+    final public static Map<String, Command> commands =
+            commandsList.stream().collect(Collectors.toMap(Command::getName, Function.identity()));
 
     public void run() {
         var input = new Scanner(System.in);
@@ -34,13 +31,14 @@ public class CommandManager {
             }
 
             var commandName = arguments[0].toLowerCase();
+            var params = Arrays.copyOfRange(arguments, 1, arguments.length);
 
-            try {
-                var command = getCommand(commandName);
-                command.execute(Arrays.copyOfRange(arguments, 1, arguments.length));
-            } catch (NoSuchElementException e) {
+            var command = commands.get(commandName);
+            if (command != null) {
+                command.execute(params);
+            } else {
                 System.out.println("Unknown command");
-                getCommand("help").execute(new String[0]);
+                commands.get("help").execute(new String[0]);
             }
         }
     }
