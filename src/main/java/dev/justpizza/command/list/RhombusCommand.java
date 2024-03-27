@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RhombusCommand extends Command {
     private static final String name = "rhombus";
-    private static final String description = "rhombus";
+    private static final String description = "calculates rhombus characteristics";
 
     public RhombusCommand() {
         super(name, description);
