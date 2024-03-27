@@ -1,6 +1,11 @@
 package dev.justpizza.command.list;
 
+import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
+import dev.justpizza.shape.Square;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SquareCommand extends Command {
 
@@ -11,63 +16,30 @@ public class SquareCommand extends Command {
     }
 
     @Override
-    public void execute(String commandName, String[] params) {
-        double side = 0;
-        double diagonal = 0;
-        double area = 0;
-        double input = 0;
-        String errorMessage = "Command usage: square [side | diagonal | area] {non-negative value}\n";
-        if (params.length != 3) {
-            System.out.print(errorMessage);
+    public void execute(String[] params) {
+        ArgParser argParser = new ArgParser();
+        List<List<String>> possibleParams = new ArrayList();
+        possibleParams.add(List.of("side", "diagonal", "area"));
+
+        try {
+            argParser.parseParams(possibleParams, params, name);
+        } catch (IllegalArgumentException exc) {
+            System.out.println(exc.getMessage());
             return;
         }
-        try{
-            input = Double.parseDouble(params[2]);
-            if(input < 0) {
-                System.out.println(errorMessage);
-                return;
-            }
-        }
-        catch (NumberFormatException exc){
-            System.out.println(errorMessage);
-            return;
-        }
-        switch (params[1].toLowerCase()) {
-            case "side" -> {
-                side = input;
-                diagonal = calculateDiagonal(side);
-                area = calculateArea(side);
-            }
-            case "diagonal" -> {
-                diagonal = input;
-                side = calculateSide(diagonal);
-                area = calculateArea(side);
-            }
-            case "area" -> {
-                area = input;
-                side = Math.sqrt(area);
-                diagonal = calculateDiagonal(side);
-            }
+
+        Square square;
+        String argName = argParser.argValues.keySet().iterator().next();
+        Double value = argParser.argValues.get(argName);
+        switch (argName) {
+            case "side" -> square = Square.fromSide(value);
+            case "diagonal" -> square = Square.fromDiagonal(value);
+            case "area" -> square = Square.fromArea(value);
             default -> {
-                System.out.println(errorMessage);
+                assert false;
                 return;
             }
         }
-        System.out.print(printCharacteristic(side, diagonal, area));
-    }
-
-    public double calculateDiagonal(double side){
-        return Math.sqrt(2) * side;
-    }
-
-    public double calculateArea(double side){
-        return side * side;
-    }
-
-    public double calculateSide(double diagonal){
-        return diagonal/Math.sqrt(2);
-    }
-    public String printCharacteristic(double side, double diagonal, double area){
-        return (STR."Square characteristics:\n\tside: \{side}\n\tdiagonal: \{diagonal}\n\tarea: \{area}\n");
+        square.printCharacteristic();
     }
 }

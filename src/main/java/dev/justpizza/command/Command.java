@@ -9,5 +9,13 @@ abstract public class Command {
         this.description = description;
     }
 
-    public abstract void execute(String commandName, String[] params);
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public abstract void execute(String[] params);
 }

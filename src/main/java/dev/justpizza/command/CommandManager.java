@@ -1,34 +1,24 @@
 package dev.justpizza.command;
 
-import dev.justpizza.command.list.HelpCommand;
-import dev.justpizza.command.list.SquareCommand;
-import dev.justpizza.command.list.TriangleCommand;
-import dev.justpizza.command.list.VersionCommand;
+import dev.justpizza.command.list.*;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class CommandManager {
-    final public static List<Command> commands = new ArrayList<>() {{
+    final private static List<Command> commandsList = new ArrayList<>() {{
         add(new HelpCommand());
         add(new VersionCommand());
         add(new SquareCommand());
         add(new TriangleCommand());
+        add(new ExitCommand());
+        add(new RectangleCommand());
+        add(new RhombusCommand());
     }};
 
-    public Command getCommand(String commandName) {
-        var command = commands.stream()
-                              .filter(a -> a.name.equals(commandName))
-                              .findAny();
-
-        if (command.isEmpty())
-            command = Optional.of(getCommand("help"));
-        return command.orElseThrow(); /// throw should not happen
-    }
-
-    public String[] getCommandParams(String[] args) {
-        // We don't know yet how parameters should be handled, so I left implementation empty
-        return args;
-    }
+    final public static Map<String, Command> commands =
+            commandsList.stream().collect(Collectors.toMap(Command::getName, Function.identity()));
 
     public void run() {
         var input = new Scanner(System.in);
@@ -36,11 +26,20 @@ public class CommandManager {
         while (input.hasNext()) {
             var line = input.nextLine();
             var arguments = line.split("\\s+");
-            var commandName = arguments.length > 0 ? arguments[0].toLowerCase() : "";
+            if (arguments.length == 0) {
+                continue;
+            }
 
-            var command = getCommand(commandName);
-            var params = getCommandParams(arguments);
-            command.execute(commandName, params);
+            var commandName = arguments[0].toLowerCase();
+            var params = Arrays.copyOfRange(arguments, 1, arguments.length);
+
+            var command = commands.get(commandName);
+            if (command != null) {
+                command.execute(params);
+            } else {
+                System.out.println("Unknown command");
+                commands.get("help").execute(new String[0]);
+            }
         }
     }
 }
