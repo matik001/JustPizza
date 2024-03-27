@@ -20,8 +20,8 @@ public class ArgParser {
             }
             throw new IllegalArgumentException(result);
         }
-        for (int i = 0; i < params.length; i += 2) {
-            String argName = params[i].toLowerCase();
+        for (int i = 0; i < possibleArgs.size(); i ++) {
+            String argName = params[i * 2].toLowerCase();
 
             if (!possibleArgs.get(i).contains(argName)) {
                 throw new IllegalArgumentException("Invalid argument at position " + i
@@ -32,8 +32,7 @@ public class ArgParser {
             }
 
             try {
-                var argValue = Double.parseDouble(params[i + 1]);
-                System.out.println(argValue);
+                var argValue = Double.parseDouble(params[i * 2 + 1]);
                 if (argValue <= 0) {
                     throw new IllegalArgumentException();
                 }

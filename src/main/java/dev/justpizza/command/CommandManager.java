@@ -1,10 +1,6 @@
 package dev.justpizza.command;
 
-import dev.justpizza.command.list.HelpCommand;
-import dev.justpizza.command.list.ExitCommand;
-import dev.justpizza.command.list.SquareCommand;
-import dev.justpizza.command.list.TriangleCommand;
-import dev.justpizza.command.list.VersionCommand;
+import dev.justpizza.command.list.*;
 
 import java.util.*;
 
@@ -15,6 +11,7 @@ public class CommandManager {
         add(new SquareCommand());
         add(new TriangleCommand());
         add(new ExitCommand());
+        add(new RectangleCommand());
     }};
 
     public Command getCommand(String commandName) {
@@ -22,8 +19,6 @@ public class CommandManager {
                 .filter(a -> a.name.equals(commandName))
                 .findAny();
 
-        if (command.isEmpty())
-            command = Optional.of(getCommand("help"));
         return command.orElseThrow(); /// throw should not happen
     }
 
@@ -39,13 +34,13 @@ public class CommandManager {
 
             var commandName = arguments[0].toLowerCase();
 
-            var command = getCommand(commandName);
-            if (command == null) {
+            try {
+                var command = getCommand(commandName);
+                command.execute(Arrays.copyOfRange(arguments, 1, arguments.length));
+            } catch (NoSuchElementException e) {
                 System.out.println("Unknown command");
                 getCommand("help").execute(new String[0]);
-                continue;
             }
-            command.execute(Arrays.copyOfRange(arguments, 1, arguments.length));
         }
     }
 }
