@@ -1,6 +1,6 @@
 package dev.justpizza.shape;
 
-public class Rectangle {
+public class Rectangle extends Shape {
     private double sideA;
     private double sideB;
     private double diagonal;
@@ -13,24 +13,29 @@ public class Rectangle {
         this.area = sideA * sideB;
     }
 
-    public static Rectangle fromSides(double sideA, double sideB) {
+    public static Shape fromSides(double sideA, double sideB) {
+        if (sideA == sideB) return new Square(sideA);
         return new Rectangle(sideA, sideB);
     }
 
-    public static Rectangle fromDiagonalAndSide(double diagonal, double side) {
+    public static Shape fromDiagonalAndSide(double diagonal, double side) {
         double otherSide = Math.sqrt(diagonal * diagonal - side * side);
-        return new Rectangle(side, otherSide);
+        return Rectangle.fromSides(side, otherSide);
     }
 
-    public static Rectangle fromAreaAndSide(double area, double side) {
+    public static Shape fromAreaAndSide(double area, double side) {
         double otherSide = area / side;
-        return new Rectangle(side, otherSide);
+        return Rectangle.fromSides(side, otherSide);
     }
 
-    public static Rectangle fromDiagonalAndArea(double diagonal, double area) {
-        // TODO - trzeba jakiś układ równań rozwiązać
-        assert false;
-        return null;
+    public static Shape fromDiagonalAndArea(double diagonal, double area) throws IllegalShapeException {
+        double delta = Math.pow(diagonal, 4) - 4 * area * area;
+        if (delta < 0) {
+            throw new IllegalShapeException("Rectangle with this parameters does not exist");
+        }
+        double b = Math.sqrt((diagonal * diagonal - Math.sqrt(delta)) / 2);
+        double a = area / b;
+        return Rectangle.fromSides(a, b);
     }
 
     public double getSideA() {
@@ -49,15 +54,12 @@ public class Rectangle {
         return area;
     }
 
-    public boolean isSquare() {
-        return sideA == sideB;
-    }
-
+    @Override
     public void printCharacteristic() {
         System.out.println("Rectangle characteristics:");
-        System.out.println("\tSide A: " + sideA);
-        System.out.println("\tSide B: " + sideB);
-        System.out.println("\tDiagonal: " + diagonal);
-        System.out.println("\tArea: " + area);
+        System.out.println("\tSide A: " + getSideA());
+        System.out.println("\tSide B: " + getSideB());
+        System.out.println("\tDiagonal: " + getDiagonal());
+        System.out.println("\tArea: " + getArea());
     }
 }

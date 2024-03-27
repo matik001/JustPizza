@@ -12,12 +12,13 @@ public class CommandManager {
         add(new TriangleCommand());
         add(new ExitCommand());
         add(new RectangleCommand());
+        add(new RhombusCommand());
     }};
 
     public Command getCommand(String commandName) {
         var command = commands.stream()
-                .filter(a -> a.name.equals(commandName))
-                .findAny();
+                              .filter(a -> a.name.equals(commandName))
+                              .findAny();
 
         return command.orElseThrow(); /// throw should not happen
     }

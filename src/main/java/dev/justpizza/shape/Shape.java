@@ -1,4 +1,5 @@
 package dev.justpizza.shape;
 
-public class Shape {
+public abstract class Shape {
+    public abstract void printCharacteristic();
 }

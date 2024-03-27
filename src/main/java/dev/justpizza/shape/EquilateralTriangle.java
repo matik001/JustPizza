@@ -31,6 +31,7 @@ public class EquilateralTriangle extends Shape {
         return side * side * Math.sqrt(3) / 4;
     }
 
+    @Override
     public void printCharacteristic() {
         System.out.println(STR. "Triangle characteristics:\n\tside: \{ getSide() }\n\theight: \{ getHeight() }\n\tarea: \{ getArea() }\n" );
     }

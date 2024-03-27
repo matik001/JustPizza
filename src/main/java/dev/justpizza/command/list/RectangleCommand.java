@@ -2,9 +2,7 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
-import dev.justpizza.shape.EquilateralTriangle;
-import dev.justpizza.shape.Rectangle;
-import dev.justpizza.shape.Square;
+import dev.justpizza.shape.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,33 +28,31 @@ public class RectangleCommand extends Command {
             return;
         }
 
-        Rectangle rectangle;
+        Shape shape;
         var sideA = argParser.argValues.get("sidea");
         var sideB = argParser.argValues.get("sideb");
+        var side = sideA != null ? sideA : sideB;
         var diagonal = argParser.argValues.get("diagonal");
         var area = argParser.argValues.get("area");
 
         if (sideA != null && sideB != null) {
-            rectangle = Rectangle.fromSides(sideA, sideB);
-        } else if (sideA != null || sideB != null) {
-            Double side = sideA != null ? sideA : sideB;
-
-            if (diagonal != null) {
-                rectangle = Rectangle.fromDiagonalAndSide(diagonal, side);
-            } else {
-                rectangle = Rectangle.fromAreaAndSide(area, side);
+            shape = Rectangle.fromSides(sideA, sideB);
+        } else if (side != null && diagonal != null) {
+            shape = Rectangle.fromDiagonalAndSide(diagonal, side);
+        } else if (side != null && area != null) {
+            shape = Rectangle.fromAreaAndSide(area, side);
+        } else if (diagonal != null || area != null) {
+            try {
+                shape = Rectangle.fromDiagonalAndArea(diagonal, area);
+            } catch (IllegalShapeException e) {
+                System.out.println(e.getMessage());
+                return;
             }
         } else {
-            assert diagonal != null;
-            assert area != null;
-            rectangle = Rectangle.fromDiagonalAndArea(diagonal, area);
+            System.out.println("Not enough characteristics");
+            return;
         }
 
-        if (rectangle.getSideA() == rectangle.getSideB()) {
-            Square square = Square.fromSide(rectangle.getSideA());
-            square.printCharacteristic();
-        } else {
-            rectangle.printCharacteristic();
-        }
+        shape.printCharacteristic();
     }
 }

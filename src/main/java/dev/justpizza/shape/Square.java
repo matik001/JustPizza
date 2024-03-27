@@ -11,8 +11,8 @@ public class Square extends Shape {
         return new Square(side);
     }
 
-    public static Square fromDiagonal(double side) {
-        return new Square(side / Math.sqrt(2));
+    public static Square fromDiagonal(double diagonal) {
+        return new Square(diagonal / Math.sqrt(2));
     }
 
     public static Square fromArea(double area) {
@@ -31,6 +31,7 @@ public class Square extends Shape {
         return side * Math.sqrt(2);
     }
 
+    @Override
     public void printCharacteristic() {
         System.out.println(
                 STR. "Square characteristics:\n\tside: \{ getSide() }\n\tdiagonal: \{ getDiagonal() }\n\tarea: \{ getArea() }\n" );
