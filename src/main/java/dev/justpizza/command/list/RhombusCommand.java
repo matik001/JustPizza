@@ -2,14 +2,16 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
+import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Rhombus;
 import dev.justpizza.shape.Shape;
+import org.w3c.dom.UserDataHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RhombusCommand extends Command {
+public class RhombusCommand extends CreateShapeCommand {
     private static final String name = "rhombus";
     private static final String description = "calculates rhombus characteristics";
 
@@ -18,19 +20,13 @@ public class RhombusCommand extends Command {
     }
 
     @Override
-    public void execute(String[] params) {
-        ArgParser argParser = new ArgParser();
-        List<List<String>> possibleParams = new ArrayList();
-        possibleParams.add(List.of("side", "diagonala", "diagonalb", "area"));
-        possibleParams.add(List.of("side", "diagonala", "diagonalb", "area"));
+    protected void initArgParser(ArgParser argParser) {
+        argParser.possibleArgs.add(List.of("side", "diagonala", "diagonalb", "area"));
+        argParser.possibleArgs.add(List.of("side", "diagonala", "diagonalb", "area"));
+    }
 
-        try {
-            argParser.parseParams(possibleParams, params, name);
-        } catch (IllegalArgumentException exc) {
-            System.out.println(exc.getMessage());
-            return;
-        }
-
+    @Override
+    protected Shape createShape(ArgParser argParser) {
         Shape shape;
         var side = argParser.argValues.get("side");
         var diagonala = argParser.argValues.get("diagonala");
@@ -47,7 +43,7 @@ public class RhombusCommand extends Command {
                 shape = Rhombus.fromSideAndArea(side, area);
             } catch (IllegalShapeException e) {
                 System.out.println(e.getMessage());
-                return;
+                return null;
             }
         } else if (side != null && diagonal != null) {
             shape = Rhombus.fromSideAndDiagonal(side, diagonal);
@@ -55,9 +51,8 @@ public class RhombusCommand extends Command {
             shape = Rhombus.fromDiagonalAndArea(diagonal, area);
         } else {
             System.out.println("Not enough characteristics");
-            return;
+            return null;
         }
-
-        shape.printCharacteristic();
+        return shape;
     }
 }
