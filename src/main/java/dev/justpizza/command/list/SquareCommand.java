@@ -15,27 +15,24 @@ public class SquareCommand extends CreateShapeCommand {
     public static final String name = "square";
     public static final String description = AppSettings.global.translations.get(TranslationKey.square_description);
 
-    public static final int minNumberOfArgs = 1;
-    public static final int maxNumberOfArgs = 1;
-
     public SquareCommand() {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+        super(name, description);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(new ParamSchema("side"));
-        argParser.paramsSchemaList.add(new ParamSchema("diagonal"));
-        argParser.paramsSchemaList.add(new ParamSchema("area"));
-        argParser.minNumberOfArgs = minNumberOfArgs;
-        argParser.maxNumberOfArgs = maxNumberOfArgs;
+        argParser.addParamSchema(new ParamSchema("side"));
+        argParser.addParamSchema(new ParamSchema("diagonal"));
+        argParser.addParamSchema(new ParamSchema("area"));
+        argParser.minNumberOfArgs = 1;
+        argParser.maxNumberOfArgs = 1;
     }
 
     @Override
     protected Shape createShape(ArgParser argParser) {
         Square square;
         String argName = argParser.argValues.keySet().iterator().next();
-        double value = argParser.argValues.get(argName).getDouble();
+        double value = argParser.getValue(argName).getDouble();
         switch (argName) {
             case "side" -> square = Square.fromSide(value);
             case "diagonal" -> square = Square.fromDiagonal(value);

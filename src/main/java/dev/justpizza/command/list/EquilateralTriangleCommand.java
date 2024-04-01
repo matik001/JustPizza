@@ -15,26 +15,24 @@ public class EquilateralTriangleCommand extends CreateShapeCommand {
     public static final String name = "equtriangle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.equtriangle_description);
 
-    public static final int minNumberOfArgs = 1;
-    public static final int maxNumberOfArgs = 1;
     public EquilateralTriangleCommand() {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+        super(name, description);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(new ParamSchema("side"));
-        argParser.paramsSchemaList.add(new ParamSchema("height"));
-        argParser.paramsSchemaList.add(new ParamSchema("area"));
-        argParser.minNumberOfArgs = minNumberOfArgs;
-        argParser.maxNumberOfArgs = maxNumberOfArgs;
+        argParser.addParamSchema(new ParamSchema("side"));
+        argParser.addParamSchema(new ParamSchema("height"));
+        argParser.addParamSchema(new ParamSchema("area"));
+        argParser.minNumberOfArgs = 1;
+        argParser.maxNumberOfArgs = 1;
     }
 
     @Override
     protected Shape createShape(ArgParser argParser) {
         EquilateralTriangle triangle;
         String argName = argParser.argValues.keySet().iterator().next();
-        double value = argParser.argValues.get(argName).getDouble();
+        double value = argParser.getValue(argName).getDouble();
         try {
             switch (argName) {
                 case "side" -> triangle = EquilateralTriangle.fromSide(value);

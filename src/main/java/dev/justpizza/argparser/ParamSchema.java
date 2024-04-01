@@ -1,14 +1,31 @@
 package dev.justpizza.argparser;
 
+import java.util.Optional;
+import java.util.OptionalInt;
+
 public class ParamSchema {
     private String name;
     private ParamType paramType;
     private boolean optional;
 
+    private boolean isArray = false;
+    private int arrLen = 1;
     public ParamSchema(String name) {
         this.name = name;
         this.paramType = ParamType.POSITIVE_DOUBLE;
         this.optional = false;
+    }
+
+    public boolean isArray() {
+        return isArray;
+    }
+
+    public void setArray(boolean array) {
+        isArray = array;
+    }
+
+    public int getArrLen() {
+        return arrLen;
     }
 
     public ParamSchema(String name, ParamType paramType) {
@@ -21,6 +38,22 @@ public class ParamSchema {
         this.name = name;
         this.paramType = paramType;
         this.optional = optional;
+    }
+    public ParamSchema(String name, boolean optional) {
+        this.name = name;
+        this.paramType = ParamType.POSITIVE_DOUBLE;
+        this.optional = optional;
+    }
+    public ParamSchema(String name, ParamType paramType, boolean optional, boolean isArray, int arrLen) {
+        this.name = name;
+        this.paramType = paramType;
+        this.optional = optional;
+        this.isArray = isArray;
+        this.arrLen = arrLen;
+    }
+
+    public void setArrLen(int arrLen) {
+        this.arrLen = arrLen;
     }
 
     public String getName() {

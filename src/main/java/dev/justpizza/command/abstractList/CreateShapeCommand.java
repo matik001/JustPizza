@@ -7,23 +7,12 @@ import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 
 public abstract class CreateShapeCommand extends Command {
-    protected CreateShapeCommand(String name, String description, int minNumberOfArgs, int maxNumberOfArgs) {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+    protected CreateShapeCommand(String name, String description) {
+        super(name, description);
     }
-    protected abstract void initArgParser(ArgParser argParser);
     protected abstract Shape createShape(ArgParser argParser);
     @Override
-    public void execute(String[] params) {
-        var argParser = new ArgParser();
-        initArgParser(argParser);
-
-        try {
-            argParser.parseParams(params, name);
-        } catch (IllegalArgumentException exc) {
-            System.out.println(exc.getMessage());
-            return;
-        }
-
+    protected void handleExecute(ArgParser argParser) {
         var shape = createShape(argParser);
         if(shape == null)
             return;

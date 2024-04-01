@@ -1,5 +1,6 @@
 package dev.justpizza.command.list;
 
+import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.ShapesManager;
@@ -9,14 +10,17 @@ public class ShapesCommand extends Command {
     public static final String name = "shapes";
     public static final String description = AppSettings.global.translations.get(TranslationKey.shapes_description);
 
-    public static final int minNumberOfArgs = 0;
-    public static final int maxNumberOfArgs = 0;
     public ShapesCommand() {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+        super(name, description);
     }
 
     @Override
-    public void execute(String[] params) {
+    protected void initArgParser(ArgParser argParser) {
+    }
+
+    @Override
+    protected void handleExecute(ArgParser argParser) {
         ShapesManager.instance.printShapes();
     }
+
 }

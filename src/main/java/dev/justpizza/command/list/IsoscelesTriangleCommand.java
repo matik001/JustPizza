@@ -16,20 +16,18 @@ public class IsoscelesTriangleCommand extends CreateShapeCommand {
     public static final String name = "isotriangle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.isosceles_description);
 
-    public static final int minNumberOfArgs = 2;
-    public static final int maxNumberOfArgs = 2;
     public IsoscelesTriangleCommand() {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+        super(name, description);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(new ParamSchema("base"));
-        argParser.paramsSchemaList.add(new ParamSchema("side"));
-        argParser.paramsSchemaList.add(new ParamSchema("height"));
-        argParser.paramsSchemaList.add(new ParamSchema("area"));
-        argParser.minNumberOfArgs = minNumberOfArgs;
-        argParser.maxNumberOfArgs = maxNumberOfArgs;
+        argParser.addParamSchema(new ParamSchema("base"));
+        argParser.addParamSchema(new ParamSchema("side"));
+        argParser.addParamSchema(new ParamSchema("height"));
+        argParser.addParamSchema(new ParamSchema("area"));
+        argParser.minNumberOfArgs = 2;
+        argParser.maxNumberOfArgs = 2;
     }
 
     @Override
@@ -40,8 +38,8 @@ public class IsoscelesTriangleCommand extends CreateShapeCommand {
             for (int j = i + 1; j < options.size(); j++) {
                 var key1 = options.get(i);
                 var key2 = options.get(j);
-                var _val1 = argParser.argValues.get(key1);
-                var _val2 = argParser.argValues.get(key2);
+                var _val1 = argParser.getValue(key1);
+                var _val2 = argParser.getValue(key2);
                 if (_val1 == null || _val2 == null)
                     continue;
                 var val1 = _val1.getDouble();

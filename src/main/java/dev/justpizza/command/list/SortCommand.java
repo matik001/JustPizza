@@ -1,5 +1,6 @@
 package dev.justpizza.command.list;
 
+import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.ShapesManager;
@@ -14,7 +15,11 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public void execute(String[] params) {
+    protected void initArgParser(ArgParser argParser) {
+    }
+
+    @Override
+    protected void handleExecute(ArgParser argParser) {
         ShapesManager.instance.sortShapes();
         ShapesManager.instance.printShapes();
     }

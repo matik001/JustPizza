@@ -15,30 +15,28 @@ public class RhombusCommand extends CreateShapeCommand {
     public static final String name = "rhombus";
     public static final String description = AppSettings.global.translations.get(TranslationKey.rhombus_description);
 
-    public static final int minNumberOfArgs = 2;
-    public static final int maxNumberOfArgs = 2;
     public RhombusCommand() {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+        super(name, description);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(new ParamSchema("side"));
-        argParser.paramsSchemaList.add(new ParamSchema("diagonala"));
-        argParser.paramsSchemaList.add(new ParamSchema("diagonalb"));
-        argParser.paramsSchemaList.add(new ParamSchema("area"));
-        argParser.minNumberOfArgs = minNumberOfArgs;
-        argParser.maxNumberOfArgs = maxNumberOfArgs;
+        argParser.addParamSchema(new ParamSchema("side"));
+        argParser.addParamSchema(new ParamSchema("diagonala"));
+        argParser.addParamSchema(new ParamSchema("diagonalb"));
+        argParser.addParamSchema(new ParamSchema("area"));
+        argParser.minNumberOfArgs = 2;
+        argParser.maxNumberOfArgs = 2;
     }
 
     @Override
     protected Shape createShape(ArgParser argParser) {
         Shape shape;
-        var side = argParser.argValues.get("side");
-        var diagonala = argParser.argValues.get("diagonala");
-        var diagonalb = argParser.argValues.get("diagonalb");
+        var side = argParser.getValue("side");
+        var diagonala = argParser.getValue("diagonala");
+        var diagonalb = argParser.getValue("diagonalb");
         var diagonal = diagonala != null ? diagonala : diagonalb;
-        var area = argParser.argValues.get("area");
+        var area = argParser.getValue("area");
 
 
 

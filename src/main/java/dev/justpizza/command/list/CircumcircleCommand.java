@@ -16,22 +16,20 @@ public class CircumcircleCommand extends CreateShapeCommand {
     public static final String description =
             AppSettings.global.translations.get(TranslationKey.circumcircle_description);
 
-    public static final int minNumberOfArgs = 1;
-    public static final int maxNumberOfArgs = 1;
     public CircumcircleCommand() {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+        super(name, description);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(new ParamSchema("shapenumber", ParamType.INT));
-        argParser.minNumberOfArgs = minNumberOfArgs;
-        argParser.maxNumberOfArgs = maxNumberOfArgs;
+        argParser.addParamSchema(new ParamSchema("shapenumber", ParamType.INT));
+        argParser.minNumberOfArgs = 1;
+        argParser.maxNumberOfArgs = 1;
     }
 
     @Override
     protected Shape createShape(ArgParser argParser) {
-        var shapeNumber = argParser.argValues.get("shapenumber").getInt();
+        var shapeNumber = argParser.getValue("shapenumber").getInt();
         var shapesManagerSize = ShapesManager.instance.size();
         if (shapesManagerSize == 0) {
             System.out.println(AppSettings.global.translations.get(TranslationKey.zero_shapes_stored));

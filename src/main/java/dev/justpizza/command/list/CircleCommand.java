@@ -15,26 +15,24 @@ public class CircleCommand extends CreateShapeCommand {
     private static final String name = "circle";
     private static final String description = AppSettings.global.translations.get(TranslationKey.circle_description);
 
-    public static final int minNumberOfArgs = 1;
-    public static final int maxNumberOfArgs = 1;
     public CircleCommand() {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+        super(name, description);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(new ParamSchema("radius"));
-        argParser.paramsSchemaList.add(new ParamSchema("area"));
-        argParser.paramsSchemaList.add(new ParamSchema("perimeter"));
-        argParser.minNumberOfArgs = minNumberOfArgs;
-        argParser.maxNumberOfArgs = maxNumberOfArgs;
+        argParser.addParamSchema(new ParamSchema("radius", true));
+        argParser.addParamSchema(new ParamSchema("area", true));
+        argParser.addParamSchema(new ParamSchema("perimeter", true));
+        argParser.minNumberOfArgs = 1;
+        argParser.maxNumberOfArgs = 1;
     }
 
     @Override
     protected Shape createShape(ArgParser argParser) {
-        var radius = argParser.argValues.get("radius");
-        var area = argParser.argValues.get("area");
-        var perimeter = argParser.argValues.get("perimeter");
+        var radius = argParser.getValue("radius");
+        var area = argParser.getValue("area");
+        var perimeter = argParser.getValue("perimeter");
 
         if (radius != null) {
             return Circle.fromRadius(radius.getDouble());

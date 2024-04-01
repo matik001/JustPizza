@@ -2,6 +2,7 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
+import dev.justpizza.argparser.ParamType;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
@@ -24,34 +25,17 @@ public class TriangleCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(
-                List.of(
-                        new ParamSchema("sidea"),
-                        new ParamSchema("sideb"),
-                        new ParamSchema("sidec")
-                )
-        );
-        argParser.paramsSchemaList.add(
-                List.of(
-                        new ParamSchema("sidea"),
-                        new ParamSchema("sideb"),
-                        new ParamSchema("sidec")
-                )
-        );
-        argParser.paramsSchemaList.add(
-                List.of(
-                        new ParamSchema("sidea"),
-                        new ParamSchema("sideb"),
-                        new ParamSchema("sidec")
-                )
-        );
+        argParser.addParamSchema(new ParamSchema("sides", ParamType.POSITIVE_DOUBLE, false, true, 3));
+        argParser.minNumberOfArgs = 1;
+        argParser.maxNumberOfArgs = 1;
     }
 
     @Override
     protected Shape createShape(ArgParser argParser) {
-        Double sideA = argParser.argValues.get("sidea").getDouble();
-        Double sideB = argParser.argValues.get("sideb").getDouble();
-        Double sideC = argParser.argValues.get("sidec").getDouble();
+        List<Double> sides = argParser.getValue("sides").getArray();
+        Double sideA = sides.get(0);
+        Double sideB = sides.get(1);
+        Double sideC = sides.get(2);
 
         try {
             if (sideA.equals(sideB) && sideB.equals(sideC)) {

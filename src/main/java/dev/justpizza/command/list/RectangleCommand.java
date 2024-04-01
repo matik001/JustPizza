@@ -15,30 +15,28 @@ public class RectangleCommand extends CreateShapeCommand {
     public static final String name = "rectangle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.rectangle_description);
 
-    public static final int minNumberOfArgs = 2;
-    public static final int maxNumberOfArgs = 2;
     public RectangleCommand() {
-        super(name, description, minNumberOfArgs, maxNumberOfArgs);
+        super(name, description);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(new ParamSchema("sidea"));
-        argParser.paramsSchemaList.add(new ParamSchema("sideb"));
-        argParser.paramsSchemaList.add(new ParamSchema("diagonal"));
-        argParser.paramsSchemaList.add(new ParamSchema("area"));
-        argParser.minNumberOfArgs = minNumberOfArgs;
-        argParser.maxNumberOfArgs = maxNumberOfArgs;
+        argParser.addParamSchema(new ParamSchema("sidea"));
+        argParser.addParamSchema(new ParamSchema("sideb"));
+        argParser.addParamSchema(new ParamSchema("diagonal"));
+        argParser.addParamSchema(new ParamSchema("area"));
+        argParser.minNumberOfArgs = 2;
+        argParser.maxNumberOfArgs = 2;
     }
 
     @Override
     protected Shape createShape(ArgParser argParser) {
         Shape shape;
-        var sideA = argParser.argValues.get("sidea");
-        var sideB = argParser.argValues.get("sideb");
+        var sideA = argParser.getValue("sidea");
+        var sideB = argParser.getValue("sideb");
         var side = sideA != null ? sideA : sideB;
-        var diagonal = argParser.argValues.get("diagonal");
-        var area = argParser.argValues.get("area");
+        var diagonal = argParser.getValue("diagonal");
+        var area = argParser.getValue("area");
 
         if (sideA != null && sideB != null) {
             shape = Rectangle.fromSides(sideA.getDouble(), sideB.getDouble());

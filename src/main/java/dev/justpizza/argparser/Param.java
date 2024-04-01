@@ -1,5 +1,8 @@
 package dev.justpizza.argparser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Param {
     ParamSchema schema;
     Object value;
@@ -31,5 +34,8 @@ public class Param {
 
     public int getInt() {
         return (int) value;
+    }
+    public <T> List<T> getArray() {
+        return (List<T>) value;
     }
 }
