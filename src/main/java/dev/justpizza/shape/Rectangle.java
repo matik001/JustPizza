@@ -62,4 +62,9 @@ public class Rectangle extends Shape {
         System.out.println("\tDiagonal: " + getDiagonal());
         System.out.println("\tArea: " + getArea());
     }
+
+    @Override
+    public double calcArea() {
+        return getArea();
+    }
 }

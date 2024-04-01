@@ -5,21 +5,23 @@ import java.util.*;
 public class ArgParser {
 
     public final Map<String, Double> argValues = new HashMap<>();
-
+    public List<List<String>> possibleArgs = new ArrayList<>();
     public ArgParser() {
     }
 
-    public void parseParams(List<List<String>> possibleArgs, String[] params, String commandName) {
+
+
+    public void parseParams(String[] params, String commandName) {
         var requiredParams = possibleArgs.size() * 2;
 
         if (params.length != requiredParams) {
-            String result = "Invalid usage of the command " + commandName + ": \n";
-            result += "Required " + requiredParams + " parameters, given " + params.length + "\n";
+            String result = STR."Invalid usage of the command \{commandName}: \n";
+            result += STR."Required \{requiredParams} parameters, given \{params.length}\n";
             result += commandName;
 
             for (int i = 0; i < possibleArgs.size(); i++) {
                 var keys = possibleArgs.get(i);
-                result += " [" + String.join(" | ", keys) + "] {positive value}";
+                result += STR." [\{String.join(" | ", keys)}] {positive value}";
             }
             throw new IllegalArgumentException(result);
         }

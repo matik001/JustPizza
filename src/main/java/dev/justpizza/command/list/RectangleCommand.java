@@ -2,32 +2,28 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
+import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.shape.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RectangleCommand extends Command {
+public class RectangleCommand extends CreateShapeCommand {
     public static final String name = "rectangle";
+    public static final String description = "calculates rectangle characteristics";
 
     public RectangleCommand() {
-        super(name, "calculates rectangle characteristics");
+        super(name, description);
     }
 
     @Override
-    public void execute(String[] params) {
-        ArgParser argParser = new ArgParser();
-        List<List<String>> possibleParams = new ArrayList();
-        possibleParams.add(List.of("sidea", "sideb", "diagonal", "area"));
-        possibleParams.add(List.of("sidea", "sideb", "diagonal", "area"));
+    protected void initArgParser(ArgParser argParser) {
+        argParser.possibleArgs.add(List.of("sidea", "sideb", "diagonal", "area"));
+        argParser.possibleArgs.add(List.of("sidea", "sideb", "diagonal", "area"));
+    }
 
-        try {
-            argParser.parseParams(possibleParams, params, name);
-        } catch (IllegalArgumentException exc) {
-            System.out.println(exc.getMessage());
-            return;
-        }
-
+    @Override
+    protected Shape createShape(ArgParser argParser) {
         Shape shape;
         var sideA = argParser.argValues.get("sidea");
         var sideB = argParser.argValues.get("sideb");
@@ -46,13 +42,13 @@ public class RectangleCommand extends Command {
                 shape = Rectangle.fromDiagonalAndArea(diagonal, area);
             } catch (IllegalShapeException e) {
                 System.out.println(e.getMessage());
-                return;
+                return null;
             }
         } else {
             System.out.println("Not enough characteristics");
-            return;
+            return null;
         }
-
-        shape.printCharacteristic();
+        return shape;
     }
+
 }

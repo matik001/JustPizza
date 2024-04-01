@@ -9,12 +9,14 @@ import java.util.stream.Collectors;
 public class CommandManager {
     final private static List<Command> commandsList = new ArrayList<>() {{
         add(new HelpCommand());
+        add(new ShapesCommand());
         add(new VersionCommand());
         add(new SquareCommand());
-        add(new TriangleCommand());
-        add(new ExitCommand());
+        add(new EquilateralTriangleCommand());
+        add(new IsoscelesTriangleCommand());
         add(new RectangleCommand());
         add(new RhombusCommand());
+        add(new ExitCommand());
     }};
 
     final public static Map<String, Command> commands =

@@ -35,4 +35,9 @@ public class EquilateralTriangle extends Shape {
     public void printCharacteristic() {
         System.out.println(STR. "Triangle characteristics:\n\tside: \{ getSide() }\n\theight: \{ getHeight() }\n\tarea: \{ getArea() }\n" );
     }
+
+    @Override
+    public double calcArea() {
+        return getArea();
+    }
 }

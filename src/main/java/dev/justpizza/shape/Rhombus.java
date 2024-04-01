@@ -58,4 +58,9 @@ public class Rhombus extends Shape {
         System.out.println("\tDiagonal B: " + getDiagonalB());
         System.out.println("\tArea: " + getArea());
     }
+
+    @Override
+    public double calcArea() {
+        return getArea();
+    }
 }

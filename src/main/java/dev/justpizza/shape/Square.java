@@ -34,6 +34,11 @@ public class Square extends Shape {
     @Override
     public void printCharacteristic() {
         System.out.println(
-                STR. "Square characteristics:\n\tside: \{ getSide() }\n\tdiagonal: \{ getDiagonal() }\n\tarea: \{ getArea() }\n" );
+                STR. "Square characteristics:\n\tside: \{ getSide() }\n\tdiagonal: \{ getDiagonal() }\n\tarea: \{ getArea() }" );
+    }
+
+    @Override
+    public double calcArea() {
+        return getArea();
     }
 }
