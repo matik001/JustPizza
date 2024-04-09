@@ -17,16 +17,6 @@ public class ShapesCommand extends Command {
 
     @Override
     public void execute(String[] params) {
-//        ArgParser argParser = new ArgParser();
-//        List<List<String>> possibleParams = new ArrayList<>();
-////        possibleParams.add(List.of("list"));
-//
-//        try {
-//            argParser.parseParams(possibleParams, params, name);
-//        } catch (IllegalArgumentException exc) {
-//            System.out.println(exc.getMessage());
-//            return;
-//        }
         ShapesManager.instance.printShapes();
     }
 }

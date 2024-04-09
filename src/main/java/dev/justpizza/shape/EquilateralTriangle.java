@@ -1,6 +1,6 @@
 package dev.justpizza.shape;
 
-public class EquilateralTriangle extends Shape {
+public class EquilateralTriangle extends Triangle {
     private final double side;
 
     public EquilateralTriangle(double side) {
@@ -17,6 +17,19 @@ public class EquilateralTriangle extends Shape {
 
     public static EquilateralTriangle fromArea(double area) {
         return new EquilateralTriangle(Math.sqrt(4 * area / Math.sqrt(3)));
+    }
+
+    @Override
+    public double getSideA() {
+        return getSide();
+    }
+    @Override
+    public double getSideB(){
+        return getSide();
+    }
+    @Override
+    public double getSideC(){
+        return getSide();
     }
 
     public double getSide() {
@@ -40,4 +53,5 @@ public class EquilateralTriangle extends Shape {
     public double calcArea() {
         return getArea();
     }
+
 }

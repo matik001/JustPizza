@@ -17,6 +17,7 @@ public class CommandManager {
         add(new RectangleCommand());
         add(new RhombusCommand());
         add(new CircleCommand());
+        add(new CircumcircleCommand());
         add(new ExitCommand());
     }};
 

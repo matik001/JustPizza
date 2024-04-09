@@ -7,15 +7,15 @@ public class Circle extends Shape {
         this.radius = radius;
     }
 
-    public static Shape fromRadius(double radius) {
+    public static Circle fromRadius(double radius) {
         return new Circle(radius);
     }
 
-    public static Shape fromArea(double area) {
+    public static Circle fromArea(double area) {
         return Circle.fromRadius(Math.sqrt(area / Math.PI));
     }
 
-    public static Shape fromCircuit(double circuit) {
+    public static Circle fromCircuit(double circuit) {
         return Circle.fromRadius(circuit / (Math.PI * 2));
     }
 
@@ -33,7 +33,7 @@ public class Circle extends Shape {
 
     @Override
     public void printCharacteristic() {
-        System.out.println("Rectangle characteristics:");
+        System.out.println("Circle characteristics:");
         System.out.println("\tRadius: " + getRadius());
         System.out.println("\tArea: " + getArea());
         System.out.println("\tCircuit: " + getCircuit());
@@ -42,5 +42,10 @@ public class Circle extends Shape {
     @Override
     public double calcArea() {
         return getArea();
+    }
+
+    @Override
+    public Circle createCircumcircle() {
+        return Circle.fromRadius(getRadius());
     }
 }

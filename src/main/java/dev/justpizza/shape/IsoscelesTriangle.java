@@ -1,6 +1,6 @@
 package dev.justpizza.shape;
 
-public class IsoscelesTriangle extends Shape {
+public class IsoscelesTriangle extends Triangle {
     private final double base;
     private final double height;
 
@@ -41,6 +41,19 @@ public class IsoscelesTriangle extends Shape {
         if (delta < 0) throw new IllegalShapeException("IsoscelesTriangle with this parameters does not exist");
         double height = Math.sqrt((Math.pow(side, 2) + Math.sqrt(delta)) / 2);
         return IsoscelesTriangle.fromHeightSide(height, side);
+    }
+
+    @Override
+    public double getSideA() {
+        return getSide();
+    }
+    @Override
+    public double getSideB() {
+        return getSide();
+    }
+    @Override
+    public double getSideC() {
+        return getBase();
     }
 
     public double getBase() {
