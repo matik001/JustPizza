@@ -1,17 +1,20 @@
 package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
+import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
+import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.IsoscelesTriangle;
 import dev.justpizza.shape.Shape;
+import dev.justpizza.translations.TranslationKey;
 
 import java.util.List;
 import java.util.Objects;
 
 public class IsoscelesTriangleCommand extends CreateShapeCommand {
     public static final String name = "isotriangle";
-    public static final String description = "calculates isosceles triangle characteristics";
+    public static final String description = AppSettings.global.translations.get(TranslationKey.isosceles_description);
 
     public IsoscelesTriangleCommand() {
         super(name, description);
@@ -19,9 +22,14 @@ public class IsoscelesTriangleCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
+        argParser.paramsSchemaList.add(List.of(
+                new ParamSchema("base"), new ParamSchema("side"),
+                new ParamSchema("height"), new ParamSchema("area")));
 
-        argParser.possibleArgs.add(List.of("base", "side", "height", "area"));
-        argParser.possibleArgs.add(List.of("base", "side", "height", "area"));
+        argParser.paramsSchemaList.add(List.of(
+                new ParamSchema("base"), new ParamSchema("side"),
+                new ParamSchema("height"), new ParamSchema("area")));
+
     }
 
     @Override
@@ -32,10 +40,12 @@ public class IsoscelesTriangleCommand extends CreateShapeCommand {
             for (int j = i + 1; j < options.size(); j++) {
                 var key1 = options.get(i);
                 var key2 = options.get(j);
-                var val1 = argParser.argValues.get(key1);
-                var val2 = argParser.argValues.get(key2);
-                if (val1 == null || val2 == null)
+                var _val1 = argParser.argValues.get(key1);
+                var _val2 = argParser.argValues.get(key2);
+                if (_val1 == null || _val2 == null)
                     continue;
+                var val1 = _val1.getDouble();
+                var val2 = _val2.getDouble();
                 try {
                     if (Objects.equals(key1, "base") && Objects.equals(key2, "side"))
                         triangle = IsoscelesTriangle.fromBaseSide(val1, val2);

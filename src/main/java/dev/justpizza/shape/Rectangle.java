@@ -1,5 +1,7 @@
 package dev.justpizza.shape;
 
+import java.util.Map;
+
 public class Rectangle extends Shape {
     private double sideA;
     private double sideB;
@@ -55,12 +57,16 @@ public class Rectangle extends Shape {
     }
 
     @Override
-    public void printCharacteristic() {
-        System.out.println("Rectangle characteristics:");
-        System.out.println("\tSide A: " + getSideA());
-        System.out.println("\tSide B: " + getSideB());
-        System.out.println("\tDiagonal: " + getDiagonal());
-        System.out.println("\tArea: " + getArea());
+    protected Map<String, Object> getProperties() {
+        return Map.of("Side A", getSideA(),
+                "Side B", getSideB(),
+                "Diagonal", getDiagonal(),
+                "Area", getArea());
+    }
+
+    @Override
+    protected String getShapeName() {
+        return "Rectangle";
     }
 
     @Override
