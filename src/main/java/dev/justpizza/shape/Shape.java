@@ -1,6 +1,5 @@
 package dev.justpizza.shape;
 
-import java.util.Dictionary;
 import java.util.Map;
 
 public abstract class Shape {

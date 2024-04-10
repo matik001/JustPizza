@@ -3,7 +3,6 @@ package dev.justpizza.command.list;
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.argparser.ParamType;
-import dev.justpizza.command.Command;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
