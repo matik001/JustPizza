@@ -27,7 +27,7 @@ public class Translations {
     public String get(TranslationKey key) {
         var res = map.get(key);
         if(res == null)
-            System.err.println("Translation '" + key + "' not found"); /// celowo nie uzywam tlumaczenia
+            System.err.println(STR."Translation '\{key}' not found"); /// celowo nie uzywam tlumaczenia
         return res;
     }
 }

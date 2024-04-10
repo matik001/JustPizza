@@ -8,6 +8,7 @@
   "isosceles_description": "oblicza cechy trójkąta równoramiennego",
   "shapes_description": "wyświetla listę kształtów",
   "rectangle_description": "oblicza cechy prostokąta",
+  "circumcircle_description": "oblicza okręg opisany na figurze",
   "version_description": "wyświetla aktualną wersję",
   "allowed_usages": "Dozwolone użycia",
   "unknown_command": "Nieznana komenda",

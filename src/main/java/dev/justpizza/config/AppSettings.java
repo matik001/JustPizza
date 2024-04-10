@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class AppSettings {
     public final String programName = "JustPizza";
-    public final String version = "1.3";
+    public final String version = "1.4";
     public Translations translations;
 
 
@@ -18,7 +18,7 @@ public class AppSettings {
             // TODO wymyśleć coś mąrzejszego, by eng.json było w tym samym katalogu - może samo się kopiowało przy kompilacji
             translations = Translations.load(translationsPath);
         } catch (IOException e) {
-            System.err.println("Could not load translations file: " + translationsPath);
+            System.err.println(STR."Could not load translations file: \{translationsPath}");
             throw new RuntimeException(e);
         }
     }

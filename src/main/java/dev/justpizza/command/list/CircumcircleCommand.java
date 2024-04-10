@@ -4,14 +4,16 @@ import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.argparser.ParamType;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
+import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
+import dev.justpizza.translations.TranslationKey;
 
 import java.util.List;
 
 public class CircumcircleCommand extends CreateShapeCommand {
     public static final String name = "circumcircle";
-    public static final String description = "creates circumcircle";
+    public static final String description = AppSettings.global.translations.get(TranslationKey.circumcircle_description);
 
     public CircumcircleCommand() {
         super(name, description);
