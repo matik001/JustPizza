@@ -3,7 +3,6 @@ package dev.justpizza.translations;
 
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -28,7 +27,7 @@ public class Translations {
     public String get(TranslationKey key) {
         var res = map.get(key);
         if(res == null)
-            System.err.println("Translation '" + key + "' not found"); /// celowo nie uzywam tlumaczenia
+            System.err.println(STR."Translation '\{key}' not found"); /// celowo nie uzywam tlumaczenia
         return res;
     }
 }

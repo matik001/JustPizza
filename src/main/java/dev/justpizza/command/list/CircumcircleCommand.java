@@ -3,16 +3,17 @@ package dev.justpizza.command.list;
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.argparser.ParamType;
-import dev.justpizza.command.Command;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
+import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
+import dev.justpizza.translations.TranslationKey;
 
 import java.util.List;
 
 public class CircumcircleCommand extends CreateShapeCommand {
     public static final String name = "circumcircle";
-    public static final String description = "creates circumcircle";
+    public static final String description = AppSettings.global.translations.get(TranslationKey.circumcircle_description);
 
     public CircumcircleCommand() {
         super(name, description);
@@ -28,12 +29,13 @@ public class CircumcircleCommand extends CreateShapeCommand {
         var shapeNumber = argParser.argValues.get("shapenumber").getInt();
         var shapesManagerSize = ShapesManager.instance.size();
         if (shapesManagerSize == 0) {
-            System.out.println(STR."There are 0 shapes stored. Can't create circumcircle\n");
+            System.out.println(AppSettings.global.translations.get(TranslationKey.zero_shapes_stored));
             return null;
         }
 
         if (shapeNumber < 1 || shapesManagerSize < shapeNumber) {
-            System.out.println(STR."There are \{shapesManagerSize} shapes stored\n expected number in range [1, \{shapesManagerSize}]\n");
+            var notInRangeShapesStored = AppSettings.global.translations.get(TranslationKey.not_in_range_shapes_stored);
+            System.out.println(notInRangeShapesStored.replace("{shapesManagerSize}", Integer.toString(shapesManagerSize)));
             return null;
         }
 

@@ -1,8 +1,6 @@
 package dev.justpizza.shape;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Rhombus extends Shape {
     private final double diagonalA;

@@ -30,7 +30,7 @@ public class SquareCommand extends CreateShapeCommand {
     protected Shape createShape(ArgParser argParser) {
         Square square;
         String argName = argParser.argValues.keySet().iterator().next();
-        Double value = argParser.argValues.get(argName).getDouble();
+        double value = argParser.argValues.get(argName).getDouble();
         switch (argName) {
             case "side" -> square = Square.fromSide(value);
             case "diagonal" -> square = Square.fromDiagonal(value);

@@ -8,6 +8,7 @@
   "isosceles_description": "calculates isosceles triangle characteristics",
   "shapes_description": "prints list of shapes",
   "rectangle_description": "calculates rectangle characteristics",
+  "circumcircle_description": "calculates circumcircle of a shape",
   "version_description": "shows current version",
   "allowed_usages": "Allowed usages",
   "unknown_command": "Unknown command",
@@ -18,5 +19,7 @@
   "expected_one_of": "expected one of",
   "argument_already_provided": "Argument {argName} already provided",
   "expected_positive_number": "expected a positive number after {argName} argument",
-  "argument_not_found": "Argument not found: {argName}"
+  "argument_not_found": "Argument not found: {argName}",
+  "zero_shapes_stored": "There are 0 shapes stored, can't create circumcircle",
+  "not_in_range_shapes_stored": "There are {shapesManagerSize} shapes stored, expected number in range [1, {shapesManagerSize}]"
 }

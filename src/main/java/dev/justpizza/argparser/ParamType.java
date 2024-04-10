@@ -1,5 +1,5 @@
 package dev.justpizza.argparser;
 
 public enum ParamType {
-    STRING, DOUBLE, INT
+    STRING, POSITIVE_DOUBLE, INT
 }

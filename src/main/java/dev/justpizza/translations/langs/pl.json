@@ -8,6 +8,7 @@
   "isosceles_description": "oblicza cechy trójkąta równoramiennego",
   "shapes_description": "wyświetla listę kształtów",
   "rectangle_description": "oblicza cechy prostokąta",
+  "circumcircle_description": "oblicza okręg opisany na figurze",
   "version_description": "wyświetla aktualną wersję",
   "allowed_usages": "Dozwolone użycia",
   "unknown_command": "Nieznana komenda",
@@ -18,5 +19,7 @@
   "expected_one_of": "oczekiwano jednego z",
   "argument_already_provided": "Argument {argName} już podany",
   "expected_positive_number": "oczekiwano dodatniej liczby po argumencie {argName}",
-  "argument_not_found": "Nie znaleziono argumentu: {argName}"
+  "argument_not_found": "Nie znaleziono argumentu: {argName}",
+  "zero_shapes_stored": "Przechowywanych jest zero figur, nie można utworzyć okręgu opisanego na figurze.",
+  "not_in_range_shapes_stored": "Przechowywanych jest {shapesManagerSize} figur, oczekiwano liczby w przedziale [1, {shapesManagerSize}]"
 }

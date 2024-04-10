@@ -4,6 +4,7 @@ import dev.justpizza.config.AppSettings;
 import dev.justpizza.translations.TranslationKey;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ArgParser {
 
@@ -18,18 +19,19 @@ public class ArgParser {
         var requiredParams = paramsSchemaList.size() * 2;
 
         if (params.length != requiredParams) {
-            String result = STR."\{AppSettings.global.translations.get(TranslationKey.invalid_usage_command)
-                                                                  .replace("{commandName}", commandName)}: \n";
-            result += STR."\{AppSettings.global.translations.get(TranslationKey.required_more_params)
-                                                            .replace("{requiredParams}", String.valueOf(requiredParams))
-                                                            .replace("{length}", String.valueOf(params.length))}\n";
-            result += commandName;
+            var commandUsage = AppSettings.global.translations.get(TranslationKey.invalid_usage_command);
+            StringBuilder result = new StringBuilder(STR."\{commandUsage.replace("{commandName}", commandName)}: \n");
+            var requiredMoreParams = AppSettings.global.translations.get(TranslationKey.required_more_params);
+            result.append(STR."\{requiredMoreParams.replace("{requiredParams}", String.valueOf(requiredParams))
+                                                   .replace("{length}", String.valueOf(params.length))}\n");
+            result.append(commandName);
 
-            for (int i = 0; i < paramsSchemaList.size(); i++) {
-                var keys = paramsSchemaList.get(i).stream().map(ParamSchema::getName).toList();
-                result += STR." [\{String.join(" | ", keys)}] {\{AppSettings.global.translations.get(TranslationKey.positive_value)}}";
+            for (List<ParamSchema> paramSchemas : paramsSchemaList) {
+                var keys = paramSchemas.stream().map(ParamSchema::getName).toList();
+                var positiveValue = AppSettings.global.translations.get(TranslationKey.positive_value);
+                result.append(STR." [\{String.join(" | ", keys)}] {\{positiveValue}}");
             }
-            throw new IllegalArgumentException(result);
+            throw new IllegalArgumentException(result.toString());
         }
         for (int i = 0; i < paramsSchemaList.size(); i++) {
             String argName = params[i * 2].toLowerCase();
@@ -37,17 +39,18 @@ public class ArgParser {
             var schema = schemas.stream().filter(a -> a.getName().equals(argName)).findFirst();
 
             if (schema.isEmpty()) {
-                throw new IllegalArgumentException(AppSettings.global.translations.get(TranslationKey.invalid_argument) + i
-                                                   + ": " + argName + ", "
-                                                   + AppSettings.global.translations.get(
-                        TranslationKey.expected_one_of) + ": " + paramsSchemaList.get(i));
+                var invalidArgument = AppSettings.global.translations.get(TranslationKey.invalid_argument);
+                var expectedOneOf = AppSettings.global.translations.get(TranslationKey.expected_one_of);
+                var allowedParameters = paramsSchemaList.get(i).stream().map(ParamSchema::getName).collect(Collectors.joining(", "));
+                var message = STR."\{invalidArgument} \{i}: \{argName}, \{expectedOneOf}: [\{allowedParameters}]";
+                throw new IllegalArgumentException(message);
             }
             if (argValues.containsKey(argName)) {
                 throw new IllegalArgumentException(
                         AppSettings.global.translations.get(TranslationKey.argument_already_provided).replace("{argName}", argName));
             }
             Object value;
-            if (schema.get().getParamType() == ParamType.DOUBLE) {
+            if (schema.get().getParamType() == ParamType.POSITIVE_DOUBLE) {
                 try {
                     var argValue = Double.parseDouble(params[i * 2 + 1]);
                     if (argValue <= 0) {
@@ -60,11 +63,7 @@ public class ArgParser {
                 }
             } else if (schema.get().getParamType() == ParamType.INT) {
                 try {
-                    var argValue = Integer.parseInt(params[i * 2 + 1]);
-                    if (argValue <= 0) {
-                        throw new IllegalArgumentException();
-                    }
-                    value = argValue;
+                    value = Integer.parseInt(params[i * 2 + 1]);
                 } catch (Exception e) {
                     throw new IllegalArgumentException(
                             AppSettings.global.translations.get(TranslationKey.expected_positive_number).replace("{argName}", argName));
