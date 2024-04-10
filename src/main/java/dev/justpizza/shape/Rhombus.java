@@ -76,7 +76,7 @@ public class Rhombus extends Shape {
     }
 
     @Override
-    public Circle createCircumcircle() {
-        return Circle.fromRadius(diagonalA / 2.0);
+    public Circle createCircumcircle() throws IllegalShapeException {
+        throw new IllegalShapeException("Can't create circumcircle");
     }
 }

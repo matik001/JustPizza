@@ -38,5 +38,5 @@ public abstract class Shape {
 
     public abstract double calcArea();
 
-    public abstract Circle createCircumcircle();
+    public abstract Circle createCircumcircle() throws IllegalShapeException;
 }
