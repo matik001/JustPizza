@@ -1,6 +1,8 @@
 package dev.justpizza.command;
 
 import dev.justpizza.command.list.*;
+import dev.justpizza.config.AppSettings;
+import dev.justpizza.translations.TranslationKey;
 
 import java.util.*;
 import java.util.function.Function;
@@ -41,7 +43,7 @@ public class CommandManager {
             if (command != null) {
                 command.execute(params);
             } else {
-                System.out.println("Unknown command");
+                System.out.println(AppSettings.global.translations.get(TranslationKey.unknown_command));
                 commands.get("help").execute(new String[0]);
             }
         }

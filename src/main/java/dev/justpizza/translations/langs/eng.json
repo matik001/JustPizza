@@ -1,0 +1,22 @@
+{
+  "not_enough_characteristics": "Not enough characteristics",
+  "help_description": "shows this help page",
+  "square_description": "calculates square characteristics",
+  "rhombus_description": "calculates rhombus characteristics",
+  "exit_description": "exits the program",
+  "equtriangle_description": "calculates equilateral triangle characteristics",
+  "isosceles_description": "calculates isosceles triangle characteristics",
+  "shapes_description": "prints list of shapes",
+  "rectangle_description": "calculates rectangle characteristics",
+  "version_description": "shows current version",
+  "allowed_usages": "Allowed usages",
+  "unknown_command": "Unknown command",
+  "invalid_usage_command": "Invalid usage of the command {commandName}",
+  "required_more_params": "Required {requiredParams} parameters, given {length}",
+  "positive_value": "positive value",
+  "invalid_argument": "Invalid argument at position",
+  "expected_one_of": "expected one of",
+  "argument_already_provided": "Argument {argName} already provided",
+  "expected_positive_number": "expected a positive number after {argName} argument",
+  "argument_not_found": "Argument not found: {argName}"
+}

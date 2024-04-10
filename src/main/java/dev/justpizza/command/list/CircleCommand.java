@@ -1,6 +1,7 @@
 package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
+import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.shape.Circle;
 import dev.justpizza.shape.Shape;
@@ -17,7 +18,9 @@ public class CircleCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.possibleArgs.add(List.of("radius", "area", "circuit"));
+        argParser.paramsSchemaList.add(List.of(
+                new ParamSchema("radius"), new ParamSchema("area"),
+                new ParamSchema("circuit")));
     }
 
     @Override
@@ -27,11 +30,11 @@ public class CircleCommand extends CreateShapeCommand {
         var circuit = argParser.argValues.get("circuit");
 
         if (radius != null) {
-            return Circle.fromRadius(radius);
+            return Circle.fromRadius(radius.getDouble());
         } else if (area != null) {
-            return Circle.fromArea(area);
+            return Circle.fromArea(area.getDouble());
         } else if (circuit != null) {
-            return Circle.fromCircuit(circuit);
+            return Circle.fromCircuit(circuit.getDouble());
         } else {
             System.out.println("Not enough characteristics");
             return null;

@@ -1,19 +1,19 @@
 package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
-import dev.justpizza.command.Command;
+import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
+import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Rhombus;
 import dev.justpizza.shape.Shape;
-import org.w3c.dom.UserDataHandler;
+import dev.justpizza.translations.TranslationKey;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RhombusCommand extends CreateShapeCommand {
-    private static final String name = "rhombus";
-    private static final String description = "calculates rhombus characteristics";
+    public static final String name = "rhombus";
+    public static final String description = AppSettings.global.translations.get(TranslationKey.rhombus_description);
 
     public RhombusCommand() {
         super(name, description);
@@ -21,8 +21,12 @@ public class RhombusCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.possibleArgs.add(List.of("side", "diagonala", "diagonalb", "area"));
-        argParser.possibleArgs.add(List.of("side", "diagonala", "diagonalb", "area"));
+        argParser.paramsSchemaList.add(List.of(
+                new ParamSchema("side"), new ParamSchema("diagonala"),
+                new ParamSchema("diagonalb"), new ParamSchema("area")));
+        argParser.paramsSchemaList.add(List.of(
+                new ParamSchema("side"), new ParamSchema("diagonala"),
+                new ParamSchema("diagonalb"), new ParamSchema("area")));
     }
 
     @Override
@@ -37,20 +41,20 @@ public class RhombusCommand extends CreateShapeCommand {
 
 
         if (diagonala != null && diagonalb != null) {
-            shape = Rhombus.fromDiagonals(diagonala, diagonalb);
+            shape = Rhombus.fromDiagonals(diagonala.getDouble(), diagonalb.getDouble());
         } else if (side != null && area != null) {
             try {
-                shape = Rhombus.fromSideAndArea(side, area);
+                shape = Rhombus.fromSideAndArea(side.getDouble(), area.getDouble());
             } catch (IllegalShapeException e) {
                 System.out.println(e.getMessage());
                 return null;
             }
         } else if (side != null && diagonal != null) {
-            shape = Rhombus.fromSideAndDiagonal(side, diagonal);
+            shape = Rhombus.fromSideAndDiagonal(side.getDouble(), diagonal.getDouble());
         } else if (area != null && diagonal != null) {
-            shape = Rhombus.fromDiagonalAndArea(diagonal, area);
+            shape = Rhombus.fromDiagonalAndArea(diagonal.getDouble(), area.getDouble());
         } else {
-            System.out.println("Not enough characteristics");
+            System.out.println(AppSettings.global.translations.get(TranslationKey.not_enough_characteristics));
             return null;
         }
         return shape;

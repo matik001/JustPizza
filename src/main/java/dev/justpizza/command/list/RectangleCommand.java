@@ -1,16 +1,17 @@
 package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
-import dev.justpizza.command.Command;
+import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
+import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.*;
+import dev.justpizza.translations.TranslationKey;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RectangleCommand extends CreateShapeCommand {
     public static final String name = "rectangle";
-    public static final String description = "calculates rectangle characteristics";
+    public static final String description = AppSettings.global.translations.get(TranslationKey.rectangle_description);
 
     public RectangleCommand() {
         super(name, description);
@@ -18,8 +19,13 @@ public class RectangleCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.possibleArgs.add(List.of("sidea", "sideb", "diagonal", "area"));
-        argParser.possibleArgs.add(List.of("sidea", "sideb", "diagonal", "area"));
+        argParser.paramsSchemaList.add(List.of(
+                new ParamSchema("sidea"), new ParamSchema("sideb"),
+                new ParamSchema("diagonal"), new ParamSchema("area")));
+        argParser.paramsSchemaList.add(List.of(
+                new ParamSchema("sidea"), new ParamSchema("sideb"),
+                new ParamSchema("diagonal"), new ParamSchema("area")));
+
     }
 
     @Override
@@ -32,14 +38,14 @@ public class RectangleCommand extends CreateShapeCommand {
         var area = argParser.argValues.get("area");
 
         if (sideA != null && sideB != null) {
-            shape = Rectangle.fromSides(sideA, sideB);
+            shape = Rectangle.fromSides(sideA.getDouble(), sideB.getDouble());
         } else if (side != null && diagonal != null) {
-            shape = Rectangle.fromDiagonalAndSide(diagonal, side);
+            shape = Rectangle.fromDiagonalAndSide(diagonal.getDouble(), side.getDouble());
         } else if (side != null && area != null) {
-            shape = Rectangle.fromAreaAndSide(area, side);
+            shape = Rectangle.fromAreaAndSide(area.getDouble(), side.getDouble());
         } else if (diagonal != null && area != null) {
             try {
-                shape = Rectangle.fromDiagonalAndArea(diagonal, area);
+                shape = Rectangle.fromDiagonalAndArea(diagonal.getDouble(), area.getDouble());
             } catch (IllegalShapeException e) {
                 System.out.println(e.getMessage());
                 return null;

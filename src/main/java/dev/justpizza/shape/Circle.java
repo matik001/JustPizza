@@ -1,5 +1,7 @@
 package dev.justpizza.shape;
 
+import java.util.Map;
+
 public class Circle extends Shape {
     private final double radius;
 
@@ -32,11 +34,15 @@ public class Circle extends Shape {
     }
 
     @Override
-    public void printCharacteristic() {
-        System.out.println("Circle characteristics:");
-        System.out.println("\tRadius: " + getRadius());
-        System.out.println("\tArea: " + getArea());
-        System.out.println("\tCircuit: " + getCircuit());
+    protected Map<String, Object> getProperties() {
+        return Map.of("Radius", getRadius(),
+                "Area", getArea(),
+                "Circuit", getCircuit());
+    }
+
+    @Override
+    protected String getShapeName() {
+        return "Circle";
     }
 
     @Override

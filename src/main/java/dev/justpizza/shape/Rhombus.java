@@ -1,5 +1,9 @@
 package dev.justpizza.shape;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public class Rhombus extends Shape {
     private final double diagonalA;
     private final double diagonalB;
@@ -56,12 +60,16 @@ public class Rhombus extends Shape {
     }
 
     @Override
-    public void printCharacteristic() {
-        System.out.println("Rhombus characteristics:");
-        System.out.println("\tSide: " + getSide());
-        System.out.println("\tDiagonal A: " + getDiagonalA());
-        System.out.println("\tDiagonal B: " + getDiagonalB());
-        System.out.println("\tArea: " + getArea());
+    protected Map<String, Object> getProperties() {
+        return Map.of("Diagonal A", getDiagonalA(),
+                "Diagonal B", getDiagonalB(),
+                "Side", getSide(),
+                "Area", getArea());
+    }
+
+    @Override
+    protected String getShapeName() {
+        return "Rhombus";
     }
 
     @Override

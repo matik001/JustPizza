@@ -1,5 +1,7 @@
 package dev.justpizza.shape;
 
+import java.util.Map;
+
 public class EquilateralTriangle extends Triangle {
     private final double side;
 
@@ -23,12 +25,14 @@ public class EquilateralTriangle extends Triangle {
     public double getSideA() {
         return getSide();
     }
+
     @Override
-    public double getSideB(){
+    public double getSideB() {
         return getSide();
     }
+
     @Override
-    public double getSideC(){
+    public double getSideC() {
         return getSide();
     }
 
@@ -44,14 +48,21 @@ public class EquilateralTriangle extends Triangle {
         return side * side * Math.sqrt(3) / 4;
     }
 
+
     @Override
-    public void printCharacteristic() {
-        System.out.println(STR. "Triangle characteristics:\n\tside: \{ getSide() }\n\theight: \{ getHeight() }\n\tarea: \{ getArea() }\n" );
+    protected Map<String, Object> getProperties() {
+        return Map.of("Side", getSide(),
+                "Height", getHeight(),
+                "Area", getArea());
+    }
+
+    @Override
+    protected String getShapeName() {
+        return "EquilateralTriangle";
     }
 
     @Override
     public double calcArea() {
         return getArea();
     }
-
 }
