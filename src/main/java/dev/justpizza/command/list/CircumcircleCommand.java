@@ -5,6 +5,7 @@ import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.argparser.ParamType;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
@@ -40,8 +41,11 @@ public class CircumcircleCommand extends CreateShapeCommand {
         }
 
         var shape = ShapesManager.instance.get(shapeNumber - 1);
-        return shape.createCircumcircle();
-
+        try {
+            return shape.createCircumcircle();
+        } catch (IllegalShapeException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
-
 }
