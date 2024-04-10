@@ -21,5 +21,7 @@ public enum TranslationKey {
     expected_one_of,
     argument_already_provided,
     expected_positive_number,
-    argument_not_found
+    argument_not_found,
+    zero_shapes_stored,
+    not_in_range_shapes_stored,
 }

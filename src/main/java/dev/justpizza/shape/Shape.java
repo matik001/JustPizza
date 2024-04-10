@@ -9,7 +9,7 @@ public abstract class Shape {
 
     @Override
     public String toString() {
-        var sb = new StringBuffer();
+        var sb = new StringBuilder();
         var props = getProperties();
         var shapeName = getShapeName();
         sb.append(shapeName);

@@ -29,12 +29,13 @@ public class CircumcircleCommand extends CreateShapeCommand {
         var shapeNumber = argParser.argValues.get("shapenumber").getInt();
         var shapesManagerSize = ShapesManager.instance.size();
         if (shapesManagerSize == 0) {
-            System.out.println(STR."There are 0 shapes stored. Can't create circumcircle\n");
+            System.out.println(AppSettings.global.translations.get(TranslationKey.zero_shapes_stored));
             return null;
         }
 
         if (shapeNumber < 1 || shapesManagerSize < shapeNumber) {
-            System.out.println(STR."There are \{shapesManagerSize} shapes stored\n expected number in range [1, \{shapesManagerSize}]\n");
+            var notInRangeShapesStored = AppSettings.global.translations.get(TranslationKey.not_in_range_shapes_stored);
+            System.out.println(notInRangeShapesStored.replace("{shapesManagerSize}", Integer.toString(shapesManagerSize)));
             return null;
         }
 
