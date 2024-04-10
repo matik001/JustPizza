@@ -1,5 +1,7 @@
 package dev.justpizza.shape;
 
+import java.util.Map;
+
 public class Square extends Shape {
     private final double side;
 
@@ -31,12 +33,18 @@ public class Square extends Shape {
         return side * Math.sqrt(2);
     }
 
+
     @Override
-    public void printCharacteristic() {
-        System.out.println(
-                STR. "Square characteristics:\n\tside: \{ getSide() }\n\tdiagonal: \{ getDiagonal() }\n\tarea: \{ getArea() }" );
+    protected Map<String, Object> getProperties() {
+        return Map.of("Side", getSide(),
+                "Diagonal", getDiagonal(),
+                "Area", getArea());
     }
 
+    @Override
+    protected String getShapeName() {
+        return "Square";
+    }
     @Override
     public double calcArea() {
         return getArea();

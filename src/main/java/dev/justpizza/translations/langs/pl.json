@@ -1,0 +1,22 @@
+{
+  "not_enough_characteristics": "Niewystarczająca ilość cech",
+  "help_description": "wyświetla tę stronę pomocy",
+  "square_description": "oblicza cechy kwadratu",
+  "rhombus_description": "oblicza cechy rombu",
+  "exit_description": "zamyka program",
+  "equtriangle_description": "oblicza cechy trójkąta równobocznego",
+  "isosceles_description": "oblicza cechy trójkąta równoramiennego",
+  "shapes_description": "wyświetla listę kształtów",
+  "rectangle_description": "oblicza cechy prostokąta",
+  "version_description": "wyświetla aktualną wersję",
+  "allowed_usages": "Dozwolone użycia",
+  "unknown_command": "Nieznana komenda",
+  "invalid_usage_command": "Nieprawidłowe użycie komendy {commandName}",
+  "required_more_params": "Wymagane {requiredParams} parametry, podano {length}",
+  "positive_value": "wartość dodatnia",
+  "invalid_argument": "Nieprawidłowy argument na pozycji",
+  "expected_one_of": "oczekiwano jednego z",
+  "argument_already_provided": "Argument {argName} już podany",
+  "expected_positive_number": "oczekiwano dodatniej liczby po argumencie {argName}",
+  "argument_not_found": "Nie znaleziono argumentu: {argName}"
+}

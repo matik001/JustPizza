@@ -1,8 +1,8 @@
 package dev.justpizza.command;
 
 abstract public class Command {
-    final public String name;
-    final public String description;
+    final protected String name;
+    final protected String description;
 
     protected Command(String name, String description){
         this.name = name;

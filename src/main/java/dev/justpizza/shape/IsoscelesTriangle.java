@@ -1,5 +1,7 @@
 package dev.justpizza.shape;
 
+import java.util.Map;
+
 public class IsoscelesTriangle extends Shape {
     private final double base;
     private final double height;
@@ -59,11 +61,21 @@ public class IsoscelesTriangle extends Shape {
         return base * height / 2;
     }
 
+
+
     @Override
-    public void printCharacteristic() {
-        System.out.println(
-                STR. "IsoscelesTriangle characteristics:\n\tbase: \{ getBase() } \n\tside: \{ getSide() }\n\theight: \{ getHeight() }\n\tarea: \{ getArea() }\n" );
+    protected Map<String, Object> getProperties() {
+        return Map.of("Base", getBase(),
+                "Side", getSide(),
+                "Height", getHeight(),
+                "Area", getArea());
     }
+
+    @Override
+    protected String getShapeName() {
+        return "IsoscelesTriangle";
+    }
+
 
     @Override
     public double calcArea() {
