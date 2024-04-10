@@ -11,8 +11,8 @@ public class Rhombus extends Shape {
             this.diagonalA = diagonalA;
             this.diagonalB = diagonalB;
         } else {
-            this.diagonalB = diagonalB;
-            this.diagonalA = diagonalA;
+            this.diagonalA = diagonalB;
+            this.diagonalB = diagonalA;
         }
     }
 

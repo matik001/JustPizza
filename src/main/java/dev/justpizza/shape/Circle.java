@@ -17,8 +17,8 @@ public class Circle extends Shape {
         return Circle.fromRadius(Math.sqrt(area / Math.PI));
     }
 
-    public static Circle fromCircuit(double circuit) {
-        return Circle.fromRadius(circuit / (Math.PI * 2));
+    public static Circle fromPerimeter(double perimeter) {
+        return Circle.fromRadius(perimeter / (Math.PI * 2));
     }
 
     public double getRadius() {
@@ -29,7 +29,7 @@ public class Circle extends Shape {
         return Math.PI * radius * radius;
     }
 
-    public double getCircuit() {
+    public double getPerimeter() {
         return 2 * Math.PI * radius;
     }
 
@@ -37,7 +37,7 @@ public class Circle extends Shape {
     protected Map<String, Object> getProperties() {
         return Map.of("Radius", getRadius(),
                 "Area", getArea(),
-                "Circuit", getCircuit());
+                "Perimeter", getPerimeter());
     }
 
     @Override

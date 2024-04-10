@@ -8,6 +8,7 @@
   "isosceles_description": "calculates isosceles triangle characteristics",
   "shapes_description": "prints list of shapes",
   "rectangle_description": "calculates rectangle characteristics",
+  "circle_description": "calculates circle characteristics",
   "circumcircle_description": "calculates circumcircle of a shape",
   "version_description": "shows current version",
   "allowed_usages": "Allowed usages",
