@@ -9,8 +9,13 @@ public class Rhombus extends Shape {
     private final double diagonalB;
 
     public Rhombus(double diagonalA, double diagonalB) {
-        this.diagonalA = diagonalA;
-        this.diagonalB = diagonalB;
+        if (diagonalA >= diagonalB) {
+            this.diagonalA = diagonalA;
+            this.diagonalB = diagonalB;
+        } else {
+            this.diagonalB = diagonalB;
+            this.diagonalA = diagonalA;
+        }
     }
 
     public static Shape fromDiagonals(double diagonalA, double diagonalB) {
@@ -70,5 +75,10 @@ public class Rhombus extends Shape {
     @Override
     public double calcArea() {
         return getArea();
+    }
+
+    @Override
+    public Circle createCircumcircle() {
+        return Circle.fromRadius(diagonalA / 2.0);
     }
 }

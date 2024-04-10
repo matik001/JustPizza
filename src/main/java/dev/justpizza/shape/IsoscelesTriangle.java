@@ -2,7 +2,7 @@ package dev.justpizza.shape;
 
 import java.util.Map;
 
-public class IsoscelesTriangle extends Shape {
+public class IsoscelesTriangle extends Triangle {
     private final double base;
     private final double height;
 
@@ -45,6 +45,21 @@ public class IsoscelesTriangle extends Shape {
         return IsoscelesTriangle.fromHeightSide(height, side);
     }
 
+    @Override
+    public double getSideA() {
+        return getSide();
+    }
+
+    @Override
+    public double getSideB() {
+        return getSide();
+    }
+
+    @Override
+    public double getSideC() {
+        return getBase();
+    }
+
     public double getBase() {
         return base;
     }
@@ -60,8 +75,6 @@ public class IsoscelesTriangle extends Shape {
     public double getArea() {
         return base * height / 2;
     }
-
-
 
     @Override
     protected Map<String, Object> getProperties() {

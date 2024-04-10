@@ -7,9 +7,16 @@ public class ParamSchema {
 
     public ParamSchema(String name) {
         this.name = name;
-        this.paramType = ParamType.NUMBER;
+        this.paramType = ParamType.DOUBLE;
         this.optional = false;
     }
+
+    public ParamSchema(String name, ParamType paramType) {
+        this.name = name;
+        this.paramType = paramType;
+        this.optional = false;
+    }
+
     public ParamSchema(String name, ParamType paramType, boolean optional) {
         this.name = name;
         this.paramType = paramType;

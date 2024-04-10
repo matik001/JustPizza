@@ -18,4 +18,12 @@ public class ShapesManager {
             shape.printCharacteristic();
         }
     }
+
+    public Shape get(int i) {
+        return shapesList.get(i);
+    }
+
+    public int size() {
+        return shapesList.size();
+    }
 }

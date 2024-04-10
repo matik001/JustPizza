@@ -40,6 +40,4 @@ public class EquilateralTriangleCommand extends CreateShapeCommand {
         }
         return triangle;
     }
-
-
 }

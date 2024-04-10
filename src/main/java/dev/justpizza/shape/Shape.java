@@ -17,10 +17,10 @@ public abstract class Shape {
         sb.append(" [ ");
 
         var first = true;
-        for (var prop : props.entrySet()){
+        for (var prop : props.entrySet()) {
             var propName = prop.getKey();
             var propValue = prop.getValue();
-            if(!first)
+            if (!first)
                 sb.append(", ");
 
             sb.append(propName).append("=").append(propValue);
@@ -33,8 +33,11 @@ public abstract class Shape {
         return sb.toString();
     }
 
-    public void printCharacteristic(){
-        System.out.println(this.toString());
+    public final void printCharacteristic() {
+        System.out.println(this);
     }
+
     public abstract double calcArea();
+
+    public abstract Circle createCircumcircle();
 }

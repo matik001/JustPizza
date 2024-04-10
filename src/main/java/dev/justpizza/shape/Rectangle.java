@@ -73,4 +73,9 @@ public class Rectangle extends Shape {
     public double calcArea() {
         return getArea();
     }
+
+    @Override
+    public Circle createCircumcircle() {
+        return Circle.fromRadius(getDiagonal() / 2);
+    }
 }

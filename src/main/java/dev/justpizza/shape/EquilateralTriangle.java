@@ -2,7 +2,7 @@ package dev.justpizza.shape;
 
 import java.util.Map;
 
-public class EquilateralTriangle extends Shape {
+public class EquilateralTriangle extends Triangle {
     private final double side;
 
     public EquilateralTriangle(double side) {
@@ -19,6 +19,21 @@ public class EquilateralTriangle extends Shape {
 
     public static EquilateralTriangle fromArea(double area) {
         return new EquilateralTriangle(Math.sqrt(4 * area / Math.sqrt(3)));
+    }
+
+    @Override
+    public double getSideA() {
+        return getSide();
+    }
+
+    @Override
+    public double getSideB() {
+        return getSide();
+    }
+
+    @Override
+    public double getSideC() {
+        return getSide();
     }
 
     public double getSide() {
@@ -45,6 +60,7 @@ public class EquilateralTriangle extends Shape {
     protected String getShapeName() {
         return "EquilateralTriangle";
     }
+
     @Override
     public double calcArea() {
         return getArea();

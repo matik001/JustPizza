@@ -12,7 +12,7 @@ public class AppSettings {
 
     public static AppSettings global = new AppSettings();
     public AppSettings(){
-        var translationsPath = "src\\main\\java\\dev\\justpizza\\translations\\langs\\eng.json";
+        var translationsPath = "src/main/java/dev/justpizza/translations/langs/eng.json";
 
         try {
             // TODO wymyśleć coś mąrzejszego, by eng.json było w tym samym katalogu - może samo się kopiowało przy kompilacji

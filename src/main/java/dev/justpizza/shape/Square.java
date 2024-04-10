@@ -33,7 +33,6 @@ public class Square extends Shape {
         return side * Math.sqrt(2);
     }
 
-
     @Override
     protected Map<String, Object> getProperties() {
         return Map.of("Side", getSide(),
@@ -45,8 +44,14 @@ public class Square extends Shape {
     protected String getShapeName() {
         return "Square";
     }
+
     @Override
     public double calcArea() {
         return getArea();
+    }
+
+    @Override
+    public Circle createCircumcircle() {
+        return Circle.fromRadius(getDiagonal() / 2);
     }
 }
