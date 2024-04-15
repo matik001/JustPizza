@@ -5,7 +5,7 @@ import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
-import dev.justpizza.shape.Rhombus;
+import dev.justpizza.shape.quadrangle.Rhombus;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
 

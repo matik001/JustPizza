@@ -1,4 +1,6 @@
-package dev.justpizza.shape;
+package dev.justpizza.shape.circle;
+
+import dev.justpizza.shape.Shape;
 
 import java.util.Map;
 

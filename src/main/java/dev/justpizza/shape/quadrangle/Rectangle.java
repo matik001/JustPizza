@@ -1,4 +1,8 @@
-package dev.justpizza.shape;
+package dev.justpizza.shape.quadrangle;
+
+import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.Shape;
+import dev.justpizza.shape.circle.Circle;
 
 import java.util.Map;
 

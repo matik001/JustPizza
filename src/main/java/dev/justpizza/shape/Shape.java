@@ -1,5 +1,7 @@
 package dev.justpizza.shape;
 
+import dev.justpizza.shape.circle.Circle;
+
 import java.util.Map;
 
 public abstract class Shape {
@@ -37,6 +39,8 @@ public abstract class Shape {
     }
 
     public abstract double calcArea();
+
+//    public abstract double getPerimeter();
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 }

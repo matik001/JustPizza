@@ -7,3 +7,5 @@
 /dataSources/
 /dataSources.local.xml
 jpa-buddy.xml
+# GitHub Copilot persisted chat sessions
+/copilot/chatSessions

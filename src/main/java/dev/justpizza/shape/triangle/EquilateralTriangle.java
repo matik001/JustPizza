@@ -1,4 +1,4 @@
-package dev.justpizza.shape;
+package dev.justpizza.shape.triangle;
 
 import java.util.Map;
 

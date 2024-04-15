@@ -1,4 +1,6 @@
-package dev.justpizza.shape;
+package dev.justpizza.shape.triangle;
+
+import dev.justpizza.shape.IllegalShapeException;
 
 import java.util.Map;
 
