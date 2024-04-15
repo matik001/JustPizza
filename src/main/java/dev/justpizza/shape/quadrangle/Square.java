@@ -28,6 +28,7 @@ public class Square extends Shape {
         return side;
     }
 
+    @Override
     public double getArea() {
         return side * side;
     }
@@ -46,11 +47,6 @@ public class Square extends Shape {
     @Override
     protected String getShapeName() {
         return "Square";
-    }
-
-    @Override
-    public double calcArea() {
-        return getArea();
     }
 
     @Override

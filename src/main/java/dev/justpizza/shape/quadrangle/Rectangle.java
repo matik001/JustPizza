@@ -56,6 +56,7 @@ public class Rectangle extends Shape {
         return diagonal;
     }
 
+    @Override
     public double getArea() {
         return area;
     }
@@ -71,11 +72,6 @@ public class Rectangle extends Shape {
     @Override
     protected String getShapeName() {
         return "Rectangle";
-    }
-
-    @Override
-    public double calcArea() {
-        return getArea();
     }
 
     @Override

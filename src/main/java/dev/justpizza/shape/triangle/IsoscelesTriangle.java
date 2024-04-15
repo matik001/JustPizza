@@ -74,10 +74,6 @@ public class IsoscelesTriangle extends Triangle {
         return height;
     }
 
-    public double getArea() {
-        return base * height / 2;
-    }
-
     @Override
     protected Map<String, Object> getProperties() {
         return Map.of("Base", getBase(),
@@ -93,7 +89,7 @@ public class IsoscelesTriangle extends Triangle {
 
 
     @Override
-    public double calcArea() {
+    public double getArea() {
         return getArea();
     }
 }

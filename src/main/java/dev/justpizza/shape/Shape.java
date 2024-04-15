@@ -38,9 +38,7 @@ public abstract class Shape {
         System.out.println(this);
     }
 
-    public abstract double calcArea();
-
-//    public abstract double getPerimeter();
+    public abstract double getArea();
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 }

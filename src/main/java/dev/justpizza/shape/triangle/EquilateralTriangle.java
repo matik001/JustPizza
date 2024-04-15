@@ -44,10 +44,6 @@ public class EquilateralTriangle extends Triangle {
         return side * Math.sqrt(3) / 2;
     }
 
-    public double getArea() {
-        return side * side * Math.sqrt(3) / 4;
-    }
-
 
     @Override
     protected Map<String, Object> getProperties() {
@@ -62,7 +58,7 @@ public class EquilateralTriangle extends Triangle {
     }
 
     @Override
-    public double calcArea() {
+    public double getArea() {
         return getArea();
     }
 }

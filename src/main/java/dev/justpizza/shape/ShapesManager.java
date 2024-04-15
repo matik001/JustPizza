@@ -10,7 +10,7 @@ public class ShapesManager {
 
     public void addShape(Shape shape) {
         shapesList.add(shape);
-        shapesList.sort(Comparator.comparingDouble(Shape::calcArea)); /// mozna zrobic wydajniej
+        shapesList.sort(Comparator.comparingDouble(Shape::getArea)); /// mozna zrobic wydajniej
     }
 
     public void printShapes() {

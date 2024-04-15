@@ -53,7 +53,8 @@ public class Rhombus extends Shape {
         return diagonalB;
     }
 
-    private double getArea() {
+    @Override
+    public double getArea() {
         return diagonalA * diagonalB / 2.0;
     }
 
@@ -72,11 +73,6 @@ public class Rhombus extends Shape {
     @Override
     protected String getShapeName() {
         return "Rhombus";
-    }
-
-    @Override
-    public double calcArea() {
-        return getArea();
     }
 
     @Override

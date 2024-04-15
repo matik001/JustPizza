@@ -27,6 +27,7 @@ public class Circle extends Shape {
         return radius;
     }
 
+    @Override
     public double getArea() {
         return Math.PI * radius * radius;
     }
@@ -45,11 +46,6 @@ public class Circle extends Shape {
     @Override
     protected String getShapeName() {
         return "Circle";
-    }
-
-    @Override
-    public double calcArea() {
-        return getArea();
     }
 
     @Override
