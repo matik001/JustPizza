@@ -1,6 +1,7 @@
 package dev.justpizza.shape.circle;
 
 import dev.justpizza.shape.Shape;
+import dev.justpizza.utils.Utils;
 
 import java.util.Map;
 
@@ -32,15 +33,19 @@ public class Circle extends Shape {
         return Math.PI * radius * radius;
     }
 
+    @Override
     public double getPerimeter() {
         return 2 * Math.PI * radius;
     }
 
     @Override
     protected Map<String, Object> getProperties() {
-        return Map.of("Radius", getRadius(),
-                "Area", getArea(),
-                "Perimeter", getPerimeter());
+        return Utils.mergeProperties(
+                Map.of(
+                        "Radius", getRadius()
+                ),
+                super.getProperties()
+        );
     }
 
     @Override

@@ -2,6 +2,7 @@ package dev.justpizza.shape.quadrangle;
 
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.utils.Utils;
 
 import java.util.Map;
 
@@ -33,15 +34,23 @@ public class Square extends Shape {
         return side * side;
     }
 
+    @Override
+    public double getPerimeter() {
+        return 4 * side;
+    }
+
     public double getDiagonal() {
         return side * Math.sqrt(2);
     }
 
     @Override
     protected Map<String, Object> getProperties() {
-        return Map.of("Side", getSide(),
-                "Diagonal", getDiagonal(),
-                "Area", getArea());
+        return Utils.mergeProperties(
+                Map.of(
+                        "Side", getSide(),
+                        "Diagonal", getDiagonal()),
+                super.getProperties()
+        );
     }
 
     @Override

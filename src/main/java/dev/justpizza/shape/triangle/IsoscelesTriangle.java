@@ -1,6 +1,7 @@
 package dev.justpizza.shape.triangle;
 
 import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.utils.Utils;
 
 import java.util.Map;
 
@@ -76,20 +77,18 @@ public class IsoscelesTriangle extends Triangle {
 
     @Override
     protected Map<String, Object> getProperties() {
-        return Map.of("Base", getBase(),
-                "Side", getSide(),
-                "Height", getHeight(),
-                "Area", getArea());
+        return Utils.mergeProperties(
+                Map.of(
+                        "Base", getBase(),
+                        "Side", getSide(),
+                        "Height", getHeight()
+                ),
+                super.getShapeProperties()
+        );
     }
 
     @Override
     protected String getShapeName() {
         return "IsoscelesTriangle";
-    }
-
-
-    @Override
-    public double getArea() {
-        return getArea();
     }
 }

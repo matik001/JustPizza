@@ -3,6 +3,7 @@ package dev.justpizza.shape.quadrangle;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.utils.Utils;
 
 import java.util.Map;
 
@@ -62,11 +63,20 @@ public class Rectangle extends Shape {
     }
 
     @Override
+    public double getPerimeter() {
+        return 2 * (sideA + sideB);
+    }
+
+    @Override
     protected Map<String, Object> getProperties() {
-        return Map.of("Side A", getSideA(),
-                "Side B", getSideB(),
-                "Diagonal", getDiagonal(),
-                "Area", getArea());
+        return Utils.mergeProperties(
+                Map.of(
+                        "Side A", getSideA(),
+                        "Side B", getSideB(),
+                        "Diagonal", getDiagonal()
+                ),
+                super.getProperties()
+        );
     }
 
     @Override

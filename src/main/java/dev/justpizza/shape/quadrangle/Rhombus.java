@@ -3,6 +3,7 @@ package dev.justpizza.shape.quadrangle;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.utils.Utils;
 
 import java.util.Map;
 
@@ -58,16 +59,25 @@ public class Rhombus extends Shape {
         return diagonalA * diagonalB / 2.0;
     }
 
+    @Override
+    public double getPerimeter() {
+        return 4 * getSide();
+    }
+
     private double getSide() {
         return Math.sqrt(diagonalA * diagonalA + diagonalB * diagonalB) / 2;
     }
 
     @Override
     protected Map<String, Object> getProperties() {
-        return Map.of("Diagonal A", getDiagonalA(),
-                "Diagonal B", getDiagonalB(),
-                "Side", getSide(),
-                "Area", getArea());
+        return Utils.mergeProperties(
+                Map.of(
+                        "Diagonal A", getDiagonalA(),
+                        "Diagonal B", getDiagonalB(),
+                        "Side", getSide()
+                ),
+                super.getProperties()
+        );
     }
 
     @Override

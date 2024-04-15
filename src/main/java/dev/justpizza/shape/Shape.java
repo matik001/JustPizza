@@ -5,7 +5,12 @@ import dev.justpizza.shape.circle.Circle;
 import java.util.Map;
 
 public abstract class Shape {
-    protected abstract Map<String, Object> getProperties();
+    protected Map<String, Object> getProperties() {
+        return Map.of(
+                "Area", getArea(),
+                "Perimeter", getPerimeter()
+        );
+    }
 
     protected abstract String getShapeName();
 
@@ -39,6 +44,8 @@ public abstract class Shape {
     }
 
     public abstract double getArea();
+
+    public abstract double getPerimeter();
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 }
