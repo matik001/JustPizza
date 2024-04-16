@@ -18,11 +18,14 @@ public class ArgParser {
     }
 
     public Param getValue(String argName) {
+        return argValues.get(argName);
+    }
+    public Param getValueSafe(String argName) {
         if (!argValues.containsKey(argName)) {
             throw new IllegalArgumentException(
                     AppSettings.global.translations.get(TranslationKey.argument_not_found).replace("{argName}", argName));
         }
-        return argValues.get(argName);
+        return getValue(argName);
     }
     public void addParamSchema(ParamSchema paramSchema){
         paramsSchemaList.add(paramSchema);
@@ -104,13 +107,13 @@ public class ArgParser {
                     .replace("{length}", String.valueOf(params.length))}\n");
             result.append(commandName);
 
-            List<String> keys = new ArrayList<>();
-            for (ParamSchema paramSchemas : paramsSchemaList) {
-                keys.add(paramSchemas.getName());
-                //var keys = paramSchemas.stream().map(ParamSchema::getName).toList();
-                var positiveValue = AppSettings.global.translations.get(TranslationKey.positive_value);
-                result.append(STR." [\{String.join(" | ", keys)}] {\{positiveValue}}");
-            }
+            List<String> keys = paramsSchemaList
+                    .stream()
+                    .map(a->a.getName())
+                    .toList();
+            //var keys = paramSchemas.stream().map(ParamSchema::getName).toList();
+            var positiveValue = AppSettings.global.translations.get(TranslationKey.positive_value);
+            result.append(STR." [\{String.join(" | ", keys)}] {\{positiveValue}}");
             throw new IllegalArgumentException(result.toString());
         }
     }
