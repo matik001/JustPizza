@@ -10,8 +10,6 @@ import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
 
-import java.util.List;
-
 public class CircumcircleCommand extends CreateShapeCommand {
     public static final String name = "circumcircle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.circumcircle_description);
@@ -25,6 +23,8 @@ public class CircumcircleCommand extends CreateShapeCommand {
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.paramsSchemaList.add(new ParamSchema("shapenumber", ParamType.INT));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

@@ -2,6 +2,7 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
+import dev.justpizza.command.Command;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.*;
@@ -25,6 +26,8 @@ public class RectangleCommand extends CreateShapeCommand {
         argParser.paramsSchemaList.add(new ParamSchema("sideb"));
         argParser.paramsSchemaList.add(new ParamSchema("diagonal"));
         argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

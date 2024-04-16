@@ -19,7 +19,7 @@ public class ArgParser {
 
 
     public void parseParams(String[] params, String commandName) {
-        var requiredParams = paramsSchemaList.size() * 2;
+        var requiredParams = minNumberOfArgs * 2;
 
         if (params.length != requiredParams) {
             var commandUsage = AppSettings.global.translations.get(TranslationKey.invalid_usage_command);
