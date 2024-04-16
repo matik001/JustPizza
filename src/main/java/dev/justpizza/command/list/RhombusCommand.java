@@ -15,8 +15,10 @@ public class RhombusCommand extends CreateShapeCommand {
     public static final String name = "rhombus";
     public static final String description = AppSettings.global.translations.get(TranslationKey.rhombus_description);
 
+    public static final int minNumberOfArgs = 2;
+    public static final int maxNumberOfArgs = 2;
     public RhombusCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override

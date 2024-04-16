@@ -27,6 +27,8 @@ public class SquareCommand extends CreateShapeCommand {
         argParser.paramsSchemaList.add(new ParamSchema("side"));
         argParser.paramsSchemaList.add(new ParamSchema("diagonal"));
         argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

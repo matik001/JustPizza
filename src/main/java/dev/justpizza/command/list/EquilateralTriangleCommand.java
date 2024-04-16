@@ -14,8 +14,10 @@ public class EquilateralTriangleCommand extends CreateShapeCommand {
     public static final String name = "equtriangle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.equtriangle_description);
 
+    public static final int minNumberOfArgs = 2;
+    public static final int maxNumberOfArgs = 2;
     public EquilateralTriangleCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override

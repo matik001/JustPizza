@@ -8,8 +8,10 @@ import dev.justpizza.translations.TranslationKey;
 public class HelpCommand extends Command {
     public static final String name = "help";
 
+    public static final int minNumberOfArgs = 0;
+    public static final int maxNumberOfArgs = 0;
     public HelpCommand() {
-        super(name, AppSettings.global.translations.get(TranslationKey.help_description));
+        super(name, AppSettings.global.translations.get(TranslationKey.help_description), minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override

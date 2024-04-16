@@ -16,8 +16,10 @@ public class CircumcircleCommand extends CreateShapeCommand {
     public static final String name = "circumcircle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.circumcircle_description);
 
+    public static final int minNumberOfArgs = 1;
+    public static final int maxNumberOfArgs = 1;
     public CircumcircleCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
