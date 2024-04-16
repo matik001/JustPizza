@@ -103,17 +103,18 @@ public class ArgParser {
             var commandUsage = AppSettings.global.translations.get(TranslationKey.invalid_usage_command);
             StringBuilder result = new StringBuilder(STR."\{commandUsage.replace("{commandName}", commandName)}: \n");
             var requiredMoreParams = AppSettings.global.translations.get(TranslationKey.required_more_params);
-            result.append(STR."\{requiredMoreParams.replace("{requiredParams}", String.valueOf(minNumberOfArgs)+" - "+ String.valueOf(maxNumberOfArgs))
-                    .replace("{length}", String.valueOf(params.length))}\n");
+            var required = minNumberOfArgs == maxNumberOfArgs ? String.valueOf(maxNumberOfArgs) : String.valueOf(minNumberOfArgs)+" - "+ String.valueOf(maxNumberOfArgs);
+            result.append(STR."\{requiredMoreParams.replace("{requiredParams}", required)
+                    .replace("{length}", String.valueOf(argValues.size()))}\n");
             result.append(commandName);
-
-            List<String> keys = paramsSchemaList
-                    .stream()
-                    .map(a->a.getName())
+            List<String> keys = paramsSchemaList.stream()
+                    .map(a -> a.getParamType() == ParamType.OPTIONS_SET
+                            ? "[" + String.join(" | ", a.getOptionsSet()) + "]"
+                            : "[" + a.getName() + "] {" + TranslationKey.positive_value+"}")
                     .toList();
             //var keys = paramSchemas.stream().map(ParamSchema::getName).toList();
             var positiveValue = AppSettings.global.translations.get(TranslationKey.positive_value);
-            result.append(STR." [\{String.join(" | ", keys)}] {\{positiveValue}}");
+            result.append(STR." \{String.join(" ", keys)}");
             throw new IllegalArgumentException(result.toString());
         }
     }

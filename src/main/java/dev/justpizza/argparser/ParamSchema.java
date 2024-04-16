@@ -13,6 +13,7 @@ public class ParamSchema {
     private int arrLen = 1;
     private HashSet<String> optionsSet = new HashSet<String>();
 
+
     public ParamSchema(HashSet<String> optionsSet) { /// initialization optionsSet
         this.paramType = ParamType.OPTIONS_SET;
         this.optionsSet = optionsSet;
@@ -90,5 +91,9 @@ public class ParamSchema {
 
     public void setOptional(boolean optional) {
         this.optional = optional;
+    }
+
+    public HashSet<String> getOptionsSet() {
+        return optionsSet;
     }
 }
