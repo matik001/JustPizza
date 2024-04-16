@@ -14,6 +14,10 @@ public class ArgParser {
     public int minNumberOfArgs;
     public int maxNumberOfArgs;
 
+    public boolean hasArg(String argName) {
+        return argValues.containsKey(argName);
+    }
+
     public ArgParser() {
     }
 

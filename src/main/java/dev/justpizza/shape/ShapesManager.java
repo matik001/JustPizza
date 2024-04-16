@@ -14,13 +14,17 @@ public class ShapesManager {
 
     public void printShapes() {
         for (int i = 0; i < shapesList.size(); i++) {
-            System.out.print(STR."\{i + 1}e. ");
+            System.out.print(STR."\{i + 1}. ");
             shapesList.get(i).printCharacteristic();
         }
     }
 
-    public void sortShapes() {
-        shapesList.sort(Comparator.comparingDouble(Shape::getArea));
+    public void sortShapes(boolean by_area, boolean increasing) {
+        if (increasing) {
+            shapesList.sort(Comparator.comparingDouble(by_area ? Shape::getArea : Shape::getPerimeter));
+        } else {
+            shapesList.sort(Comparator.comparingDouble(by_area ? Shape::getArea : Shape::getPerimeter).reversed());
+        }
     }
 
     public Shape get(int i) {
