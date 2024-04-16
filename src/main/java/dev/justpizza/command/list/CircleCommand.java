@@ -20,9 +20,9 @@ public class CircleCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("radius"), new ParamSchema("area"),
-                new ParamSchema("perimeter")));
+        argParser.paramsSchemaList.add(new ParamSchema("radius"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.paramsSchemaList.add(new ParamSchema("perimeter"));
     }
 
     @Override

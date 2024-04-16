@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class ArgParser {
 
     public final Map<String, Param> argValues = new HashMap<>(); // hashmap lepszy od listy
-    public List<List<ParamSchema>> paramsSchemaList = new ArrayList<>();
+    public List<ParamSchema> paramsSchemaList = new ArrayList<>();
 
     public ArgParser() {
     }

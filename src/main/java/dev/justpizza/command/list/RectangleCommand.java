@@ -19,13 +19,10 @@ public class RectangleCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("sidea"), new ParamSchema("sideb"),
-                new ParamSchema("diagonal"), new ParamSchema("area")));
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("sidea"), new ParamSchema("sideb"),
-                new ParamSchema("diagonal"), new ParamSchema("area")));
-
+        argParser.paramsSchemaList.add(new ParamSchema("sidea"));
+        argParser.paramsSchemaList.add(new ParamSchema("sideb"));
+        argParser.paramsSchemaList.add(new ParamSchema("diagonal"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
     }
 
     @Override

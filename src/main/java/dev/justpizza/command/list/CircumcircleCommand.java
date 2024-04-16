@@ -22,7 +22,7 @@ public class CircumcircleCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(new ParamSchema("shapenumber", ParamType.INT)));
+        argParser.paramsSchemaList.add(new ParamSchema("shapenumber", ParamType.INT));
     }
 
     @Override

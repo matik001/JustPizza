@@ -21,12 +21,10 @@ public class RhombusCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("side"), new ParamSchema("diagonala"),
-                new ParamSchema("diagonalb"), new ParamSchema("area")));
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("side"), new ParamSchema("diagonala"),
-                new ParamSchema("diagonalb"), new ParamSchema("area")));
+        argParser.paramsSchemaList.add(new ParamSchema("side"));
+        argParser.paramsSchemaList.add(new ParamSchema("diagonala"));
+        argParser.paramsSchemaList.add(new ParamSchema("diagonalb"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
     }
 
     @Override

@@ -20,8 +20,9 @@ public class EquilateralTriangleCommand extends CreateShapeCommand {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("side"), new ParamSchema("height"), new ParamSchema("area")));
+        argParser.paramsSchemaList.add(new ParamSchema("side"));
+        argParser.paramsSchemaList.add(new ParamSchema("height"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
     }
 
     @Override
