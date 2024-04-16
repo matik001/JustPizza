@@ -16,20 +16,20 @@ public class IsoscelesTriangleCommand extends CreateShapeCommand {
     public static final String name = "isotriangle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.isosceles_description);
 
+    public static final int minNumberOfArgs = 2;
+    public static final int maxNumberOfArgs = 2;
     public IsoscelesTriangleCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("base"), new ParamSchema("side"),
-                new ParamSchema("height"), new ParamSchema("area")));
-
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("base"), new ParamSchema("side"),
-                new ParamSchema("height"), new ParamSchema("area")));
-
+        argParser.paramsSchemaList.add(new ParamSchema("base"));
+        argParser.paramsSchemaList.add(new ParamSchema("side"));
+        argParser.paramsSchemaList.add(new ParamSchema("height"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

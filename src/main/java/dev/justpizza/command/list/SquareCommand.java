@@ -15,15 +15,20 @@ public class SquareCommand extends CreateShapeCommand {
     public static final String name = "square";
     public static final String description = AppSettings.global.translations.get(TranslationKey.square_description);
 
+    public static final int minNumberOfArgs = 1;
+    public static final int maxNumberOfArgs = 1;
+
     public SquareCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("side"), new ParamSchema("diagonal"), new ParamSchema("area")));
+        argParser.paramsSchemaList.add(new ParamSchema("side"));
+        argParser.paramsSchemaList.add(new ParamSchema("diagonal"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

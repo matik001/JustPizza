@@ -9,14 +9,17 @@ import java.util.stream.Collectors;
 public class ArgParser {
 
     public final Map<String, Param> argValues = new HashMap<>(); // hashmap lepszy od listy
-    public List<List<ParamSchema>> paramsSchemaList = new ArrayList<>();
+    public List<ParamSchema> paramsSchemaList = new ArrayList<>();
+
+    public int minNumberOfArgs;
+    public int maxNumberOfArgs;
 
     public ArgParser() {
     }
 
 
     public void parseParams(String[] params, String commandName) {
-        var requiredParams = paramsSchemaList.size() * 2;
+        var requiredParams = minNumberOfArgs * 2;
 
         if (params.length != requiredParams) {
             var commandUsage = AppSettings.global.translations.get(TranslationKey.invalid_usage_command);
@@ -26,22 +29,24 @@ public class ArgParser {
                                                    .replace("{length}", String.valueOf(params.length))}\n");
             result.append(commandName);
 
-            for (List<ParamSchema> paramSchemas : paramsSchemaList) {
-                var keys = paramSchemas.stream().map(ParamSchema::getName).toList();
+            List<String> keys = new ArrayList<>();
+            for (ParamSchema paramSchemas : paramsSchemaList) {
+                keys.add(paramSchemas.getName());
+                //var keys = paramSchemas.stream().map(ParamSchema::getName).toList();
                 var positiveValue = AppSettings.global.translations.get(TranslationKey.positive_value);
                 result.append(STR." [\{String.join(" | ", keys)}] {\{positiveValue}}");
             }
             throw new IllegalArgumentException(result.toString());
         }
-        for (int i = 0; i < paramsSchemaList.size(); i++) {
+        for (int i = 0; i < minNumberOfArgs; i++) {
             String argName = params[i * 2].toLowerCase();
-            var schemas = paramsSchemaList.get(i);
-            var schema = schemas.stream().filter(a -> a.getName().equals(argName)).findFirst();
+            //var schemas = paramsSchemaList.get(i);
+            var schema = paramsSchemaList.stream().filter(a -> a.getName().equals(argName)).findFirst();
 
             if (schema.isEmpty()) {
                 var invalidArgument = AppSettings.global.translations.get(TranslationKey.invalid_argument);
                 var expectedOneOf = AppSettings.global.translations.get(TranslationKey.expected_one_of);
-                var allowedParameters = paramsSchemaList.get(i).stream().map(ParamSchema::getName).collect(Collectors.joining(", "));
+                var allowedParameters = paramsSchemaList.stream().map(ParamSchema::getName).collect(Collectors.joining(", "));
                 var message = STR."\{invalidArgument} \{i}: \{argName}, \{expectedOneOf}: [\{allowedParameters}]";
                 throw new IllegalArgumentException(message);
             }

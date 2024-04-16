@@ -15,18 +15,20 @@ public class RhombusCommand extends CreateShapeCommand {
     public static final String name = "rhombus";
     public static final String description = AppSettings.global.translations.get(TranslationKey.rhombus_description);
 
+    public static final int minNumberOfArgs = 2;
+    public static final int maxNumberOfArgs = 2;
     public RhombusCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("side"), new ParamSchema("diagonala"),
-                new ParamSchema("diagonalb"), new ParamSchema("area")));
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("side"), new ParamSchema("diagonala"),
-                new ParamSchema("diagonalb"), new ParamSchema("area")));
+        argParser.paramsSchemaList.add(new ParamSchema("side"));
+        argParser.paramsSchemaList.add(new ParamSchema("diagonala"));
+        argParser.paramsSchemaList.add(new ParamSchema("diagonalb"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

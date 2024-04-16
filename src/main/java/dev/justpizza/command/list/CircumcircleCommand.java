@@ -11,20 +11,22 @@ import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
 import dev.justpizza.utils.Utils;
 
-import java.util.List;
-
 public class CircumcircleCommand extends CreateShapeCommand {
     public static final String name = "circumcircle";
     public static final String description =
             AppSettings.global.translations.get(TranslationKey.circumcircle_description);
 
+    public static final int minNumberOfArgs = 1;
+    public static final int maxNumberOfArgs = 1;
     public CircumcircleCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(new ParamSchema("shapenumber", ParamType.INT)));
+        argParser.paramsSchemaList.add(new ParamSchema("shapenumber", ParamType.INT));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

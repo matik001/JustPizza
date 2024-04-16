@@ -15,15 +15,19 @@ public class CircleCommand extends CreateShapeCommand {
     private static final String name = "circle";
     private static final String description = AppSettings.global.translations.get(TranslationKey.circle_description);
 
+    public static final int minNumberOfArgs = 1;
+    public static final int maxNumberOfArgs = 1;
     public CircleCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("radius"), new ParamSchema("area"),
-                new ParamSchema("perimeter")));
+        argParser.paramsSchemaList.add(new ParamSchema("radius"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.paramsSchemaList.add(new ParamSchema("perimeter"));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

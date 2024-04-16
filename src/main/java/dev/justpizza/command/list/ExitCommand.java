@@ -7,8 +7,10 @@ import dev.justpizza.translations.TranslationKey;
 public class ExitCommand extends Command {
     public static final String name = "exit";
 
+    public static final int minNumberOfArgs = 0;
+    public static final int maxNumberOfArgs = 0;
     public ExitCommand() {
-        super(name, AppSettings.global.translations.get(TranslationKey.exit_description));
+        super(name, AppSettings.global.translations.get(TranslationKey.exit_description), minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override

@@ -7,8 +7,8 @@ import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 
 public abstract class CreateShapeCommand extends Command {
-    protected CreateShapeCommand(String name, String description) {
-        super(name, description);
+    protected CreateShapeCommand(String name, String description, int minNumberOfArgs, int maxNumberOfArgs) {
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
     protected abstract void initArgParser(ArgParser argParser);
     protected abstract Shape createShape(ArgParser argParser);
@@ -23,7 +23,6 @@ public abstract class CreateShapeCommand extends Command {
             System.out.println(exc.getMessage());
             return;
         }
-
 
         var shape = createShape(argParser);
         if(shape == null)

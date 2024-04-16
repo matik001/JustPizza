@@ -2,6 +2,7 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
+import dev.justpizza.command.Command;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.*;
@@ -14,19 +15,20 @@ public class RectangleCommand extends CreateShapeCommand {
     public static final String name = "rectangle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.rectangle_description);
 
+    public static final int minNumberOfArgs = 2;
+    public static final int maxNumberOfArgs = 2;
     public RectangleCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("sidea"), new ParamSchema("sideb"),
-                new ParamSchema("diagonal"), new ParamSchema("area")));
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("sidea"), new ParamSchema("sideb"),
-                new ParamSchema("diagonal"), new ParamSchema("area")));
-
+        argParser.paramsSchemaList.add(new ParamSchema("sidea"));
+        argParser.paramsSchemaList.add(new ParamSchema("sideb"));
+        argParser.paramsSchemaList.add(new ParamSchema("diagonal"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override

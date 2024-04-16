@@ -15,14 +15,19 @@ public class EquilateralTriangleCommand extends CreateShapeCommand {
     public static final String name = "equtriangle";
     public static final String description = AppSettings.global.translations.get(TranslationKey.equtriangle_description);
 
+    public static final int minNumberOfArgs = 1;
+    public static final int maxNumberOfArgs = 1;
     public EquilateralTriangleCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.paramsSchemaList.add(List.of(
-                new ParamSchema("side"), new ParamSchema("height"), new ParamSchema("area")));
+        argParser.paramsSchemaList.add(new ParamSchema("side"));
+        argParser.paramsSchemaList.add(new ParamSchema("height"));
+        argParser.paramsSchemaList.add(new ParamSchema("area"));
+        argParser.minNumberOfArgs = minNumberOfArgs;
+        argParser.maxNumberOfArgs = maxNumberOfArgs;
     }
 
     @Override
