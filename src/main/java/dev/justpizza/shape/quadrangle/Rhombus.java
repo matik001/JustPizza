@@ -1,4 +1,9 @@
-package dev.justpizza.shape;
+package dev.justpizza.shape.quadrangle;
+
+import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.Shape;
+import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.utils.Utils;
 
 import java.util.Map;
 
@@ -30,7 +35,7 @@ public class Rhombus extends Shape {
     public static Shape fromSideAndArea(double side, double area) throws IllegalShapeException {
         double delta = 16 * (Math.pow(side, 4) - area * area);
         if (delta < 0) {
-            throw new IllegalShapeException("Rhombus with this parameters does not exist");
+            throw new IllegalShapeException(paramError("Rhombus"));
         }
         double diagonalA = Math.sqrt((4 * side * side + Math.sqrt(delta)) / 2);
         double diagonalB = area * 2 / diagonalA;
@@ -49,8 +54,14 @@ public class Rhombus extends Shape {
         return diagonalB;
     }
 
-    private double getArea() {
+    @Override
+    public double getArea() {
         return diagonalA * diagonalB / 2.0;
+    }
+
+    @Override
+    public double getPerimeter() {
+        return 4 * getSide();
     }
 
     private double getSide() {
@@ -59,20 +70,14 @@ public class Rhombus extends Shape {
 
     @Override
     protected Map<String, Object> getProperties() {
-        return Map.of("Diagonal A", getDiagonalA(),
-                "Diagonal B", getDiagonalB(),
-                "Side", getSide(),
-                "Area", getArea());
-    }
-
-    @Override
-    protected String getShapeName() {
-        return "Rhombus";
-    }
-
-    @Override
-    public double calcArea() {
-        return getArea();
+        return Utils.mergeProperties(
+                Map.of(
+                        "Diagonal A", getDiagonalA(),
+                        "Diagonal B", getDiagonalB(),
+                        "Side", getSide()
+                ),
+                super.getProperties()
+        );
     }
 
     @Override

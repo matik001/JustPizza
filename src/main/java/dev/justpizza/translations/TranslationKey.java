@@ -7,8 +7,11 @@ public enum TranslationKey {
     rhombus_description,
     exit_description,
     equtriangle_description,
+    triangle_description,
     isosceles_description,
     shapes_description,
+    sort_description,
+
     rectangle_description,
     circle_description,
     circumcircle_description,
@@ -25,4 +28,5 @@ public enum TranslationKey {
     argument_not_found,
     zero_shapes_stored,
     not_in_range_shapes_stored,
+    no_shape_for_parameters,
 }

@@ -10,7 +10,6 @@ public class ShapesManager {
 
     public void addShape(Shape shape) {
         shapesList.add(shape);
-        shapesList.sort(Comparator.comparingDouble(Shape::calcArea)); /// mozna zrobic wydajniej
     }
 
     public void printShapes() {
@@ -18,6 +17,10 @@ public class ShapesManager {
             System.out.print(STR."\{i + 1}. ");
             shapesList.get(i).printCharacteristic();
         }
+    }
+
+    public void sortShapes() {
+        shapesList.sort(Comparator.comparingDouble(Shape::getArea));
     }
 
     public Shape get(int i) {

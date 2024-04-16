@@ -4,7 +4,8 @@ import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
-import dev.justpizza.shape.EquilateralTriangle;
+import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.triangle.EquilateralTriangle;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
 
@@ -28,15 +29,20 @@ public class EquilateralTriangleCommand extends CreateShapeCommand {
     protected Shape createShape(ArgParser argParser) {
         EquilateralTriangle triangle;
         String argName = argParser.argValues.keySet().iterator().next();
-        Double value = argParser.argValues.get(argName).getDouble();
-        switch (argName) {
-            case "side" -> triangle = EquilateralTriangle.fromSide(value);
-            case "height" -> triangle = EquilateralTriangle.fromHeight(value);
-            case "area" -> triangle = EquilateralTriangle.fromArea(value);
-            default -> {
-                assert false;
-                return null;
+        double value = argParser.argValues.get(argName).getDouble();
+        try {
+            switch (argName) {
+                case "side" -> triangle = EquilateralTriangle.fromSide(value);
+                case "height" -> triangle = EquilateralTriangle.fromHeight(value);
+                case "area" -> triangle = EquilateralTriangle.fromArea(value);
+                default -> {
+                    assert false;
+                    return null;
+                }
             }
+        } catch (IllegalShapeException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
         return triangle;
     }

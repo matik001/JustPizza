@@ -1,5 +1,7 @@
 package dev.justpizza.command;
 
+import dev.justpizza.shape.IllegalShapeException;
+
 abstract public class Command {
     final protected String name;
     final protected String description;

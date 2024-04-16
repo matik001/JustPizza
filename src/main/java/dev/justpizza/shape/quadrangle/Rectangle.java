@@ -1,4 +1,9 @@
-package dev.justpizza.shape;
+package dev.justpizza.shape.quadrangle;
+
+import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.Shape;
+import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.utils.Utils;
 
 import java.util.Map;
 
@@ -33,7 +38,7 @@ public class Rectangle extends Shape {
     public static Shape fromDiagonalAndArea(double diagonal, double area) throws IllegalShapeException {
         double delta = Math.pow(diagonal, 4) - 4 * area * area;
         if (delta < 0) {
-            throw new IllegalShapeException("Rectangle with this parameters does not exist");
+            throw new IllegalShapeException(paramError("Rectangle"));
         }
         double b = Math.sqrt((diagonal * diagonal - Math.sqrt(delta)) / 2);
         double a = area / b;
@@ -52,26 +57,26 @@ public class Rectangle extends Shape {
         return diagonal;
     }
 
+    @Override
     public double getArea() {
         return area;
     }
 
     @Override
+    public double getPerimeter() {
+        return 2 * (sideA + sideB);
+    }
+
+    @Override
     protected Map<String, Object> getProperties() {
-        return Map.of("Side A", getSideA(),
-                "Side B", getSideB(),
-                "Diagonal", getDiagonal(),
-                "Area", getArea());
-    }
-
-    @Override
-    protected String getShapeName() {
-        return "Rectangle";
-    }
-
-    @Override
-    public double calcArea() {
-        return getArea();
+        return Utils.mergeProperties(
+                Map.of(
+                        "Side A", getSideA(),
+                        "Side B", getSideB(),
+                        "Diagonal", getDiagonal()
+                ),
+                super.getProperties()
+        );
     }
 
     @Override

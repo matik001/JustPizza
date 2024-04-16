@@ -5,7 +5,7 @@ import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.Shape;
-import dev.justpizza.shape.Square;
+import dev.justpizza.shape.quadrangle.Square;
 import dev.justpizza.translations.TranslationKey;
 
 import java.util.List;

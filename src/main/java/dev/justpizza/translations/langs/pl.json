@@ -6,6 +6,7 @@
   "exit_description": "zamyka program",
   "equtriangle_description": "oblicza cechy trójkąta równobocznego",
   "isosceles_description": "oblicza cechy trójkąta równoramiennego",
+  "triangle_description": "oblicza cechy trójkąta",
   "shapes_description": "wyświetla listę kształtów",
   "rectangle_description": "oblicza cechy prostokąta",
   "circle_description": "oblicza cechy koła",
@@ -22,5 +23,7 @@
   "expected_positive_number": "oczekiwano dodatniej liczby po argumencie {argName}",
   "argument_not_found": "Nie znaleziono argumentu: {argName}",
   "zero_shapes_stored": "Przechowywanych jest zero figur, nie można utworzyć okręgu opisanego na figurze.",
-  "not_in_range_shapes_stored": "Przechowywanych jest {shapesManagerSize} figur, oczekiwano liczby w przedziale [1, {shapesManagerSize}]"
+  "not_in_range_shapes_stored": "Przechowywanych jest {shapesManagerSize} figur, oczekiwano liczby w przedziale [1, {shapesManagerSize}]",
+  "no_shape_for_parameters": "%s z takimi parametrami nie istnieje",
+  "sort_description": "Sortuje kształty według pola lub obwodu"
 }

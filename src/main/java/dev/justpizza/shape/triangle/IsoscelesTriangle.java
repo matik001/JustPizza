@@ -1,38 +1,54 @@
-package dev.justpizza.shape;
+package dev.justpizza.shape.triangle;
+
+import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.translations.TranslationKey;
+import dev.justpizza.utils.Utils;
 
 import java.util.Map;
 
 public class IsoscelesTriangle extends Triangle {
     private final double base;
     private final double height;
+    private final double side;
 
-    public IsoscelesTriangle(double base, double height) {
+    public IsoscelesTriangle(double base, double height) throws IllegalShapeException {
+        super(base,
+                Math.sqrt(Math.pow(base / 2, 2) + Math.pow(height, 2)),
+                Math.sqrt(Math.pow(base / 2, 2) + Math.pow(height, 2))
+        );
+        this.side = getSideB();
         this.base = base;
         this.height = height;
     }
 
-    public static IsoscelesTriangle fromBaseHeight(double base, double height) {
+    public static IsoscelesTriangle fromBaseHeight(double base, double height) throws IllegalShapeException {
         return new IsoscelesTriangle(base, height);
     }
 
     public static IsoscelesTriangle fromBaseSide(double base, double side) throws IllegalShapeException {
-        if (2 * side < base) throw new IllegalShapeException("IsoscelesTriangle with this parameters does not exist");
+        if (2 * side < base) {
+            throw new IllegalShapeException(paramError("IsoscelesTriangle"));
+        }
+
         double height = Math.sqrt(Math.pow(side, 2) - Math.pow(base / 2, 2));
         return new IsoscelesTriangle(base, height);
     }
 
-    public static IsoscelesTriangle fromBaseArea(double base, double area) {
+    public static IsoscelesTriangle fromBaseArea(double base, double area) throws IllegalShapeException {
         double height = 2 * area / base;
         return new IsoscelesTriangle(base, height);
     }
 
-    public static IsoscelesTriangle fromHeightArea(double height, double area) {
+    public static IsoscelesTriangle fromHeightArea(double height, double area) throws IllegalShapeException {
         double base = 2 * area / height;
         return new IsoscelesTriangle(base, height);
     }
 
     public static IsoscelesTriangle fromHeightSide(double height, double side) throws IllegalShapeException {
-        if (side < height) throw new IllegalShapeException("IsoscelesTriangle with this parameters does not exist");
+        if (side < height) {
+            throw new IllegalShapeException(paramError("IsoscelesTriangle"));
+        }
         double base = Math.sqrt(Math.pow(side, 2) - Math.pow(height, 2)) * 2;
         return new IsoscelesTriangle(base, height);
     }
@@ -40,24 +56,11 @@ public class IsoscelesTriangle extends Triangle {
     public static IsoscelesTriangle fromSideArea(double side, double area) throws IllegalShapeException {
         // height^4 - height^2 * side^2 + area^2 = 0
         double delta = Math.pow(side, 4) - 4 * Math.pow(area, 2);
-        if (delta < 0) throw new IllegalShapeException("IsoscelesTriangle with this parameters does not exist");
+        if (delta < 0) {
+            throw new IllegalShapeException(paramError("IsoscelesTriangle"));
+        }
         double height = Math.sqrt((Math.pow(side, 2) + Math.sqrt(delta)) / 2);
         return IsoscelesTriangle.fromHeightSide(height, side);
-    }
-
-    @Override
-    public double getSideA() {
-        return getSide();
-    }
-
-    @Override
-    public double getSideB() {
-        return getSide();
-    }
-
-    @Override
-    public double getSideC() {
-        return getBase();
     }
 
     public double getBase() {
@@ -65,33 +68,22 @@ public class IsoscelesTriangle extends Triangle {
     }
 
     public double getSide() {
-        return Math.sqrt(Math.pow(base / 2, 2) + Math.pow(height, 2));
+        return side;
     }
 
     public double getHeight() {
         return height;
     }
 
-    public double getArea() {
-        return base * height / 2;
-    }
-
     @Override
     protected Map<String, Object> getProperties() {
-        return Map.of("Base", getBase(),
-                "Side", getSide(),
-                "Height", getHeight(),
-                "Area", getArea());
-    }
-
-    @Override
-    protected String getShapeName() {
-        return "IsoscelesTriangle";
-    }
-
-
-    @Override
-    public double calcArea() {
-        return getArea();
+        return Utils.mergeProperties(
+                Map.of(
+                        "Base", getBase(),
+                        "Side", getSide(),
+                        "Height", getHeight()
+                ),
+                super.getShapeProperties()
+        );
     }
 }

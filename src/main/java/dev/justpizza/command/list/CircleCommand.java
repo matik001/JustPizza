@@ -4,9 +4,10 @@ import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
-import dev.justpizza.shape.Circle;
+import dev.justpizza.shape.circle.Circle;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
+import dev.justpizza.utils.Utils;
 
 import java.util.List;
 

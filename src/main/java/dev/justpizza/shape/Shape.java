@@ -1,11 +1,22 @@
 package dev.justpizza.shape;
 
+import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.translations.TranslationKey;
+
 import java.util.Map;
 
 public abstract class Shape {
-    protected abstract Map<String, Object> getProperties();
+    protected Map<String, Object> getProperties() {
+        return Map.of(
+                "Area", getArea(),
+                "Perimeter", getPerimeter()
+        );
+    }
 
-    protected abstract String getShapeName();
+    protected String getShapeName() {
+        return getClass().getSimpleName();
+    }
 
     @Override
     public String toString() {
@@ -36,7 +47,16 @@ public abstract class Shape {
         System.out.println(this);
     }
 
-    public abstract double calcArea();
+    public abstract double getArea();
+
+    public abstract double getPerimeter();
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
+
+    protected static String paramError(String shapeName) {
+        return String.format(
+                AppSettings.global.translations.get(TranslationKey.no_shape_for_parameters),
+                shapeName
+        );
+    }
 }
