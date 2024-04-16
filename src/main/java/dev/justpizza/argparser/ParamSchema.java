@@ -1,5 +1,6 @@
 package dev.justpizza.argparser;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.OptionalInt;
 
@@ -10,10 +11,21 @@ public class ParamSchema {
 
     private boolean isArray = false;
     private int arrLen = 1;
+    private HashSet<String> optionsSet = new HashSet<String>();
+
+    public ParamSchema(HashSet<String> optionsSet) { /// initialization optionsSet
+        this.paramType = ParamType.OPTIONS_SET;
+        this.optionsSet = optionsSet;
+    }
+
+
     public ParamSchema(String name) {
         this.name = name;
         this.paramType = ParamType.POSITIVE_DOUBLE;
         this.optional = false;
+    }
+    public boolean hasOption(String option){
+        return optionsSet.contains(option);
     }
 
     public boolean isArray() {

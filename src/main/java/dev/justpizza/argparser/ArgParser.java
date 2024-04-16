@@ -33,8 +33,18 @@ public class ArgParser {
         for (int i = 0; i < params.length;) {
             String argName = params[i].toLowerCase();
             //var schemas = paramsSchemaList.get(i);
-            var schema = paramsSchemaList.stream().filter(a -> a.getName().equals(argName)).findFirst();
-
+            var schema = paramsSchemaList.stream().filter(a ->a.getParamType() != ParamType.OPTIONS_SET &&  a.getName().equals(argName)).findFirst();
+            if (schema.isEmpty()){
+                schema = paramsSchemaList
+                        .stream()
+                        .filter(a -> a.hasOption(argName))
+                        .findFirst();
+                if (schema.isPresent()) {
+                    argValues.put(argName, new Param(schema.get(), argName));
+                    i++;
+                    continue;
+                }
+            }
             if (schema.isEmpty()) {
                 var invalidArgument = AppSettings.global.translations.get(TranslationKey.invalid_argument);
                 var expectedOneOf = AppSettings.global.translations.get(TranslationKey.expected_one_of);
@@ -42,7 +52,7 @@ public class ArgParser {
                 var message = STR."\{invalidArgument} \{i}: \{argName}, \{expectedOneOf}: [\{allowedParameters}]";
                 throw new IllegalArgumentException(message);
             }
-            if (argValues.containsKey(argName)) {
+            if (schema.get().getParamType() != ParamType.OPTIONS_SET && argValues.containsKey(argName)) {
                 throw new IllegalArgumentException(
                         AppSettings.global.translations.get(TranslationKey.argument_already_provided).replace("{argName}", argName));
             }
