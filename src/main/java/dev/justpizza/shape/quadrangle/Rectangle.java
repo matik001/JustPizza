@@ -38,7 +38,7 @@ public class Rectangle extends Shape {
     public static Shape fromDiagonalAndArea(double diagonal, double area) throws IllegalShapeException {
         double delta = Math.pow(diagonal, 4) - 4 * area * area;
         if (delta < 0) {
-            throw new IllegalShapeException("Rectangle with this parameters does not exist");
+            throw new IllegalShapeException(paramError("Rectangle"));
         }
         double b = Math.sqrt((diagonal * diagonal - Math.sqrt(delta)) / 2);
         double a = area / b;
@@ -77,11 +77,6 @@ public class Rectangle extends Shape {
                 ),
                 super.getProperties()
         );
-    }
-
-    @Override
-    protected String getShapeName() {
-        return "Rectangle";
     }
 
     @Override

@@ -2,6 +2,7 @@ package dev.justpizza.command.abstractList;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
+import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 

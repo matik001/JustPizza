@@ -49,11 +49,6 @@ public class Circle extends Shape {
     }
 
     @Override
-    protected String getShapeName() {
-        return "Circle";
-    }
-
-    @Override
     public Circle createCircumcircle() {
         return Circle.fromRadius(getRadius());
     }

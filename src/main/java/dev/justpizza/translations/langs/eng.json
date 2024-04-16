@@ -6,6 +6,7 @@
   "exit_description": "exits the program",
   "equtriangle_description": "calculates equilateral triangle characteristics",
   "isosceles_description": "calculates isosceles triangle characteristics",
+  "triangle_description": "calculates triangle characteristics",
   "shapes_description": "prints list of shapes",
   "rectangle_description": "calculates rectangle characteristics",
   "circle_description": "calculates circle characteristics",
@@ -22,5 +23,6 @@
   "expected_positive_number": "expected a positive number after {argName} argument",
   "argument_not_found": "Argument not found: {argName}",
   "zero_shapes_stored": "There are 0 shapes stored, can't create circumcircle",
-  "not_in_range_shapes_stored": "There are {shapesManagerSize} shapes stored, expected number in range [1, {shapesManagerSize}]"
+  "not_in_range_shapes_stored": "There are {shapesManagerSize} shapes stored, expected number in range [1, {shapesManagerSize}]",
+  "no_shape_for_parameters": "%s with this parameters does not exist"
 }

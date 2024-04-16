@@ -9,12 +9,14 @@ import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
+import dev.justpizza.utils.Utils;
 
 import java.util.List;
 
 public class CircumcircleCommand extends CreateShapeCommand {
     public static final String name = "circumcircle";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.circumcircle_description);
+    public static final String description =
+            AppSettings.global.translations.get(TranslationKey.circumcircle_description);
 
     public CircumcircleCommand() {
         super(name, description);

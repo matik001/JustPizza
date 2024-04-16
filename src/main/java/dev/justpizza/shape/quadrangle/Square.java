@@ -54,11 +54,6 @@ public class Square extends Shape {
     }
 
     @Override
-    protected String getShapeName() {
-        return "Square";
-    }
-
-    @Override
     public Circle createCircumcircle() {
         return Circle.fromRadius(getDiagonal() / 2);
     }

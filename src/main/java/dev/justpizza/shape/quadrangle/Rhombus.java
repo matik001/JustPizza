@@ -35,7 +35,7 @@ public class Rhombus extends Shape {
     public static Shape fromSideAndArea(double side, double area) throws IllegalShapeException {
         double delta = 16 * (Math.pow(side, 4) - area * area);
         if (delta < 0) {
-            throw new IllegalShapeException("Rhombus with this parameters does not exist");
+            throw new IllegalShapeException(paramError("Rhombus"));
         }
         double diagonalA = Math.sqrt((4 * side * side + Math.sqrt(delta)) / 2);
         double diagonalB = area * 2 / diagonalA;
@@ -78,11 +78,6 @@ public class Rhombus extends Shape {
                 ),
                 super.getProperties()
         );
-    }
-
-    @Override
-    protected String getShapeName() {
-        return "Rhombus";
     }
 
     @Override

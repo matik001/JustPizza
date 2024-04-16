@@ -1,17 +1,42 @@
 package dev.justpizza.shape.triangle;
 
+import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.translations.TranslationKey;
 import dev.justpizza.utils.Utils;
 
+
+import java.util.Arrays;
 import java.util.Map;
 
-public abstract class Triangle extends Shape {
-    public abstract double getSideA();
+public class Triangle extends Shape {
+    private final double sideA, sideB, sideC;
 
-    public abstract double getSideB();
+    public Triangle(double sideA, double sideB, double sideC) throws IllegalShapeException {
+        double[] array = {sideA, sideB, sideC};
+        Arrays.sort(array);
+        this.sideA = array[0];
+        this.sideB = array[1];
+        this.sideC = array[2];
 
-    public abstract double getSideC();
+        if (sideA + sideB <= sideC) {
+            throw new IllegalShapeException(paramError("Triangle"));
+        }
+    }
+
+    public double getSideA() {
+        return sideA;
+    }
+
+    public double getSideB() {
+        return sideB;
+    }
+
+    public double getSideC() {
+        return sideC;
+    }
 
     @Override
     public double getArea() {

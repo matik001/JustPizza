@@ -14,6 +14,7 @@ public class CommandManager {
         add(new ShapesCommand());
         add(new VersionCommand());
         add(new SquareCommand());
+        add(new TriangleCommand());
         add(new EquilateralTriangleCommand());
         add(new IsoscelesTriangleCommand());
         add(new RectangleCommand());
