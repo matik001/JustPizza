@@ -10,6 +10,8 @@ public enum TranslationKey {
     triangle_description,
     isosceles_description,
     shapes_description,
+    sort_description,
+
     rectangle_description,
     circle_description,
     circumcircle_description,

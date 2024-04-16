@@ -24,5 +24,6 @@
   "argument_not_found": "Nie znaleziono argumentu: {argName}",
   "zero_shapes_stored": "Przechowywanych jest zero figur, nie można utworzyć okręgu opisanego na figurze.",
   "not_in_range_shapes_stored": "Przechowywanych jest {shapesManagerSize} figur, oczekiwano liczby w przedziale [1, {shapesManagerSize}]",
-  "no_shape_for_parameters": "%s z takimi parametrami nie istnieje"
+  "no_shape_for_parameters": "%s z takimi parametrami nie istnieje",
+  "sort_description": "Sortuje kształty według pola lub obwodu"
 }

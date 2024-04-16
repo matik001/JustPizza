@@ -22,6 +22,7 @@ public class CommandManager {
         add(new CircleCommand());
         add(new CircumcircleCommand());
         add(new ExitCommand());
+        add(new SortCommand());
     }};
 
     final public static Map<String, Command> commands =
