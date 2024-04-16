@@ -15,8 +15,11 @@ public class SquareCommand extends CreateShapeCommand {
     public static final String name = "square";
     public static final String description = AppSettings.global.translations.get(TranslationKey.square_description);
 
+    public static final int minNumberOfArgs = 2;
+    public static final int maxNumberOfArgs = 2;
+
     public SquareCommand() {
-        super(name, description);
+        super(name, description, minNumberOfArgs, maxNumberOfArgs);
     }
 
     @Override
