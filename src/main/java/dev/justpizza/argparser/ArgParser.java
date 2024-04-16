@@ -51,7 +51,10 @@ public class ArgParser {
             if (schema.isEmpty()) {
                 var invalidArgument = AppSettings.global.translations.get(TranslationKey.invalid_argument);
                 var expectedOneOf = AppSettings.global.translations.get(TranslationKey.expected_one_of);
-                var allowedParameters = paramsSchemaList.stream().map(ParamSchema::getName).collect(Collectors.joining(", "));
+                var allowedParameters = paramsSchemaList.stream().map(a->a.getParamType() == ParamType.OPTIONS_SET
+                        ? String.join(", ", a.getOptionsSet())
+                        : a.getName())
+                        .collect(Collectors.joining(", "));
                 var message = STR."\{invalidArgument} \{i}: \{argName}, \{expectedOneOf}: [\{allowedParameters}]";
                 throw new IllegalArgumentException(message);
             }
