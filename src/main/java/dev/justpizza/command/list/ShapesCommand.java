@@ -19,8 +19,9 @@ public class ShapesCommand extends Command {
     }
 
     @Override
-    protected void handleExecute(ArgParser argParser) {
+    protected boolean handleExecute(ArgParser argParser) {
         ShapesManager.instance.printShapes();
+        return true;
     }
 
 }

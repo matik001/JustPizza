@@ -15,7 +15,8 @@ public class ShapesManager {
     public void printShapes() {
         for (int i = 0; i < shapesList.size(); i++) {
             System.out.print(STR."\{i + 1}. ");
-            shapesList.get(i).printCharacteristic();
+            System.out.println(shapesList.get(i).getCharacteristic());
+
         }
     }
 

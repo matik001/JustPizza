@@ -39,12 +39,12 @@ public abstract class Shape {
             first = false;
         }
 
-        sb.append(" ] ");
+        sb.append(" ]");
         return sb.toString();
     }
 
-    public final void printCharacteristic() {
-        System.out.println(this);
+    public final String getCharacteristic() {
+        return this.toString();
     }
 
     public abstract double getArea();

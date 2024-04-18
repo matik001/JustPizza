@@ -18,11 +18,12 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    protected void handleExecute(ArgParser argParser) {
+    protected boolean handleExecute(ArgParser argParser) {
         System.out.println(AppSettings.global.translations.get(TranslationKey.allowed_usages)+ ":");
         for (var command : CommandManager.commands.values()) {
             System.out.println(STR."\{command.getName()} - \{command.getDescription()}");
         }
+        return true;
     }
 
 }

@@ -4,11 +4,16 @@ import dev.justpizza.command.list.*;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.translations.TranslationKey;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CommandManager {
+    private final InputStream inputStream;
+    private final PrintStream outputStream;
+
     final private static List<Command> commandsList = new ArrayList<>() {{
         add(new HelpCommand());
         add(new ShapesCommand());
@@ -28,8 +33,15 @@ public class CommandManager {
     final public static Map<String, Command> commands =
             commandsList.stream().collect(Collectors.toMap(Command::getName, Function.identity()));
 
+    public CommandManager(InputStream in, PrintStream out) {
+        this.inputStream = in;
+        this.outputStream = out;
+    }
+
     public void run() {
-        var input = new Scanner(System.in);
+        var input = new Scanner(inputStream);
+
+        commands.forEach((_, command) -> command.setOut(outputStream));
 
         while (input.hasNext()) {
             var line = input.nextLine();
@@ -42,12 +54,14 @@ public class CommandManager {
             var params = Arrays.copyOfRange(arguments, 1, arguments.length);
 
             var command = commands.get(commandName);
+            boolean shouldContinue;
             if (command != null) {
-                command.execute(params);
+                shouldContinue = command.execute(params);
             } else {
-                System.out.println(AppSettings.global.translations.get(TranslationKey.unknown_command));
-                commands.get("help").execute(new String[0]);
+                outputStream.println(AppSettings.global.translations.get(TranslationKey.unknown_command));
+                shouldContinue = commands.get("help").execute(new String[0]);
             }
+            if (!shouldContinue) break;
         }
     }
 }

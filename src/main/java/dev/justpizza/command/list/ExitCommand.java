@@ -17,7 +17,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    protected void handleExecute(ArgParser argParser) {
-        System.exit(0);
+    protected boolean handleExecute(ArgParser argParser) {
+        return false;
     }
 }

@@ -108,7 +108,7 @@ public class ArgParser {
         }
         if (argValues.size() < minNumberOfArgs || argValues.size() > maxNumberOfArgs) {
             var commandUsage = AppSettings.global.translations.get(TranslationKey.invalid_usage_command);
-            StringBuilder result = new StringBuilder(STR."\{commandUsage.replace("{commandName}", commandName)}: \n");
+            StringBuilder result = new StringBuilder(STR."\{commandUsage.replace("{commandName}", commandName)}:\n");
             var requiredMoreParams = AppSettings.global.translations.get(TranslationKey.required_more_params);
             var required = minNumberOfArgs == maxNumberOfArgs ? String.valueOf(maxNumberOfArgs) : String.valueOf(minNumberOfArgs)+" - "+ String.valueOf(maxNumberOfArgs);
             result.append(STR."\{requiredMoreParams.replace("{requiredParams}", required)

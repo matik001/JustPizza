@@ -17,7 +17,8 @@ public class VersionCommand extends Command {
     }
 
     @Override
-    protected void handleExecute(ArgParser argParser) {
-        System.out.println(STR."\{AppSettings.global.programName} \{AppSettings.global.version}");
+    protected boolean handleExecute(ArgParser argParser) {
+        out.println(STR."\{AppSettings.global.programName} \{AppSettings.global.version}");
+        return true;
     }
 }
