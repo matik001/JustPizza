@@ -59,7 +59,7 @@ public class IsoscelesTriangleCommand extends CreateShapeCommand {
                     if (Objects.equals(key1, "height") && Objects.equals(key2, "area"))
                         triangle = IsoscelesTriangle.fromHeightArea(val1, val2);
                 } catch (IllegalShapeException e) {
-                    System.out.println(e.getMessage());
+                    out.println(e.getMessage());
                     return null;
                 }
             }

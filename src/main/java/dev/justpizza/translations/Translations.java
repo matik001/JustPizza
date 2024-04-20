@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class Translations {
     final HashMap<TranslationKey, String> map = new HashMap<>();
     public static Translations load(String filename) throws IOException {
-//        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+//        out.println("Working Directory = " + System.getProperty("user.dir"));
         var translations = new Translations();
         var path = Paths.get(filename);
         var content = Files.readString(path);

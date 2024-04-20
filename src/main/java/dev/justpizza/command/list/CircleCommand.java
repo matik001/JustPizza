@@ -39,7 +39,7 @@ public class CircleCommand extends CreateShapeCommand {
         } else if (perimeter != null) {
             return Circle.fromPerimeter(perimeter.getDouble());
         } else {
-            System.out.println("Not enough characteristics");
+            out.println("Not enough characteristics");
             return null;
         }
     }

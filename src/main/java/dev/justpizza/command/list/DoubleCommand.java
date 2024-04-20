@@ -30,13 +30,13 @@ public class DoubleCommand extends CreateShapeCommand {
         var shapeNumber = argParser.getValue("shapenumber").getInt();
         var shapesManagerSize = shapesManager.size();
         if (shapesManagerSize == 0) {
-            System.out.println(AppSettings.global.translations.get(TranslationKey.zero_shapes_stored));
+            out.println(AppSettings.global.translations.get(TranslationKey.zero_shapes_stored));
             return null;
         }
 
         if (shapeNumber < 1 || shapesManagerSize < shapeNumber) {
             var notInRangeShapesStored = AppSettings.global.translations.get(TranslationKey.not_in_range_shapes_stored);
-            System.out.println(notInRangeShapesStored.replace("{shapesManagerSize}", Integer.toString(shapesManagerSize)));
+            out.println(notInRangeShapesStored.replace("{shapesManagerSize}", Integer.toString(shapesManagerSize)));
             return null;
         }
 
@@ -44,7 +44,7 @@ public class DoubleCommand extends CreateShapeCommand {
         try {
             return shape.doubleArea();
         } catch (IllegalShapeException e) {
-            System.out.println(e.getMessage());
+            out.println(e.getMessage());
             return null;
         }
 

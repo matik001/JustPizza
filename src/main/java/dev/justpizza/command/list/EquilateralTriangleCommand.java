@@ -43,7 +43,7 @@ public class EquilateralTriangleCommand extends CreateShapeCommand {
                 }
             }
         } catch (IllegalShapeException e) {
-            System.out.println(e.getMessage());
+            out.println(e.getMessage());
             return null;
         }
         return triangle;

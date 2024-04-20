@@ -42,7 +42,7 @@ public class CommandManager {
 
     public void run() {
         var input = new Scanner(inputStream);
-        var shapesManager = new ShapesManager();
+        var shapesManager = new ShapesManager(outputStream);
 
         commands.forEach((_, command) -> command.setOut(outputStream));
 

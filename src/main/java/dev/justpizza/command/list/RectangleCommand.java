@@ -45,11 +45,11 @@ public class RectangleCommand extends CreateShapeCommand {
             try {
                 shape = Rectangle.fromDiagonalAndArea(diagonal.getDouble(), area.getDouble());
             } catch (IllegalShapeException e) {
-                System.out.println(e.getMessage());
+                out.println(e.getMessage());
                 return null;
             }
         } else {
-            System.out.println("Not enough characteristics");
+            out.println("Not enough characteristics");
             return null;
         }
         return shape;

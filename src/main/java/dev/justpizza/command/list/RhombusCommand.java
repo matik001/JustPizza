@@ -45,7 +45,7 @@ public class RhombusCommand extends CreateShapeCommand {
             try {
                 shape = Rhombus.fromSideAndArea(side.getDouble(), area.getDouble());
             } catch (IllegalShapeException e) {
-                System.out.println(e.getMessage());
+                out.println(e.getMessage());
                 return null;
             }
         } else if (side != null && diagonal != null) {
@@ -53,7 +53,7 @@ public class RhombusCommand extends CreateShapeCommand {
         } else if (area != null && diagonal != null) {
             shape = Rhombus.fromDiagonalAndArea(diagonal.getDouble(), area.getDouble());
         } else {
-            System.out.println(AppSettings.global.translations.get(TranslationKey.not_enough_characteristics));
+            out.println(AppSettings.global.translations.get(TranslationKey.not_enough_characteristics));
             return null;
         }
         return shape;

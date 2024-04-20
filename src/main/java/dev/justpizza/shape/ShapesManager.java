@@ -1,11 +1,17 @@
 package dev.justpizza.shape;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class ShapesManager {
+    private final PrintStream out;
     List<Shape> shapesList = new ArrayList<>();
+
+    public ShapesManager(PrintStream out) {
+        this.out = out;
+    }
 //    public static ShapesManager instance = new ShapesManager();
 
     public void addShape(Shape shape) {
@@ -14,9 +20,8 @@ public class ShapesManager {
 
     public void printShapes() {
         for (int i = 0; i < shapesList.size(); i++) {
-            System.out.print(STR."\{i + 1}. ");
-            System.out.println(shapesList.get(i).getCharacteristic());
-
+            out.print(STR."\{i + 1}. ");
+            out.println(shapesList.get(i).getCharacteristic());
         }
     }
 

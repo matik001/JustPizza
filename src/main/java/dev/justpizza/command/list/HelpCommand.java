@@ -20,9 +20,9 @@ public class HelpCommand extends Command {
 
     @Override
     protected boolean handleExecute(ShapesManager shapesManager, ArgParser argParser) {
-        System.out.println(AppSettings.global.translations.get(TranslationKey.allowed_usages)+ ":");
+        out.println(AppSettings.global.translations.get(TranslationKey.allowed_usages)+ ":");
         for (var command : CommandManager.commands.values()) {
-            System.out.println(STR."\{command.getName()} - \{command.getDescription()}");
+            out.println(STR."\{command.getName()} - \{command.getDescription()}");
         }
         return true;
     }
