@@ -24,8 +24,6 @@ public abstract class Shape {
         );
     }
 
-
-
     protected String getShapeName() {
         return getClass().getSimpleName();
     }
@@ -63,7 +61,7 @@ public abstract class Shape {
 
     public abstract double getPerimeter();
 
-    private Object getDate() { return date; };
+    public Object getDate() { return date; };
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 
