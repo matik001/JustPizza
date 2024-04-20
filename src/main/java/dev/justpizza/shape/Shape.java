@@ -53,6 +53,8 @@ public abstract class Shape {
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 
+    public abstract Shape doubleArea();
+
     protected static String paramError(String shapeName) {
         return String.format(
                 AppSettings.global.translations.get(TranslationKey.no_shape_for_parameters),
