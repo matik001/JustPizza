@@ -5,11 +5,10 @@ import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.quadrangle.Rhombus;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
-
-import java.util.List;
 
 public class RhombusCommand extends CreateShapeCommand {
     public static final String name = "rhombus";
@@ -30,7 +29,7 @@ public class RhombusCommand extends CreateShapeCommand {
     }
 
     @Override
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         Shape shape;
         var side = argParser.getValue("side");
         var diagonala = argParser.getValue("diagonala");

@@ -9,7 +9,6 @@ import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
-import dev.justpizza.utils.Utils;
 
 public class CircumcircleCommand extends CreateShapeCommand {
     public static final String name = "circumcircle";
@@ -28,9 +27,9 @@ public class CircumcircleCommand extends CreateShapeCommand {
     }
 
     @Override
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         var shapeNumber = argParser.getValue("shapenumber").getInt();
-        var shapesManagerSize = ShapesManager.instance.size();
+        var shapesManagerSize = shapesManager.size();
         if (shapesManagerSize == 0) {
             System.out.println(AppSettings.global.translations.get(TranslationKey.zero_shapes_stored));
             return null;
@@ -42,7 +41,7 @@ public class CircumcircleCommand extends CreateShapeCommand {
             return null;
         }
 
-        var shape = ShapesManager.instance.get(shapeNumber - 1);
+        var shape = shapesManager.get(shapeNumber - 1);
         try {
             return shape.createCircumcircle();
         } catch (IllegalShapeException e) {

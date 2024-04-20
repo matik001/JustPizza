@@ -2,6 +2,7 @@ package dev.justpizza.command;
 
 import dev.justpizza.command.list.*;
 import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
 
 import java.io.InputStream;
@@ -40,6 +41,7 @@ public class CommandManager {
 
     public void run() {
         var input = new Scanner(inputStream);
+        var shapesManager = new ShapesManager();
 
         commands.forEach((_, command) -> command.setOut(outputStream));
 
@@ -56,10 +58,10 @@ public class CommandManager {
             var command = commands.get(commandName);
             boolean shouldContinue;
             if (command != null) {
-                shouldContinue = command.execute(params);
+                shouldContinue = command.execute(params, shapesManager);
             } else {
                 outputStream.println(AppSettings.global.translations.get(TranslationKey.unknown_command));
-                shouldContinue = commands.get("help").execute(new String[0]);
+                shouldContinue = commands.get("help").execute(new String[0], shapesManager);
             }
             if (!shouldContinue) break;
         }

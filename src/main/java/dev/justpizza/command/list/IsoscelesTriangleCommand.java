@@ -5,6 +5,7 @@ import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.triangle.IsoscelesTriangle;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
@@ -31,7 +32,7 @@ public class IsoscelesTriangleCommand extends CreateShapeCommand {
     }
 
     @Override
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         var options = List.of("base", "side", "height", "area");
         IsoscelesTriangle triangle = null;
         for (int i = 0; i < options.size(); i++) {

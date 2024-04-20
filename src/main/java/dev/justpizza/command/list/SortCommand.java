@@ -27,9 +27,9 @@ public class SortCommand extends Command {
     }
 
     @Override
-    protected boolean handleExecute(ArgParser argParser) {
-        ShapesManager.instance.sortShapes(argParser.hasArg("area"), argParser.hasArg("increasing"));
-        ShapesManager.instance.printShapes();
+    protected boolean handleExecute(ShapesManager shapesManager, ArgParser argParser) {
+        shapesManager.sortShapes(argParser.hasArg("area"), argParser.hasArg("increasing"));
+        shapesManager.printShapes();
         return true;
     }
 }

@@ -5,11 +5,10 @@ import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.triangle.EquilateralTriangle;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
-
-import java.util.List;
 
 public class EquilateralTriangleCommand extends CreateShapeCommand {
     public static final String name = "equtriangle";
@@ -29,7 +28,7 @@ public class EquilateralTriangleCommand extends CreateShapeCommand {
     }
 
     @Override
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         EquilateralTriangle triangle;
         String argName = argParser.argValues.keySet().iterator().next();
         double value = argParser.getValue(argName).getDouble();

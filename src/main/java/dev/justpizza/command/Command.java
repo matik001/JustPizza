@@ -1,6 +1,7 @@
 package dev.justpizza.command;
 
 import dev.justpizza.argparser.ArgParser;
+import dev.justpizza.shape.ShapesManager;
 
 import java.io.PrintStream;
 
@@ -28,12 +29,12 @@ abstract public class Command {
         return description;
     }
 
-    protected abstract boolean handleExecute(ArgParser argParser);
+    protected abstract boolean handleExecute(ShapesManager shapesManager, ArgParser argParser);
 
     /**
      * @return True if program should continue executing. False if program should exit.
      * */
-    public boolean execute(String[] params){
+    public boolean execute(String[] params, ShapesManager shapesManager){
         var argParser = new ArgParser();
         initArgParser(argParser);
 
@@ -43,6 +44,6 @@ abstract public class Command {
             out.println(exc.getMessage());
             return true;
         }
-        return handleExecute(argParser);
+        return handleExecute(shapesManager, argParser);
     }
 }

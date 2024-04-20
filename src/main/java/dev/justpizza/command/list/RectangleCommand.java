@@ -2,14 +2,11 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
-import dev.justpizza.command.Command;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.*;
 import dev.justpizza.shape.quadrangle.Rectangle;
 import dev.justpizza.translations.TranslationKey;
-
-import java.util.List;
 
 public class RectangleCommand extends CreateShapeCommand {
     public static final String name = "rectangle";
@@ -30,7 +27,7 @@ public class RectangleCommand extends CreateShapeCommand {
     }
 
     @Override
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         Shape shape;
         var sideA = argParser.getValue("sidea");
         var sideB = argParser.getValue("sideb");

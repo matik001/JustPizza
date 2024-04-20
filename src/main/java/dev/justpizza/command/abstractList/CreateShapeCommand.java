@@ -10,14 +10,14 @@ public abstract class CreateShapeCommand extends Command {
         super(name, description);
     }
 
-    protected abstract Shape createShape(ArgParser argParser);
+    protected abstract Shape createShape(ShapesManager shapesManager, ArgParser argParser);
 
     @Override
-    protected boolean handleExecute(ArgParser argParser) {
-        var shape = createShape(argParser);
+    protected boolean handleExecute(ShapesManager shapesManager, ArgParser argParser) {
+        var shape = createShape(shapesManager, argParser);
         if (shape == null) return true;
         out.println(shape.getCharacteristic());
-        ShapesManager.instance.addShape(shape);
+        shapesManager.addShape(shape);
         return true;
     }
 }

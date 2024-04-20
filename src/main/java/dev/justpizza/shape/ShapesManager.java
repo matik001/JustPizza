@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ShapesManager {
     List<Shape> shapesList = new ArrayList<>();
-    public static ShapesManager instance = new ShapesManager(); /// mozna dodac do commandManager zamiast robic statyczne
+//    public static ShapesManager instance = new ShapesManager();
 
     public void addShape(Shape shape) {
         shapesList.add(shape);
