@@ -4,15 +4,16 @@ import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.circle.Circle;
 import dev.justpizza.translations.TranslationKey;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Map;
 
 public abstract class Shape {
 
-    private final Date date;
+    private final ZonedDateTime date;
 
-    public Shape(Date date){
-        this.date = date;
+    public Shape(){
+        this.date = java.time.ZonedDateTime.now();
     }
 
     protected Map<String, Object> getProperties() {
