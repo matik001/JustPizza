@@ -86,7 +86,7 @@ public class Rhombus extends Shape {
     }
 
     @Override
-    public Shape doubleArea() { //TODO: to be implemented
-        return null;
+    public Shape doubleArea() {
+        return Rhombus.fromDiagonals(getDiagonalA()*Math.sqrt(2), getDiagonalB()*Math.sqrt(2));
     }
 }
