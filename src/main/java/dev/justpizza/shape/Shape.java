@@ -4,9 +4,17 @@ import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.circle.Circle;
 import dev.justpizza.translations.TranslationKey;
 
+import java.util.Date;
 import java.util.Map;
 
 public abstract class Shape {
+
+    private final Date date;
+
+    public Shape(Date date){
+        this.date = date;
+    }
+
     protected Map<String, Object> getProperties() {
         return Map.of(
                 "Area", getArea(),
