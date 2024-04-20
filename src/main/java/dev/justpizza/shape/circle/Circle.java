@@ -52,4 +52,9 @@ public class Circle extends Shape {
     public Circle createCircumcircle() {
         return Circle.fromRadius(getRadius());
     }
+
+    @Override
+    public Shape doubleArea() { //TODO: to be implemented
+        return null;
+    }
 }

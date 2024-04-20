@@ -84,4 +84,9 @@ public class Rhombus extends Shape {
     public Circle createCircumcircle() throws IllegalShapeException {
         throw new IllegalShapeException("Can't create circumcircle");
     }
+
+    @Override
+    public Shape doubleArea() { //TODO: to be implemented
+        return null;
+    }
 }

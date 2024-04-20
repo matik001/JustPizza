@@ -70,4 +70,9 @@ public class Triangle extends Shape {
         double p = getSideA() * getSideB() * getSideC();
         return Circle.fromRadius(p / (4 * getArea()));
     }
+
+    @Override
+    public Shape doubleArea() { //TODO: to be implemented
+        return null;
+    }
 }
