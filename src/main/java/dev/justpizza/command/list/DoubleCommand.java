@@ -6,12 +6,12 @@ import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
 
-public class DoubleFigureCommand extends CreateShapeCommand {
+public class DoubleCommand extends CreateShapeCommand {
     public static final String name = "double";
     public static final String description =
             AppSettings.global.translations.get(TranslationKey.circumcircle_description);
 
-    public DoubleFigureCommand(){ super(name, description); }
+    public DoubleCommand(){ super(name, description); }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
