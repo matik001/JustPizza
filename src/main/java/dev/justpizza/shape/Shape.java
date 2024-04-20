@@ -4,13 +4,23 @@ import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.circle.Circle;
 import dev.justpizza.translations.TranslationKey;
 
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.Map;
 
 public abstract class Shape {
+
+    private final ZonedDateTime date;
+
+    public Shape(){
+        this.date = java.time.ZonedDateTime.now();
+    }
+
     protected Map<String, Object> getProperties() {
         return Map.of(
                 "Area", getArea(),
-                "Perimeter", getPerimeter()
+                "Perimeter", getPerimeter(),
+                "Date created", getDate()
         );
     }
 
@@ -50,6 +60,8 @@ public abstract class Shape {
     public abstract double getArea();
 
     public abstract double getPerimeter();
+
+    public Object getDate() { return date; };
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 
