@@ -86,6 +86,6 @@ public class Rectangle extends Shape {
 
     @Override
     public Shape doubleArea() { //TODO: to be implemented
-        return null;
+        return Rectangle.fromSides(getSideA()*Math.sqrt(2), getSideB()*Math.sqrt(2));
     }
 }
