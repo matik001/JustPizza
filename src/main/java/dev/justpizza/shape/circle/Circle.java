@@ -54,7 +54,7 @@ public class Circle extends Shape {
     }
 
     @Override
-    public Shape doubleArea() { //TODO: to be implemented
-        return null;
+    public Shape doubleArea() {
+        return Circle.fromArea(getArea() * 2);
     }
 }
