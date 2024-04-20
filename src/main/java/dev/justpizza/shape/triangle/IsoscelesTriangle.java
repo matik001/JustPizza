@@ -2,6 +2,7 @@ package dev.justpizza.shape.triangle;
 
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
 import dev.justpizza.utils.Utils;
 
@@ -85,5 +86,10 @@ public class IsoscelesTriangle extends Triangle {
                 ),
                 super.getShapeProperties()
         );
+    }
+
+    @Override
+    public Shape doubleArea() throws IllegalShapeException {
+        return IsoscelesTriangle.fromBaseHeight(getHeight() * Math.sqrt(2), getBase() * Math.sqrt(2));
     }
 }

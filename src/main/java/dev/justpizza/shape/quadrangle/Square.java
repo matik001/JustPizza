@@ -57,4 +57,9 @@ public class Square extends Shape {
     public Circle createCircumcircle() {
         return Circle.fromRadius(getDiagonal() / 2);
     }
+
+    @Override
+    public Shape doubleArea() {
+        return Square.fromArea(getArea() * 2);
+    }
 }

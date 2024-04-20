@@ -16,6 +16,7 @@ public enum TranslationKey {
     circle_description,
     circumcircle_description,
     version_description,
+    double_description,
     allowed_usages,
     unknown_command,
     invalid_usage_command,

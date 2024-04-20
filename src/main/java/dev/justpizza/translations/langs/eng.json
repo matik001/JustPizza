@@ -12,6 +12,7 @@
   "circle_description": "calculates circle characteristics",
   "circumcircle_description": "calculates circumcircle of a shape",
   "version_description": "shows current version",
+  "double_description": "creates figure with two-fold area",
   "allowed_usages": "Allowed usages",
   "unknown_command": "Unknown command",
   "invalid_usage_command": "Invalid usage of the command {commandName}",
