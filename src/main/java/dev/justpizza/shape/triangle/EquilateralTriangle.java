@@ -1,6 +1,7 @@
 package dev.justpizza.shape.triangle;
 
 import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.Shape;
 import dev.justpizza.utils.Utils;
 
 import java.util.Map;
@@ -58,5 +59,9 @@ public class EquilateralTriangle extends Triangle {
                 ),
                 super.getShapeProperties()
         );
+    }
+
+    public Shape doubleArea() throws IllegalShapeException {
+        return EquilateralTriangle.fromArea(getArea() * 2);
     }
 }
