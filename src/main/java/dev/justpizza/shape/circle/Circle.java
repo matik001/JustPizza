@@ -9,6 +9,7 @@ public class Circle extends Shape {
     private final double radius;
 
     private Circle(double radius) {
+        super(); //Isn't it called automatically?
         this.radius = radius;
     }
 
