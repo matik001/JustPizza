@@ -12,6 +12,7 @@
   "circle_description": "oblicza cechy koła",
   "circumcircle_description": "oblicza okrąg opisany na figurze",
   "version_description": "wyświetla aktualną wersję",
+  "double_description": "tworzy figurę o dwukrotnie większym polu",
   "allowed_usages": "Dozwolone użycia",
   "unknown_command": "Nieznana komenda",
   "invalid_usage_command": "Nieprawidłowe użycie komendy {commandName}",
