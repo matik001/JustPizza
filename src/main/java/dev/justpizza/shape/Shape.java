@@ -19,9 +19,12 @@ public abstract class Shape {
     protected Map<String, Object> getProperties() {
         return Map.of(
                 "Area", getArea(),
-                "Perimeter", getPerimeter()
+                "Perimeter", getPerimeter(),
+                "Date created", getDate()
         );
     }
+
+
 
     protected String getShapeName() {
         return getClass().getSimpleName();
@@ -59,6 +62,8 @@ public abstract class Shape {
     public abstract double getArea();
 
     public abstract double getPerimeter();
+
+    private Object getDate() { return date; };
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 
