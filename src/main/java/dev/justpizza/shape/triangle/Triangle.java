@@ -72,7 +72,10 @@ public class Triangle extends Shape {
     }
 
     @Override
-    public Shape doubleArea() { //TODO: to be implemented
-        return null;
+    public Shape doubleArea() throws IllegalShapeException {
+        return new Triangle(
+                getSideA() * Math.sqrt(2),
+                getSideB() * Math.sqrt(2),
+                getSideC() * Math.sqrt(2));
     }
 }

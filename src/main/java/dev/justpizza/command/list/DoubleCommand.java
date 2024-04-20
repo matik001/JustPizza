@@ -39,6 +39,12 @@ public class DoubleCommand extends CreateShapeCommand {
         }
 
         var shape = ShapesManager.instance.get(shapeNumber - 1);
-        return shape.doubleArea();
+        try {
+            return shape.doubleArea();
+        } catch (IllegalShapeException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+
     }
 }
