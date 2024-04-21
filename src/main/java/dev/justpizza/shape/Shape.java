@@ -61,7 +61,7 @@ public abstract class Shape {
 
     public abstract double getPerimeter();
 
-    public Object getDate() { return date; };
+    public ZonedDateTime getDate() { return date; };
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 
