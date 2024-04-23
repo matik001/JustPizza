@@ -5,6 +5,7 @@ import dev.justpizza.shape.circle.Circle;
 import dev.justpizza.translations.TranslationKey;
 
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 
@@ -40,11 +41,14 @@ public abstract class Shape {
         for (var prop : props.entrySet()) {
             var propName = prop.getKey();
             var propValue = prop.getValue();
+
             if (!first)
                 sb.append(", ");
-
-            sb.append(propName).append("=").append(propValue);
-
+            sb.append(propName)
+                    .append("=")
+                    .append(propName.equals("Date created")
+                        ? ((ZonedDateTime)propValue).format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss"))
+                        : String.format("%,.2f", propValue));
 
             first = false;
         }
@@ -61,7 +65,7 @@ public abstract class Shape {
 
     public abstract double getPerimeter();
 
-    public ZonedDateTime getDate() { return date; };
+    public ZonedDateTime getDate() { return date; }
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 
