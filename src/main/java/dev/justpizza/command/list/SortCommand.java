@@ -20,7 +20,7 @@ public class SortCommand extends Command {
 
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.addParamSchema(new ParamSchema(new HashSet<>(Arrays.asList("area", "perimeter"))));
+        argParser.addParamSchema(new ParamSchema(new HashSet<>(Arrays.asList("area", "perimeter", "date"))));
         argParser.addParamSchema(new ParamSchema(new HashSet<>(Arrays.asList("increasing", "decreasing"))));
         argParser.minNumberOfArgs = 2;
         argParser.maxNumberOfArgs = 2;
@@ -28,7 +28,14 @@ public class SortCommand extends Command {
 
     @Override
     protected void handleExecute(ArgParser argParser) {
-        ShapesManager.instance.sortShapes(argParser.hasArg("area"), argParser.hasArg("increasing"));
+        if(argParser.hasArg("date")){
+            ShapesManager.instance.sortShapes("date", argParser.hasArg("increasing"));
+        }else if(argParser.hasArg("area")){
+            ShapesManager.instance.sortShapes("area", argParser.hasArg("increasing"));
+        }else{
+            ShapesManager.instance.sortShapes("perimeter", argParser.hasArg("increasing"));
+        }
+        //ShapesManager.instance.sortShapes(argParser.hasArg("area"), argParser.hasArg("increasing"));
         ShapesManager.instance.printShapes();
     }
 }
