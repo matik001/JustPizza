@@ -90,6 +90,6 @@ public class IsoscelesTriangle extends Triangle {
 
     @Override
     public Shape doubleArea() throws IllegalShapeException {
-        return IsoscelesTriangle.fromBaseHeight(getHeight() * Math.sqrt(2), getBase() * Math.sqrt(2));
+        return IsoscelesTriangle.fromBaseHeight(getBase() * Math.sqrt(2), getHeight() * Math.sqrt(2));
     }
 }
