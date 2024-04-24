@@ -20,13 +20,15 @@ public class RectangularTriangle extends Triangle{
     }
 
     @Override
-    public double getPerimeter() {
-        return getSideA() + getSideB() + getSideC();
-    }
-
-    @Override
     protected Map<String, Object> getProperties() {
-        return super.getProperties();
+        return Utils.mergeProperties(
+                Map.of(
+                        "Base", getSideA(),
+                        "Altitude", getSideB(),
+                        "Hypotenuse", getSideC()
+                ),
+                super.getShapeProperties()
+        );
     }
 
     @Override
