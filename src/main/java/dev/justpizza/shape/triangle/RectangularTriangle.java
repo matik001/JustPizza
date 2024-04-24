@@ -72,8 +72,19 @@ public class RectangularTriangle extends Triangle{
         }
     }
 
-    public static RectangularTriangle fromHypotenuseArea(double val1, double val2) {
-        return null;
+    public static RectangularTriangle fromHypotenuseArea(double hypotenuse, double area) throws IllegalShapeException {
+        double delta = Math.pow(hypotenuse, 4) - (16 * Math.pow(area, 2));
+        double k_1 = (Math.pow(hypotenuse,2) - Math.sqrt(delta)) / 2;
+        double k_2 = (Math.pow(hypotenuse,2) + Math.sqrt(delta)) / 2;
+        if (k_1 > k_2 ) {
+            double base = Math.sqrt(k_1);
+            double altitude = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(base, 2));
+            return new RectangularTriangle(base, altitude, hypotenuse);
+        } else {
+            double base = Math.sqrt(k_2);
+            double altitude = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(base, 2));
+            return new RectangularTriangle(base, altitude, hypotenuse);
+        }
     }
 
     public double getArea() {
