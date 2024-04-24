@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class Triangle extends Shape {
-    private final double sideA, sideB, sideC;
+    protected final double sideA, sideB, sideC;
 
     public Triangle(double sideA, double sideB, double sideC) throws IllegalShapeException {
         double[] array = {sideA, sideB, sideC};

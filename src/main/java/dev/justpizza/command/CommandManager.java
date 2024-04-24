@@ -2,6 +2,7 @@ package dev.justpizza.command;
 
 import dev.justpizza.command.list.*;
 import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.triangle.RectangularTriangle;
 import dev.justpizza.translations.TranslationKey;
 
 import java.util.*;
@@ -24,6 +25,7 @@ public class CommandManager {
         add(new ExitCommand());
         add(new SortCommand());
         add(new DoubleCommand());
+        add(new RectangularTriangleCommand());
     }};
 
     final public static Map<String, Command> commands =
