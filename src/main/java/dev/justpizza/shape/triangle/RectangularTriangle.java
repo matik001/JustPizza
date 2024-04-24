@@ -24,7 +24,10 @@ public class RectangularTriangle extends Triangle{
 
     }
 
-    public static RectangularTriangle fromBaseHypotenuse(double base, double hypotenuse) {
+    public static RectangularTriangle fromBaseHypotenuse(double base, double hypotenuse) throws IllegalShapeException {
+        if(base < hypotenuse){
+            throw new IllegalShapeException(paramError("Triangle"));
+        }
         double altitude = Math.sqrt((hypotenuse * hypotenuse)-(base * base));
         try{
             return new RectangularTriangle(base, altitude, hypotenuse);
@@ -45,7 +48,10 @@ public class RectangularTriangle extends Triangle{
         }
     }
 
-    public static RectangularTriangle fromAltitudeHypotenuse(double altitude, double hypotenuse) {
+    public static RectangularTriangle fromAltitudeHypotenuse(double altitude, double hypotenuse) throws IllegalShapeException {
+        if(altitude < hypotenuse){
+            throw new IllegalShapeException(paramError("Triangle"));
+        }
         double base = Math.sqrt((hypotenuse * hypotenuse)-(altitude * altitude));
         try{
             return new RectangularTriangle(base, altitude, hypotenuse);

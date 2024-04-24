@@ -60,7 +60,7 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
                     continue;
                 var val1 = _val1.getDouble();
                 var val2 = _val2.getDouble();
-
+                try {
                     if (Objects.equals(key1, "base") && Objects.equals(key2, "altitude"))
                         triangle = RectangularTriangle.fromBaseAltitude(val1, val2);
                     if (Objects.equals(key1, "base") && Objects.equals(key2, "hypotenuse"))
@@ -73,7 +73,10 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
                         triangle = RectangularTriangle.fromAltitudeArea(val1, val2);
                     if (Objects.equals(key1, "hypotenuse") && Objects.equals(key2, "area"))
                         triangle = RectangularTriangle.fromHypotenuseArea(val1, val2);
-
+                } catch (IllegalShapeException e) {
+                        System.out.println(e.getMessage());
+                        return null;
+                }
             }
         }
         return triangle;
