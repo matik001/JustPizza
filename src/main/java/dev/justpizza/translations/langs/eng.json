@@ -11,6 +11,7 @@
   "rectangle_description": "calculates rectangle characteristics",
   "circle_description": "calculates circle characteristics",
   "circumcircle_description": "calculates circumcircle of a shape",
+  "rectriangle_description": "calculates rectangular triangle characteristics",
   "version_description": "shows current version",
   "double_description": "creates figure with two-fold area",
   "allowed_usages": "Allowed usages",
