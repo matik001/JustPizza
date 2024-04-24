@@ -2,12 +2,10 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
-import dev.justpizza.argparser.ParamType;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
-import dev.justpizza.shape.triangle.IsoscelesTriangle;
 import dev.justpizza.shape.triangle.RectangularTriangle;
 import dev.justpizza.translations.TranslationKey;
 
@@ -32,20 +30,6 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
         argParser.minNumberOfArgs = 2;
         argParser.maxNumberOfArgs = 2;
     }
-
-    @Override
-//    protected Shape createShape(ArgParser argParser) {
-//        List<Double> sides = argParser.getValue("sides").getArray();
-//        Double sideA = sides.get(0);
-//        Double sideB = sides.get(1);
-//        Double sideC = sides.get(2);
-//        try {
-//            return new RectangularTriangle(sideA, sideB, sideC);
-//        } catch (IllegalShapeException e) {
-//            System.out.println(e.getMessage());
-//            return null;
-//        }
-//    }
 
     protected Shape createShape(ArgParser argParser) {
         var options = List.of("base", "altitude", "hypotenuse", "area");
