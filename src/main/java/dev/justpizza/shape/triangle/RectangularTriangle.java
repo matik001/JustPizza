@@ -10,10 +10,8 @@ public class RectangularTriangle extends Triangle{
 
     public RectangularTriangle(double sideA, double sideB, double sideC) throws IllegalShapeException {
         super(sideA, sideB, sideC);
-        if((sideA * sideA) + (sideB * sideB) != (sideC * sideC)){
-            throw new IllegalShapeException(paramError("Triangle"));
-        }
     }
+
 
     public static RectangularTriangle fromBaseAltitude(double base, double altitude) {
         double hypotenuse = Math.sqrt((base * base) + (altitude * altitude));
