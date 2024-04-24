@@ -15,6 +15,63 @@ public class RectangularTriangle extends Triangle{
         }
     }
 
+    public static RectangularTriangle fromBaseAltitude(double base, double altitude) {
+        double hypotenuse = Math.sqrt((base * base) + (altitude * altitude));
+        try{
+            return new RectangularTriangle(base, altitude, hypotenuse);
+        }catch(IllegalShapeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+    }
+
+    public static RectangularTriangle fromBaseHypotenuse(double base, double hypotenuse) {
+        double altitude = Math.sqrt((hypotenuse * hypotenuse)-(base * base));
+        try{
+            return new RectangularTriangle(base, altitude, hypotenuse);
+        }catch(IllegalShapeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static RectangularTriangle fromBaseArea(double base, double area) {
+        double altitude = 2 * area / base;
+        double hypotenuse = Math.sqrt((base * base) + (altitude * altitude));
+        try{
+            return new RectangularTriangle(base, altitude, hypotenuse);
+        }catch(IllegalShapeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static RectangularTriangle fromAltitudeHypotenuse(double altitude, double hypotenuse) {
+        double base = Math.sqrt((hypotenuse * hypotenuse)-(altitude * altitude));
+        try{
+            return new RectangularTriangle(base, altitude, hypotenuse);
+        }catch(IllegalShapeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static RectangularTriangle fromAltitudeArea(double altitude, double area) {
+        double base = 2 * area / altitude;
+        double hypotenuse = Math.sqrt((base * base) + (altitude * altitude));
+        try{
+            return new RectangularTriangle(base, altitude, hypotenuse);
+        }catch(IllegalShapeException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static RectangularTriangle fromHypotenuseArea(double val1, double val2) {
+        return null;
+    }
+
     public double getArea() {
         return sideA * sideB * 0.5;
     }

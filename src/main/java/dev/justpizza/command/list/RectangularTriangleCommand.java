@@ -7,10 +7,12 @@ import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
+import dev.justpizza.shape.triangle.IsoscelesTriangle;
 import dev.justpizza.shape.triangle.RectangularTriangle;
 import dev.justpizza.translations.TranslationKey;
 
 import java.util.List;
+import java.util.Objects;
 
 public class RectangularTriangleCommand extends CreateShapeCommand {
 
@@ -23,22 +25,57 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
     }
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.addParamSchema(new ParamSchema("sides", ParamType.POSITIVE_DOUBLE, false, true, 3));
-        argParser.minNumberOfArgs = 1;
-        argParser.maxNumberOfArgs = 1;
+        argParser.addParamSchema(new ParamSchema("base"));
+        argParser.addParamSchema(new ParamSchema("altitude"));
+        argParser.addParamSchema(new ParamSchema("hypotenuse"));
+        argParser.addParamSchema(new ParamSchema("area"));
+        argParser.minNumberOfArgs = 2;
+        argParser.maxNumberOfArgs = 2;
     }
 
     @Override
+//    protected Shape createShape(ArgParser argParser) {
+//        List<Double> sides = argParser.getValue("sides").getArray();
+//        Double sideA = sides.get(0);
+//        Double sideB = sides.get(1);
+//        Double sideC = sides.get(2);
+//        try {
+//            return new RectangularTriangle(sideA, sideB, sideC);
+//        } catch (IllegalShapeException e) {
+//            System.out.println(e.getMessage());
+//            return null;
+//        }
+//    }
+
     protected Shape createShape(ArgParser argParser) {
-        List<Double> sides = argParser.getValue("sides").getArray();
-        Double sideA = sides.get(0);
-        Double sideB = sides.get(1);
-        Double sideC = sides.get(2);
-        try {
-            return new RectangularTriangle(sideA, sideB, sideC);
-        } catch (IllegalShapeException e) {
-            System.out.println(e.getMessage());
-            return null;
+        var options = List.of("base", "altitude", "hypotenuse", "area");
+        RectangularTriangle triangle = null;
+        for (int i = 0; i < options.size(); i++) {
+            for (int j = i + 1; j < options.size(); j++) {
+                var key1 = options.get(i);
+                var key2 = options.get(j);
+                var _val1 = argParser.getValue(key1);
+                var _val2 = argParser.getValue(key2);
+                if (_val1 == null || _val2 == null)
+                    continue;
+                var val1 = _val1.getDouble();
+                var val2 = _val2.getDouble();
+
+                    if (Objects.equals(key1, "base") && Objects.equals(key2, "altitude"))
+                        triangle = RectangularTriangle.fromBaseAltitude(val1, val2);
+                    if (Objects.equals(key1, "base") && Objects.equals(key2, "hypotenuse"))
+                        triangle = RectangularTriangle.fromBaseHypotenuse(val1, val2);
+                    if (Objects.equals(key1, "base") && Objects.equals(key2, "area"))
+                        triangle = RectangularTriangle.fromBaseArea(val1, val2);
+                    if (Objects.equals(key1, "altitude") && Objects.equals(key2, "hypotenuse"))
+                        triangle = RectangularTriangle.fromAltitudeHypotenuse(val2, val1);
+                    if (Objects.equals(key1, "altitude") && Objects.equals(key2, "area"))
+                        triangle = RectangularTriangle.fromAltitudeArea(val1, val2);
+                    if (Objects.equals(key1, "hypotenuse") && Objects.equals(key2, "area"))
+                        triangle = RectangularTriangle.fromHypotenuseArea(val1, val2);
+
+            }
         }
+        return triangle;
     }
 }
