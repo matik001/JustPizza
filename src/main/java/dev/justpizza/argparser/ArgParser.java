@@ -24,7 +24,7 @@ public class ArgParser {
     public Param getValue(String argName) {
         return argValues.get(argName);
     }
-    public Param getValueSafe(String argName) {
+    public Param getValueOrPanic(String argName) {
         if (!argValues.containsKey(argName)) {
             throw new IllegalArgumentException(
                     AppSettings.global.translations.get(TranslationKey.argument_not_found).replace("{argName}", argName));

@@ -27,5 +27,6 @@
   "zero_shapes_stored": "There are 0 shapes stored, can't create circumcircle",
   "not_in_range_shapes_stored": "There are {shapesManagerSize} shapes stored, expected number in range [1, {shapesManagerSize}]",
   "no_shape_for_parameters": "%s with this parameters does not exist",
-  "sort_description": "Sorts shapes by area or perimeter"
+  "sort_description": "Sorts shapes by area or perimeter",
+  "save_description": "Saves figures to file"
 }

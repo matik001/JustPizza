@@ -4,6 +4,9 @@ import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.circle.Circle;
 import dev.justpizza.translations.TranslationKey;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -57,7 +60,16 @@ public abstract class Shape {
     }
 
     public final void printCharacteristic() {
-        System.out.println(this);
+        try {
+            printCharacteristicToStream(System.out);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public final void printCharacteristicToStream(OutputStream stream) throws IOException {
+        var sw = new OutputStreamWriter(stream);
+        sw.append(this.toString()+'\n');
+        sw.flush();
     }
 
     public abstract double getArea();
