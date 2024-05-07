@@ -23,6 +23,7 @@ public class CommandManager {
         add(new TriangleCommand());
         add(new EquilateralTriangleCommand());
         add(new IsoscelesTriangleCommand());
+        add(new IsoscelesTrapezoidCommand());
         add(new RectangleCommand());
         add(new RhombusCommand());
         add(new CircleCommand());

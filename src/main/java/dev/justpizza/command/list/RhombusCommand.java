@@ -38,7 +38,6 @@ public class RhombusCommand extends CreateShapeCommand {
         var area = argParser.getValue("area");
 
 
-
         if (diagonala != null && diagonalb != null) {
             shape = Rhombus.fromDiagonals(diagonala.getDouble(), diagonalb.getDouble());
         } else if (side != null && area != null) {

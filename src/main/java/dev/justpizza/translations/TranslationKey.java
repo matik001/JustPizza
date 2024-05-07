@@ -9,6 +9,7 @@ public enum TranslationKey {
     equtriangle_description,
     triangle_description,
     isosceles_description,
+    isosceles_trapezoid_description,
     rectriangle_description,
     shapes_description,
     sort_description,
