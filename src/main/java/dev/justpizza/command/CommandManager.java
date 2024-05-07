@@ -30,6 +30,8 @@ public class CommandManager {
         add(new ExitCommand());
         add(new SortCommand());
         add(new DoubleCommand());
+        add(new RectangularTriangleCommand());
+        add(new SaveToFileCommand());
     }};
 
     final public static Map<String, Command> commands =

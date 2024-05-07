@@ -1,5 +1,8 @@
 package dev.justpizza.shape;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -14,30 +17,59 @@ public class ShapesManager {
     }
 //    public static ShapesManager instance = new ShapesManager();
 
-    public void addShape(Shape shape) {
+    synchronized public void addShape(Shape shape) {
         shapesList.add(shape);
     }
 
-    public void printShapes() {
+    synchronized public void printShapesToStream(OutputStream stream) throws IOException {
+        var sw = new OutputStreamWriter(stream);
         for (int i = 0; i < shapesList.size(); i++) {
-            out.print(STR."\{i + 1}. ");
-            out.println(shapesList.get(i).getCharacteristic());
+            sw.append(STR."\{i + 1}. ");
+            sw.append(shapesList.get(i).getCharacteristic());
+            sw.append('\n');
+            sw.flush();
         }
     }
 
-    public void sortShapes(boolean by_area, boolean increasing) {
+    public void printShapes() {
+        try {
+            printShapesToStream(out);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    synchronized public void sortShapes(String field, boolean increasing) {
         if (increasing) {
-            shapesList.sort(Comparator.comparingDouble(by_area ? Shape::getArea : Shape::getPerimeter));
+            switch (field) {
+                case "area":
+                    shapesList.sort(Comparator.comparingDouble(Shape::getArea));
+                    break;
+                case "perimeter":
+                    shapesList.sort(Comparator.comparingDouble(Shape::getPerimeter));
+                    break;
+                default:
+                    shapesList.sort(Comparator.comparing(Shape::getDate));
+            }
         } else {
-            shapesList.sort(Comparator.comparingDouble(by_area ? Shape::getArea : Shape::getPerimeter).reversed());
+            switch (field) {
+                case "area":
+                    shapesList.sort(Comparator.comparingDouble(Shape::getArea).reversed());
+                    break;
+                case "perimeter":
+                    shapesList.sort(Comparator.comparingDouble(Shape::getPerimeter).reversed());
+                    break;
+                default:
+                    shapesList.sort(Comparator.comparing(Shape::getDate).reversed());
+            }
         }
     }
 
-    public Shape get(int i) {
+    synchronized public Shape get(int i) {
         return shapesList.get(i);
     }
 
-    public int size() {
+    synchronized public int size() {
         return shapesList.size();
     }
 }

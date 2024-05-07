@@ -14,7 +14,7 @@ public class DoubleCommandTest extends AbstractCommandTest {
         var commands = List.of("square side 9.1", "square side 18.8", "square side 17.3", "double shapenumber 2");
         List<List<String>> expectedSubstringsInLines = List.of(
                 List.of(), List.of(), List.of(),
-                List.of("Square [ ", "]", "Side=26.587", "Perimeter=106.34885989", "Area=706.88", "Diagonal=37.6")
+                List.of("Square [ ", "]", "Side=26.59", "Perimeter=106.35", "Area=706.88", "Diagonal=37.60")
         );
         sendCommandsAndExpectLinesContaining(commands, expectedSubstringsInLines);
     }
@@ -28,7 +28,7 @@ public class DoubleCommandTest extends AbstractCommandTest {
                                     "double shapenumber 2");
                             List<List<String>> expectedSubstringsInLines = List.of(
                                     List.of(), List.of(), List.of(),
-                                    List.of("EquilateralTriangle [ ", "]", "Side=17.39482", "Perimeter=52.18448", "Area=131.02098", "Height=15.06436")
+                                    List.of("EquilateralTriangle [ ", "]", "Side=17.39", "Perimeter=52.18", "Area=131.02", "Height=15.06")
                             );
                             sendCommandsAndExpectLinesContaining(commands, expectedSubstringsInLines);
                         }

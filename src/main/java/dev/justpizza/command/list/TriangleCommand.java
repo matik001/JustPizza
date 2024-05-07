@@ -9,6 +9,7 @@ import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.triangle.EquilateralTriangle;
 import dev.justpizza.shape.triangle.IsoscelesTriangle;
+import dev.justpizza.shape.triangle.RectangularTriangle;
 import dev.justpizza.shape.triangle.Triangle;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
@@ -47,6 +48,8 @@ public class TriangleCommand extends CreateShapeCommand {
                 return IsoscelesTriangle.fromBaseSide(sideA, sideB);
             } else if (sideA.equals(sideC)) {
                 return IsoscelesTriangle.fromBaseSide(sideB, sideA);
+            } else if ((sideA * sideA) + (sideB * sideB) == (sideC * sideC)){
+                return new RectangularTriangle(sideA, sideB, sideC);
             } else {
                 // You need to implement a method to create a general Triangle from three sides
                 return new Triangle(sideA, sideB, sideC);

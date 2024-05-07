@@ -6,7 +6,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Translations {
     final HashMap<TranslationKey, String> map = new HashMap<>();
@@ -21,6 +24,8 @@ public class Translations {
             var enumKey = TranslationKey.valueOf(key);
             translations.map.put(enumKey, translation);
         }
+        // TODO this is temporary solution
+        Locale.setDefault(Locale.US);
         return translations;
     }
 

@@ -9,6 +9,7 @@ public enum TranslationKey {
     equtriangle_description,
     triangle_description,
     isosceles_description,
+    rectriangle_description,
     shapes_description,
     sort_description,
 
@@ -22,6 +23,7 @@ public enum TranslationKey {
     invalid_usage_command,
     required_more_params,
     positive_value,
+    string_value,
     invalid_argument,
     expected_one_of,
     argument_already_provided,
@@ -30,4 +32,5 @@ public enum TranslationKey {
     zero_shapes_stored,
     not_in_range_shapes_stored,
     no_shape_for_parameters,
+    save_description,
 }

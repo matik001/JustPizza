@@ -11,6 +11,7 @@
   "rectangle_description": "calculates rectangle characteristics",
   "circle_description": "calculates circle characteristics",
   "circumcircle_description": "calculates circumcircle of a shape",
+  "rectriangle_description": "calculates rectangular triangle characteristics",
   "version_description": "shows current version",
   "double_description": "creates figure with two-fold area",
   "allowed_usages": "Allowed usages",
@@ -18,6 +19,7 @@
   "invalid_usage_command": "Invalid usage of the command {commandName}",
   "required_more_params": "Required {requiredParams} parameters, given {length}",
   "positive_value": "positive value",
+  "string_value": "string value",
   "invalid_argument": "Invalid argument at position",
   "expected_one_of": "expected one of",
   "argument_already_provided": "Argument {argName} already provided",
@@ -26,5 +28,6 @@
   "zero_shapes_stored": "There are 0 shapes stored, can't create circumcircle",
   "not_in_range_shapes_stored": "There are {shapesManagerSize} shapes stored, expected number in range [1, {shapesManagerSize}]",
   "no_shape_for_parameters": "%s with this parameters does not exist",
-  "sort_description": "Sorts shapes by area or perimeter"
+  "sort_description": "Sorts shapes by area or perimeter",
+  "save_description": "Saves figures to file"
 }

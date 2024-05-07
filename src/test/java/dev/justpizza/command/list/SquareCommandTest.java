@@ -10,13 +10,13 @@ class SquareCommandTest extends AbstractCommandTest {
     @Test
     public void correctSquareTest() {
         var commands = List.of("square side 7", "square area 49", "square diagonal 9.8999");
-        var characteristics = List.of("Square [ ", " ]", "Side=7.0", "Perimeter=28.0", "Area=49.0", "Diagonal=9.899");
+        var characteristics = List.of("Square [ ", " ]", "Side=7.00", "Perimeter=28.00", "Area=49.00", "Diagonal=9.90");
         sendCommandsAndExpectEachLineContaining(commands, 3, characteristics);
     }
 
     @Test
     public void inconsistentCapitalizationTest() {
-        var characteristics = List.of("Square [ ", " ]", "Side=6.25", "Perimeter=25.0", "Area=39.0625", "Diagonal=8.838834764831844");
+        var characteristics = List.of("Square [ ", " ]", "Side=6.25", "Perimeter=25.0", "Area=39.06", "Diagonal=8.84");
         var inputCommands = List.of("square side 6.25", "SQUARE side 6.25", "square SIDE 6.25", "SQUARE SIDE 6.25",
                 "SquArE siDe 6.25", "SqUArE siDe 6.25", "squARE SiDE 6.25", "SquArE sidE 6.25");
         sendCommandsAndExpectEachLineContaining(inputCommands, 8, characteristics);
@@ -42,7 +42,7 @@ class SquareCommandTest extends AbstractCommandTest {
         var invalidUsageGiven2Parameters = List.of(
                 "Invalid usage of the command square:",
                 "Required 1 parameters, given 2",
-                "square [side] {positive_value} [diagonal] {positive_value} [area] {positive_value}"
+                "square [side] {positive value} [diagonal] {positive value} [area] {positive value}"
         );
         sendCommandsAndExpect("square side 2 area 4", invalidUsageGiven2Parameters);
         sendCommandsAndExpect("square side 2  area 4 ", invalidUsageGiven2Parameters);
