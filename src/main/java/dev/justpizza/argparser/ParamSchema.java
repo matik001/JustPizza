@@ -1,5 +1,8 @@
 package dev.justpizza.argparser;
 
+import dev.justpizza.config.AppSettings;
+import dev.justpizza.translations.TranslationKey;
+
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.OptionalInt;
@@ -96,4 +99,13 @@ public class ParamSchema {
     public HashSet<String> getOptionsSet() {
         return optionsSet;
     }
+
+    public String getValueDesc()
+    {
+        if(paramType == ParamType.STRING )
+            return AppSettings.global.translations.get(TranslationKey.string_value);
+        else
+            return AppSettings.global.translations.get(TranslationKey.positive_value);
+    }
+
 }

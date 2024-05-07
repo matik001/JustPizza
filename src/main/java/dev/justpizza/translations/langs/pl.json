@@ -19,6 +19,7 @@
   "invalid_usage_command": "Nieprawidłowe użycie komendy {commandName}",
   "required_more_params": "Wymagane {requiredParams} parametry, podano {length}",
   "positive_value": "wartość dodatnia",
+  "string_value": "wartość tekstowa",
   "invalid_argument": "Nieprawidłowy argument na pozycji",
   "expected_one_of": "oczekiwano jednego z",
   "argument_already_provided": "Argument {argName} już podany",
@@ -27,5 +28,6 @@
   "zero_shapes_stored": "Przechowywanych jest zero figur, nie można utworzyć okręgu opisanego na figurze.",
   "not_in_range_shapes_stored": "Przechowywanych jest {shapesManagerSize} figur, oczekiwano liczby w przedziale [1, {shapesManagerSize}]",
   "no_shape_for_parameters": "%s z takimi parametrami nie istnieje",
-  "sort_description": "Sortuje kształty według pola lub obwodu"
+  "sort_description": "Sortuje kształty według pola lub obwodu",
+  "save_description": "Zapisuje figury do pliku"
 }
