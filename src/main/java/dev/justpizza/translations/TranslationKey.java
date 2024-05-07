@@ -23,6 +23,7 @@ public enum TranslationKey {
     invalid_usage_command,
     required_more_params,
     positive_value,
+    string_value,
     invalid_argument,
     expected_one_of,
     argument_already_provided,

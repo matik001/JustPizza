@@ -19,6 +19,7 @@
   "invalid_usage_command": "Nieprawidłowe użycie komendy {commandName}",
   "required_more_params": "Wymagane {requiredParams} parametry, podano {length}",
   "positive_value": "wartość dodatnia",
+  "string_value": "wartość tekstowa",
   "invalid_argument": "Nieprawidłowy argument na pozycji",
   "expected_one_of": "oczekiwano jednego z",
   "argument_already_provided": "Argument {argName} już podany",

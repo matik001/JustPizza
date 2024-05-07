@@ -19,6 +19,7 @@
   "invalid_usage_command": "Invalid usage of the command {commandName}",
   "required_more_params": "Required {requiredParams} parameters, given {length}",
   "positive_value": "positive value",
+  "string_value": "string value",
   "invalid_argument": "Invalid argument at position",
   "expected_one_of": "expected one of",
   "argument_already_provided": "Argument {argName} already provided",

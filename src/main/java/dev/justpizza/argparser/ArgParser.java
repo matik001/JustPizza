@@ -117,7 +117,7 @@ public class ArgParser {
             List<String> keys = paramsSchemaList.stream()
                     .map(a -> a.getParamType() == ParamType.OPTIONS_SET
                             ? "[" + String.join(" | ", a.getOptionsSet()) + "]"
-                            : "[" + a.getName() + "] {" + TranslationKey.positive_value+"}")
+                            : "[" + a.getName() + "] {" + a.getValueDesc()+"}")
                     .toList();
             //var keys = paramSchemas.stream().map(ParamSchema::getName).toList();
             var positiveValue = AppSettings.global.translations.get(TranslationKey.positive_value);
