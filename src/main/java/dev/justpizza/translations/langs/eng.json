@@ -6,6 +6,7 @@
   "exit_description": "exits the program",
   "equtriangle_description": "calculates equilateral triangle characteristics",
   "isosceles_description": "calculates isosceles triangle characteristics",
+  "isosceles_trapezoid_description": "calculates isosceles trapezoid characteristics",
   "triangle_description": "calculates triangle characteristics",
   "shapes_description": "prints list of shapes",
   "rectangle_description": "calculates rectangle characteristics",
