@@ -15,7 +15,7 @@ public abstract class Shape {
 
     private final ZonedDateTime date;
 
-    public Shape(){
+    public Shape() {
         this.date = java.time.ZonedDateTime.now();
     }
 
@@ -47,36 +47,45 @@ public abstract class Shape {
             if (!first)
                 sb.append(", ");
             sb.append(propName)
-                    .append("=")
-                    .append(propName.equals("Date created")
-                        ? ((ZonedDateTime)propValue).format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss"))
-                        : String.format("%,.2f", propValue));
+              .append("=")
+              .append(propName.equals("Date created")
+                      ? ((ZonedDateTime) propValue).format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss"))
+                      : String.format("%.2f", propValue));
 
             first = false;
         }
 
-        sb.append(" ] ");
+        sb.append(" ]");
         return sb.toString();
     }
 
-    public final void printCharacteristic() {
-        try {
-            printCharacteristicToStream(System.out);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+
+    public final String getCharacteristic() {
+        return this.toString();
     }
-    public final void printCharacteristicToStream(OutputStream stream) throws IOException {
-        var sw = new OutputStreamWriter(stream);
-        sw.append(this.toString()+'\n');
-        sw.flush();
-    }
+
+//    public final void printCharacteristic() {
+//        try {
+//            printCharacteristicToStream(System.out);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    public final void printCharacteristicToStream(OutputStream stream) throws IOException {
+//        var sw = new OutputStreamWriter(stream);
+//        sw.append(getCharacteristic());
+//        sw.flush();
+//    }
 
     public abstract double getArea();
 
     public abstract double getPerimeter();
 
-    public ZonedDateTime getDate() { return date; }
+    public ZonedDateTime getDate() {
+        return date;
+    }
 
     public abstract Circle createCircumcircle() throws IllegalShapeException;
 

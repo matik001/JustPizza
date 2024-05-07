@@ -29,26 +29,25 @@ public class SaveToFileCommand extends Command {
     }
 
     @Override
-    protected void handleExecute(ArgParser argParser) {
+    protected boolean handleExecute(ShapesManager shapesManager, ArgParser argParser) {
         var filename = argParser.getValueOrPanic("filename");
         File file = new File(filename.getString());
         (new Thread(() -> {
-
             try (FileOutputStream fop = new FileOutputStream(file)) {
-                System.out.println("Saving...");
+                out.println("Saving...");
 
                 if (!file.exists()) {
                     file.createNewFile();
                 }
-                ShapesManager.instance.printShapesToStream(fop);
+                shapesManager.printShapesToStream(fop);
 
                 fop.flush();
                 fop.close();
-                System.out.println("Saved!");
+                out.println("Saved!");
             } catch (IOException e) {
-                System.out.println("Couldn't save to file");
+                out.println("Couldn't save to file");
             }
         })).start();
+        return true;
     }
-
 }

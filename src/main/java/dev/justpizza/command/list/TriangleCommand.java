@@ -6,6 +6,7 @@ import dev.justpizza.argparser.ParamType;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.triangle.EquilateralTriangle;
 import dev.justpizza.shape.triangle.IsoscelesTriangle;
 import dev.justpizza.shape.triangle.RectangularTriangle;
@@ -32,7 +33,7 @@ public class TriangleCommand extends CreateShapeCommand {
     }
 
     @Override
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         List<Double> sides = argParser.getValue("sides").getArray();
         Double sideA = sides.get(0);
         Double sideB = sides.get(1);
@@ -55,7 +56,7 @@ public class TriangleCommand extends CreateShapeCommand {
             }
         } catch (
                 IllegalShapeException e) {
-            System.out.println(e.getMessage());
+            out.println(e.getMessage());
             return null;
         }
     }

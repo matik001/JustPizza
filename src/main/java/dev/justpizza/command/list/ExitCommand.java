@@ -3,6 +3,7 @@ package dev.justpizza.command.list;
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.command.Command;
 import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
 
 public class ExitCommand extends Command {
@@ -17,7 +18,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    protected void handleExecute(ArgParser argParser) {
-        System.exit(0);
+    protected boolean handleExecute(ShapesManager shapesManager, ArgParser argParser) {
+        return false;
     }
 }

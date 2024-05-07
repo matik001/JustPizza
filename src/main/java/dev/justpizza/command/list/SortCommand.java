@@ -27,15 +27,15 @@ public class SortCommand extends Command {
     }
 
     @Override
-    protected void handleExecute(ArgParser argParser) {
-        if(argParser.hasArg("date")){
-            ShapesManager.instance.sortShapes("date", argParser.hasArg("increasing"));
-        }else if(argParser.hasArg("area")){
-            ShapesManager.instance.sortShapes("area", argParser.hasArg("increasing"));
-        }else{
-            ShapesManager.instance.sortShapes("perimeter", argParser.hasArg("increasing"));
+    protected boolean handleExecute(ShapesManager shapesManager, ArgParser argParser) {
+        if (argParser.hasArg("date")) {
+            shapesManager.sortShapes("date", argParser.hasArg("increasing"));
+        } else if (argParser.hasArg("area")) {
+            shapesManager.sortShapes("area", argParser.hasArg("increasing"));
+        } else {
+            shapesManager.sortShapes("perimeter", argParser.hasArg("increasing"));
         }
-        //ShapesManager.instance.sortShapes(argParser.hasArg("area"), argParser.hasArg("increasing"));
-        ShapesManager.instance.printShapes();
+        shapesManager.printShapes();
+        return true;
     }
 }

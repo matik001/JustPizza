@@ -4,12 +4,10 @@ import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.circle.Circle;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
-import dev.justpizza.utils.Utils;
-
-import java.util.List;
 
 public class CircleCommand extends CreateShapeCommand {
     private static final String name = "circle";
@@ -29,7 +27,7 @@ public class CircleCommand extends CreateShapeCommand {
     }
 
     @Override
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         var radius = argParser.getValue("radius");
         var area = argParser.getValue("area");
         var perimeter = argParser.getValue("perimeter");
@@ -41,7 +39,7 @@ public class CircleCommand extends CreateShapeCommand {
         } else if (perimeter != null) {
             return Circle.fromPerimeter(perimeter.getDouble());
         } else {
-            System.out.println("Not enough characteristics");
+            out.println("Not enough characteristics");
             return null;
         }
     }

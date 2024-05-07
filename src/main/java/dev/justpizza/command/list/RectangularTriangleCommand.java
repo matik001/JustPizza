@@ -6,6 +6,7 @@ import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.triangle.RectangularTriangle;
 import dev.justpizza.translations.TranslationKey;
 
@@ -21,6 +22,7 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
     public RectangularTriangleCommand() {
         super(name, description);
     }
+
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("base"));
@@ -31,7 +33,7 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
         argParser.maxNumberOfArgs = 2;
     }
 
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         var options = List.of("base", "altitude", "hypotenuse", "area");
         RectangularTriangle triangle = null;
         for (int i = 0; i < options.size(); i++) {
@@ -58,8 +60,8 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
                     if (Objects.equals(key1, "hypotenuse") && Objects.equals(key2, "area"))
                         triangle = RectangularTriangle.fromHypotenuseArea(val1, val2);
                 } catch (IllegalShapeException e) {
-                        System.out.println(e.getMessage());
-                        return null;
+                    out.println(e.getMessage());
+                    return null;
                 }
             }
         }

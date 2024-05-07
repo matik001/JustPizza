@@ -5,10 +5,9 @@ import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.Shape;
+import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.quadrangle.Square;
 import dev.justpizza.translations.TranslationKey;
-
-import java.util.List;
 
 public class SquareCommand extends CreateShapeCommand {
 
@@ -29,7 +28,7 @@ public class SquareCommand extends CreateShapeCommand {
     }
 
     @Override
-    protected Shape createShape(ArgParser argParser) {
+    protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         Square square;
         String argName = argParser.argValues.keySet().iterator().next();
         double value = argParser.getValue(argName).getDouble();

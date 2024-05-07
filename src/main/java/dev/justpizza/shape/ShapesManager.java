@@ -3,14 +3,19 @@ package dev.justpizza.shape;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class ShapesManager {
+    private final PrintStream out;
     List<Shape> shapesList = new ArrayList<>();
-    public static ShapesManager instance = new ShapesManager(); /// mozna dodac do commandManager zamiast robic statyczne
+
+    public ShapesManager(PrintStream out) {
+        this.out = out;
+    }
+//    public static ShapesManager instance = new ShapesManager();
 
     synchronized public void addShape(Shape shape) {
         shapesList.add(shape);
@@ -20,20 +25,22 @@ public class ShapesManager {
         var sw = new OutputStreamWriter(stream);
         for (int i = 0; i < shapesList.size(); i++) {
             sw.append(STR."\{i + 1}. ");
+            sw.append(shapesList.get(i).getCharacteristic());
+            sw.append('\n');
             sw.flush();
-            shapesList.get(i).printCharacteristicToStream(stream);
         }
     }
+
     public void printShapes() {
         try {
-            printShapesToStream(System.out);
+            printShapesToStream(out);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     synchronized public void sortShapes(String field, boolean increasing) {
-        if(increasing) {
+        if (increasing) {
             switch (field) {
                 case "area":
                     shapesList.sort(Comparator.comparingDouble(Shape::getArea));

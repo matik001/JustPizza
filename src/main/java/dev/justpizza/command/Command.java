@@ -1,9 +1,12 @@
 package dev.justpizza.command;
 
 import dev.justpizza.argparser.ArgParser;
-import dev.justpizza.shape.IllegalShapeException;
+import dev.justpizza.shape.ShapesManager;
+
+import java.io.PrintStream;
 
 abstract public class Command {
+    protected PrintStream out;
     final protected String name;
     final protected String description;
 
@@ -14,6 +17,10 @@ abstract public class Command {
         this.description = description;
     }
 
+    public void setOut(PrintStream out) {
+        this.out = out;
+    }
+
     public String getName() {
         return name;
     }
@@ -22,18 +29,21 @@ abstract public class Command {
         return description;
     }
 
-    protected abstract void handleExecute(ArgParser argParser);
+    protected abstract boolean handleExecute(ShapesManager shapesManager, ArgParser argParser);
 
-    public void execute(String[] params){
+    /**
+     * @return True if program should continue executing. False if program should exit.
+     * */
+    public boolean execute(String[] params, ShapesManager shapesManager){
         var argParser = new ArgParser();
         initArgParser(argParser);
 
         try {
             argParser.parseParams(params, name);
         } catch (IllegalArgumentException exc) {
-            System.out.println(exc.getMessage());
-            return;
+            out.println(exc.getMessage());
+            return true;
         }
-        handleExecute(argParser);
+        return handleExecute(shapesManager, argParser);
     }
 }
