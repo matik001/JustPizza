@@ -43,7 +43,13 @@ public class IsoscelesTrapezoid extends Shape {
         return IsoscelesTrapezoid.fromBasesAndHeight(baseA, baseB, height);
     }
 
-    public static Shape fromBaseAndHeightAndLeg(double baseA, double height, double leg) {
+
+    public static Shape fromBaseBAndHeightAndLeg(double baseB, double height, double leg) {
+        double baseA = baseB - 2 * Math.sqrt(leg * leg - height * height);
+        return new IsoscelesTrapezoid(baseA, baseB, height, leg);
+    }
+
+    public static Shape fromBaseAAndHeightAndLeg(double baseA, double height, double leg) {
         double baseB = baseA + 2 * Math.sqrt(leg * leg - height * height);
         return new IsoscelesTrapezoid(baseA, baseB, height, leg);
     }

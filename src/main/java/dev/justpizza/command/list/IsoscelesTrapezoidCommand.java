@@ -44,8 +44,10 @@ public class IsoscelesTrapezoidCommand extends CreateShapeCommand {
             return IsoscelesTrapezoid.fromBasesAndLeg(basea.getDouble(), baseb.getDouble(), leg.getDouble());
         } else if (basea != null && baseb != null && area != null) {
             return IsoscelesTrapezoid.fromBasesAndArea(basea.getDouble(), baseb.getDouble(), area.getDouble());
-        } else if (base != null && height != null && leg != null) {
-            return IsoscelesTrapezoid.fromBaseAndHeightAndLeg(base.getDouble(), height.getDouble(), leg.getDouble());
+        } else if (basea != null && height != null && leg != null) {
+            return IsoscelesTrapezoid.fromBaseAAndHeightAndLeg(basea.getDouble(), height.getDouble(), leg.getDouble());
+        } else if (baseb != null && height != null && leg != null) {
+            return IsoscelesTrapezoid.fromBaseBAndHeightAndLeg(baseb.getDouble(), height.getDouble(), leg.getDouble());
         } else if (base != null && height != null && area != null) {
             return IsoscelesTrapezoid.fromBaseAndHeightAndArea(base.getDouble(), height.getDouble(), area.getDouble());
         } else if (base != null && leg != null && area != null) {
