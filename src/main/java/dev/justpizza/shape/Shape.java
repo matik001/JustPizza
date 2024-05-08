@@ -4,9 +4,6 @@ import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.circle.Circle;
 import dev.justpizza.translations.TranslationKey;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
@@ -94,6 +91,13 @@ public abstract class Shape {
     protected static String paramError(String shapeName) {
         return String.format(
                 AppSettings.global.translations.get(TranslationKey.no_shape_for_parameters),
+                shapeName
+        );
+    }
+
+    protected static String ambiguousError(String shapeName) {
+        return String.format(
+                AppSettings.global.translations.get(TranslationKey.ambiguous_shape),
                 shapeName
         );
     }

@@ -4,6 +4,7 @@ import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
+import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.quadrangle.IsoscelesTrapezoid;
@@ -30,30 +31,33 @@ public class IsoscelesTrapezoidCommand extends CreateShapeCommand {
 
     @Override
     protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
-        Shape shape;
         var basea = argParser.getValue("basea");
         var baseb = argParser.getValue("baseb");
         var base = basea != null ? basea : baseb;
         var height = argParser.getValue("height");
         var leg = argParser.getValue("leg");
         var area = argParser.getValue("area");
-
-        if (basea != null && baseb != null && height != null) {
-            return IsoscelesTrapezoid.fromBasesAndHeight(basea.getDouble(), baseb.getDouble(), height.getDouble());
-        } else if (basea != null && baseb != null && leg != null) {
-            return IsoscelesTrapezoid.fromBasesAndLeg(basea.getDouble(), baseb.getDouble(), leg.getDouble());
-        } else if (basea != null && baseb != null && area != null) {
-            return IsoscelesTrapezoid.fromBasesAndArea(basea.getDouble(), baseb.getDouble(), area.getDouble());
-        } else if (basea != null && height != null && leg != null) {
-            return IsoscelesTrapezoid.fromBaseAAndHeightAndLeg(basea.getDouble(), height.getDouble(), leg.getDouble());
-        } else if (baseb != null && height != null && leg != null) {
-            return IsoscelesTrapezoid.fromBaseBAndHeightAndLeg(baseb.getDouble(), height.getDouble(), leg.getDouble());
-        } else if (base != null && height != null && area != null) {
-            return IsoscelesTrapezoid.fromBaseAndHeightAndArea(base.getDouble(), height.getDouble(), area.getDouble());
-        } else if (base != null && leg != null && area != null) {
-            return IsoscelesTrapezoid.fromBaseAndLegAndArea(base.getDouble(), leg.getDouble(), area.getDouble());
-        } else if (height != null && leg != null && area != null) {
-            return IsoscelesTrapezoid.fromHeightAndLegAndArea(height.getDouble(), leg.getDouble(), area.getDouble());
+        try {
+            if (basea != null && baseb != null && height != null) {
+                return IsoscelesTrapezoid.fromBasesAndHeight(basea.getDouble(), baseb.getDouble(), height.getDouble());
+            } else if (basea != null && baseb != null && leg != null) {
+                return IsoscelesTrapezoid.fromBasesAndLeg(basea.getDouble(), baseb.getDouble(), leg.getDouble());
+            } else if (basea != null && baseb != null && area != null) {
+                return IsoscelesTrapezoid.fromBasesAndArea(basea.getDouble(), baseb.getDouble(), area.getDouble());
+            } else if (basea != null && height != null && leg != null) {
+                return IsoscelesTrapezoid.fromBaseAAndHeightAndLeg(basea.getDouble(), height.getDouble(), leg.getDouble());
+            } else if (baseb != null && height != null && leg != null) {
+                return IsoscelesTrapezoid.fromBaseBAndHeightAndLeg(baseb.getDouble(), height.getDouble(), leg.getDouble());
+            } else if (base != null && height != null && area != null) {
+                return IsoscelesTrapezoid.fromBaseAndHeightAndArea(base.getDouble(), height.getDouble(), area.getDouble());
+            } else if (height != null && leg != null && area != null) {
+                return IsoscelesTrapezoid.fromHeightAndLegAndArea(height.getDouble(), leg.getDouble(), area.getDouble());
+            } else if (base != null && leg != null && area != null) {
+                return IsoscelesTrapezoid.fromBaseAndLegAndArea(base.getDouble(), leg.getDouble(), area.getDouble());
+            }
+        } catch (IllegalShapeException e) {
+            out.println(e.getMessage());
+            return null;
         }
         return null;
     }
