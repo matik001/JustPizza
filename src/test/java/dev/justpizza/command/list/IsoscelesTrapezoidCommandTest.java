@@ -11,13 +11,16 @@ import java.util.List;
 
 public class IsoscelesTrapezoidCommandTest extends AbstractCommandTest {
     @Test
-    public void correctIsoscelesTrapezoidTest() {
+    public void createCorrectIsoscelesTrapezoidTest() {
         var commands = List.of("isotrapezoid basea 3 baseb 5 height 2",
-                "isotrapezoid basea 5 baseb 3 height 2",
-                "isotrapezoid basea 3 baseb 5 leg 2.236068");
+                "isotrapezoid basea 3 baseb 5 leg 2.236068",
+                "isotrapezoid basea 3 baseb 5 area 8",
+                "isotrapezoid height 2 area 8 leg 2.236068",
+                "isotrapezoid baseb 5 height 2 leg 2.236068"
+        );
         var characteristics = List.of("IsoscelesTrapezoid [ ", " ]", "Base A=3.00", "Base B=5.00", "Height=2.00", "Leg=2.24",
                 "Area=8.00", "Perimeter=12.47");
-        sendCommandsAndExpectEachLineContaining(commands, 3, characteristics);
+        sendCommandsAndExpectEachLineContaining(commands, 5, characteristics);
     }
 
     @TestFactory

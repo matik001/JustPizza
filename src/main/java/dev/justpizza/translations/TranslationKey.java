@@ -33,5 +33,6 @@ public enum TranslationKey {
     zero_shapes_stored,
     not_in_range_shapes_stored,
     no_shape_for_parameters,
+    ambiguous_shape,
     save_description,
 }
