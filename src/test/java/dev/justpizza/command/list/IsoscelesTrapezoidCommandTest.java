@@ -55,4 +55,53 @@ public class IsoscelesTrapezoidCommandTest extends AbstractCommandTest {
                 )
         ).toList();
     }
+
+    @Test
+    public void illegalIsoscelesTrapezoidFromBasesAndLeg() {
+        var commands = List.of(
+                "isotrapezoid basea 4 baseb 12 leg 1",
+                "isotrapezoid basea 12 baseb 4 leg 1"
+        );
+        var message = "IsoscelesTrapezoid with this parameters does not exist";
+        sendCommandsAndExpect(commands, List.of(message, message));
+    }
+
+    @Test
+    public void illegalIsoscelesTrapezoidFromBaseAndHeightAndLeg() {
+        var commands = List.of(
+                "isotrapezoid basea 4 height 5 leg 4.9",
+                "isotrapezoid baseb 4 height 5 leg 4.9"
+        );
+        var message = "IsoscelesTrapezoid with this parameters does not exist";
+        sendCommandsAndExpect(commands, List.of(message, message));
+    }
+
+    @Test
+    public void illegalIsoscelesTrapezoidFromHeightAndLegAndArea() {
+        var commands = List.of(
+                "isotrapezoid area 10 height 5 leg 4.9",
+                "isotrapezoid area 1 height 4 leg 5.5"
+        );
+        var message = "IsoscelesTrapezoid with this parameters does not exist";
+        sendCommandsAndExpect(commands, List.of(message, message));
+    }
+
+    @Test
+    public void illegalIsoscelesTrapezoidFromBaseAndHeightAndArea() {
+        var commands = List.of(
+                "isotrapezoid basea 3.1 height 8 area 12.4",
+                "isotrapezoid baseb 3.1 height 8 area 12.4",
+                "isotrapezoid basea 7.33 height 9 area 15.1",
+                "isotrapezoid baseb 7.33 height 9 area 15.1"
+        );
+        var message = "IsoscelesTrapezoid with this parameters does not exist";
+        sendCommandsAndExpect(commands, List.of(message, message, message, message));
+    }
+
+    @Test
+    public void createIsoTrapezoidAndDescribeACircle() {
+        var commands = List.of("isotrapezoid basea 4 baseb 5 leg 13", "circumcircle shapenumber 1");
+        List<List<String>> expectedSubstrings = List.of(List.of(), List.of("Circle", "Radius=6.88", "Perimeter=43.22", "Area=148.66"));
+        sendCommandsAndExpectLinesContaining(commands, expectedSubstrings);
+    }
 }
