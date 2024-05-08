@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class AppSettings {
     public final String programName = "JustPizza";
-    public final String version = "1.4";
+    public final String version = "1.6";
     public Translations translations;
 
 

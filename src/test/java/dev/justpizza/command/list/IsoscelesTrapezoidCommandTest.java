@@ -104,4 +104,12 @@ public class IsoscelesTrapezoidCommandTest extends AbstractCommandTest {
         List<List<String>> expectedSubstrings = List.of(List.of(), List.of("Circle", "Radius=6.88", "Perimeter=43.22", "Area=148.66"));
         sendCommandsAndExpectLinesContaining(commands, expectedSubstrings);
     }
+
+    @Test
+    public void createIsoscelesTrapezoidWhichIsRectangle() {
+        var command = "isotrapezoid basea 5 baseb 5 height 12";
+        List<String> expectedSubstrings = List.of("Rectangle [ ", "]", "Side A=5.00", "Side B=12.00",
+                "Perimeter=34.00", "Area=60.00");
+        sendCommandsAndExpectLinesContaining(command, List.of(expectedSubstrings));
+    }
 }

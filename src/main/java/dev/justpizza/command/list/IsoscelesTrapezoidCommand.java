@@ -26,7 +26,7 @@ public class IsoscelesTrapezoidCommand extends CreateShapeCommand {
         argParser.addParamSchema(new ParamSchema("leg"));
         argParser.addParamSchema(new ParamSchema("area"));
         argParser.minNumberOfArgs = 3;
-        argParser.maxNumberOfArgs = 5;
+        argParser.maxNumberOfArgs = 3;
     }
 
     @Override

@@ -25,10 +25,15 @@ public class IsoscelesTrapezoid extends Shape {
         this.leg = leg;
     }
 
+    public static Shape fromBasesAndHeightAndLeg(double baseA, double baseB, double height, double leg) {
+        if (height == leg) return Rectangle.fromSides(baseA, height);
+        return new IsoscelesTrapezoid(baseA, baseB, height, leg);
+    }
+
     public static Shape fromBasesAndHeight(double baseA, double baseB, double height) {
         double x = (baseA - baseB) / 2.0;
         double leg = Math.sqrt(x * x + height * height);
-        return new IsoscelesTrapezoid(baseA, baseB, height, leg);
+        return IsoscelesTrapezoid.fromBasesAndHeightAndLeg(baseA, baseB, height, leg);
     }
 
     public static Shape fromBasesAndLeg(double baseA, double baseB, double leg) throws IllegalShapeException {
@@ -38,7 +43,7 @@ public class IsoscelesTrapezoid extends Shape {
             throw new IllegalShapeException(paramError(IsoscelesTrapezoid.class.getSimpleName()));
         }
         double height = Math.sqrt(x) / 2.0;
-        return new IsoscelesTrapezoid(baseA, baseB, height, leg);
+        return IsoscelesTrapezoid.fromBasesAndHeightAndLeg(baseA, baseB, height, leg);
     }
 
     public static Shape fromBasesAndArea(double baseA, double baseB, double area) {
@@ -52,7 +57,7 @@ public class IsoscelesTrapezoid extends Shape {
             throw new IllegalShapeException(paramError(IsoscelesTrapezoid.class.getSimpleName()));
         }
         double baseA = baseB - 2 * Math.sqrt(leg * leg - height * height);
-        return new IsoscelesTrapezoid(baseA, baseB, height, leg);
+        return IsoscelesTrapezoid.fromBasesAndHeightAndLeg(baseA, baseB, height, leg);
     }
 
     public static Shape fromBaseAAndHeightAndLeg(double baseA, double height, double leg) throws IllegalShapeException {
@@ -60,7 +65,7 @@ public class IsoscelesTrapezoid extends Shape {
             throw new IllegalShapeException(paramError(IsoscelesTrapezoid.class.getSimpleName()));
         }
         double baseB = baseA + 2 * Math.sqrt(leg * leg - height * height);
-        return new IsoscelesTrapezoid(baseA, baseB, height, leg);
+        return IsoscelesTrapezoid.fromBasesAndHeightAndLeg(baseA, baseB, height, leg);
     }
 
     public static Shape fromBaseAndHeightAndArea(double baseA, double height, double area) throws IllegalShapeException {
@@ -86,7 +91,7 @@ public class IsoscelesTrapezoid extends Shape {
         if (baseA <= 0) {
             throw new IllegalShapeException(paramError(IsoscelesTrapezoid.class.getSimpleName()));
         }
-        return new IsoscelesTrapezoid(baseA, baseB, height, leg);
+        return IsoscelesTrapezoid.fromBasesAndHeightAndLeg(baseA, baseB, height, leg);
     }
 
     public double getBaseA() {
