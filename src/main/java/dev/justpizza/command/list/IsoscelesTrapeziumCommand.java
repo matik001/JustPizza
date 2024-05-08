@@ -7,14 +7,14 @@ import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
-import dev.justpizza.shape.quadrangle.IsoscelesTrapezoid;
+import dev.justpizza.shape.quadrangle.IsoscelesTrapezium;
 import dev.justpizza.translations.TranslationKey;
 
-public class IsoscelesTrapezoidCommand extends CreateShapeCommand {
-    public static final String name = "isotrapezoid";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.isosceles_trapezoid_description);
+public class IsoscelesTrapeziumCommand extends CreateShapeCommand {
+    public static final String name = "isotrapezium";
+    public static final String description = AppSettings.global.translations.get(TranslationKey.isosceles_trapezium_description);
 
-    public IsoscelesTrapezoidCommand() {
+    public IsoscelesTrapeziumCommand() {
         super(name, description);
     }
 
@@ -39,21 +39,21 @@ public class IsoscelesTrapezoidCommand extends CreateShapeCommand {
         var area = argParser.getValue("area");
         try {
             if (basea != null && baseb != null && height != null) {
-                return IsoscelesTrapezoid.fromBasesAndHeight(basea.getDouble(), baseb.getDouble(), height.getDouble());
+                return IsoscelesTrapezium.fromBasesAndHeight(basea.getDouble(), baseb.getDouble(), height.getDouble());
             } else if (basea != null && baseb != null && leg != null) {
-                return IsoscelesTrapezoid.fromBasesAndLeg(basea.getDouble(), baseb.getDouble(), leg.getDouble());
+                return IsoscelesTrapezium.fromBasesAndLeg(basea.getDouble(), baseb.getDouble(), leg.getDouble());
             } else if (basea != null && baseb != null && area != null) {
-                return IsoscelesTrapezoid.fromBasesAndArea(basea.getDouble(), baseb.getDouble(), area.getDouble());
+                return IsoscelesTrapezium.fromBasesAndArea(basea.getDouble(), baseb.getDouble(), area.getDouble());
             } else if (basea != null && height != null && leg != null) {
-                return IsoscelesTrapezoid.fromBaseAAndHeightAndLeg(basea.getDouble(), height.getDouble(), leg.getDouble());
+                return IsoscelesTrapezium.fromBaseAAndHeightAndLeg(basea.getDouble(), height.getDouble(), leg.getDouble());
             } else if (baseb != null && height != null && leg != null) {
-                return IsoscelesTrapezoid.fromBaseBAndHeightAndLeg(baseb.getDouble(), height.getDouble(), leg.getDouble());
+                return IsoscelesTrapezium.fromBaseBAndHeightAndLeg(baseb.getDouble(), height.getDouble(), leg.getDouble());
             } else if (base != null && height != null && area != null) {
-                return IsoscelesTrapezoid.fromBaseAndHeightAndArea(base.getDouble(), height.getDouble(), area.getDouble());
+                return IsoscelesTrapezium.fromBaseAndHeightAndArea(base.getDouble(), height.getDouble(), area.getDouble());
             } else if (height != null && leg != null && area != null) {
-                return IsoscelesTrapezoid.fromHeightAndLegAndArea(height.getDouble(), leg.getDouble(), area.getDouble());
+                return IsoscelesTrapezium.fromHeightAndLegAndArea(height.getDouble(), leg.getDouble(), area.getDouble());
             } else if (base != null && leg != null && area != null) {
-                return IsoscelesTrapezoid.fromBaseAndLegAndArea(base.getDouble(), leg.getDouble(), area.getDouble());
+                return IsoscelesTrapezium.fromBaseAndLegAndArea(base.getDouble(), leg.getDouble(), area.getDouble());
             }
         } catch (IllegalShapeException e) {
             out.println(e.getMessage());
