@@ -1,13 +1,23 @@
 package dev.justpizza.shape;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.shape.quadrangle.IsoscelesTrapezium;
+import dev.justpizza.shape.quadrangle.Rectangle;
 import dev.justpizza.translations.TranslationKey;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
 public abstract class Shape {
 
     private final ZonedDateTime date;
@@ -57,6 +67,8 @@ public abstract class Shape {
     }
 
 
+
+    @JsonIgnore
 
     public final String getCharacteristic() {
         return this.toString();
