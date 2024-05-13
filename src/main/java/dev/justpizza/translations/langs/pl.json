@@ -31,5 +31,6 @@
   "ambiguous_shape": "%s z takimi parametrami jest niejednoznaczny",
   "no_shape_for_parameters": "%s z takimi parametrami nie istnieje",
   "sort_description": "Sortuje kształty według pola lub obwodu",
-  "save_description": "Zapisuje figury do pliku"
+  "save_description": "Zapisuje figury do pliku",
+  "remove_description": "Usuń figurę"
 }

@@ -53,7 +53,14 @@ public class ShapesManager {
             throw new RuntimeException(e);
         }
     }
-
+    synchronized public void removeShape(int id) {
+        id--;
+        if(id >= shapesList.size() || id < 0){
+            out.println("Shape with given id doesn't exists");
+            return;
+        }
+        shapesList.remove(id);
+    }
     synchronized public void sortShapes(String field, boolean increasing) {
         if (increasing) {
             switch (field) {
