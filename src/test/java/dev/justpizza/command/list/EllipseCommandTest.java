@@ -23,7 +23,8 @@ public class EllipseCommandTest extends AbstractCommandTest {
 
     @Test
     public void createCircleTest() {
-        var commands = List.of("ellipse semiminoraxis 1 semimajoraxis 1"
+        var commands = List.of("ellipse semiminoraxis 1 semimajoraxis 1",
+                "ellipse semiminoraxis 1 area 3.141592653589793"
         );
         var characteristics = List.of("Circle [", "Radius=1.00", "Perimeter=6.28", "Area=3.14");
         sendCommandsAndExpectEachLineContaining(commands, commands.size(), characteristics);
