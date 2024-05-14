@@ -45,6 +45,7 @@ public class CommandManager {
         add(new RectangularTriangleCommand());
         add(new SaveToFileCommand());
         add(new EllipseCommand());
+        add(new RemoveCommand());
     }};
 
     final public static Map<String, Command> commands =

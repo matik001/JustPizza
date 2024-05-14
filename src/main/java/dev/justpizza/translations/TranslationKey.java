@@ -13,6 +13,7 @@ public enum TranslationKey {
     rectriangle_description,
     shapes_description,
     sort_description,
+    remove_description,
 
     rectangle_description,
     circle_description,

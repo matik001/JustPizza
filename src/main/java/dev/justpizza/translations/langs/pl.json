@@ -32,5 +32,6 @@
   "no_shape_for_parameters": "%s z takimi parametrami nie istnieje",
   "sort_description": "Sortuje kształty według pola lub obwodu",
   "save_description": "Zapisuje figury do pliku",
-  "ellipse_description": "oblicza cechy elipsy"
+  "ellipse_description": "oblicza cechy elipsy",
+  "remove_description": "Usuń figurę"
 }
