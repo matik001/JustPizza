@@ -3,6 +3,7 @@ package dev.justpizza.command;
 import dev.justpizza.command.list.*;
 import dev.justpizza.command.list.ellipse.CircleCommand;
 import dev.justpizza.command.list.ellipse.CircumcircleCommand;
+import dev.justpizza.command.list.ellipse.EllipseCommand;
 import dev.justpizza.command.list.quadrangle.IsoscelesTrapeziumCommand;
 import dev.justpizza.command.list.quadrangle.RectangleCommand;
 import dev.justpizza.command.list.quadrangle.RhombusCommand;
@@ -43,6 +44,7 @@ public class CommandManager {
         add(new DoubleCommand());
         add(new RectangularTriangleCommand());
         add(new SaveToFileCommand());
+        add(new EllipseCommand());
     }};
 
     final public static Map<String, Command> commands =
