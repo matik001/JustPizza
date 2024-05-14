@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dev.justpizza.config.AppSettings;
-import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.shape.ellipse.Circle;
 import dev.justpizza.shape.quadrangle.IsoscelesTrapezium;
 import dev.justpizza.shape.quadrangle.Rectangle;
 import dev.justpizza.translations.TranslationKey;

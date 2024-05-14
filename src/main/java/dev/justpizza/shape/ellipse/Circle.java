@@ -1,10 +1,8 @@
-package dev.justpizza.shape.circle;
+package dev.justpizza.shape.ellipse;
 
 import dev.justpizza.shape.Shape;
 import dev.justpizza.utils.Utils;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class Circle extends Shape {

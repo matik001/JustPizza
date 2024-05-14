@@ -12,4 +12,8 @@ public class Utils {
         result.putAll(second);
         return result;
     }
+
+    public static boolean areClose(double a, double b) {
+        return Math.abs(a - b) < AppSettings.global.getDoubleTolerance();
+    }
 }

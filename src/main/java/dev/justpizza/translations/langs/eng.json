@@ -32,5 +32,6 @@
   "no_shape_for_parameters": "%s with this parameters does not exist",
   "sort_description": "Sorts shapes by area or perimeter",
   "save_description": "Saves figures to file",
+  "ellipse_description": "calculates ellipse characteristics",
   "remove_description": "Remove the shape"
 }

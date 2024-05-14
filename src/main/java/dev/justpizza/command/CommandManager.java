@@ -1,6 +1,17 @@
 package dev.justpizza.command;
 
 import dev.justpizza.command.list.*;
+import dev.justpizza.command.list.ellipse.CircleCommand;
+import dev.justpizza.command.list.ellipse.CircumcircleCommand;
+import dev.justpizza.command.list.ellipse.EllipseCommand;
+import dev.justpizza.command.list.quadrangle.IsoscelesTrapeziumCommand;
+import dev.justpizza.command.list.quadrangle.RectangleCommand;
+import dev.justpizza.command.list.quadrangle.RhombusCommand;
+import dev.justpizza.command.list.quadrangle.SquareCommand;
+import dev.justpizza.command.list.triangle.EquilateralTriangleCommand;
+import dev.justpizza.command.list.triangle.IsoscelesTriangleCommand;
+import dev.justpizza.command.list.triangle.RectangularTriangleCommand;
+import dev.justpizza.command.list.triangle.TriangleCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
@@ -33,6 +44,7 @@ public class CommandManager {
         add(new DoubleCommand());
         add(new RectangularTriangleCommand());
         add(new SaveToFileCommand());
+        add(new EllipseCommand());
         add(new RemoveCommand());
     }};
 

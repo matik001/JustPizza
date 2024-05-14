@@ -1,4 +1,4 @@
-package dev.justpizza.command.list;
+package dev.justpizza.command.list.triangle;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;

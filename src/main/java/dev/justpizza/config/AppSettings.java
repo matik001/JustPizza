@@ -11,7 +11,8 @@ public class AppSettings {
 
 
     public static AppSettings global = new AppSettings();
-    public AppSettings(){
+
+    public AppSettings() {
         var translationsPath = "src/main/java/dev/justpizza/translations/langs/eng.json";
 
         try {
@@ -21,5 +22,9 @@ public class AppSettings {
             System.err.println(STR."Could not load translations file: \{translationsPath}");
             throw new RuntimeException(e);
         }
+    }
+
+    public double getDoubleTolerance() {
+        return 0.00001;
     }
 }
