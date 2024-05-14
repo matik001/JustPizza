@@ -1,7 +1,7 @@
 package dev.justpizza.shape.quadrangle;
 
 import dev.justpizza.shape.Shape;
-import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.shape.ellipse.Circle;
 import dev.justpizza.utils.Utils;
 
 import java.util.Map;

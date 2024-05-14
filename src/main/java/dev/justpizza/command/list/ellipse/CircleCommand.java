@@ -1,11 +1,11 @@
-package dev.justpizza.command.list;
+package dev.justpizza.command.list.ellipse;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.ShapesManager;
-import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.shape.ellipse.Circle;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.translations.TranslationKey;
 

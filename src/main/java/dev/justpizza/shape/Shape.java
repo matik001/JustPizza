@@ -1,7 +1,7 @@
 package dev.justpizza.shape;
 
 import dev.justpizza.config.AppSettings;
-import dev.justpizza.shape.circle.Circle;
+import dev.justpizza.shape.ellipse.Circle;
 import dev.justpizza.translations.TranslationKey;
 
 import java.time.ZonedDateTime;

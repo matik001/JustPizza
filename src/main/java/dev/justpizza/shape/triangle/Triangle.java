@@ -1,10 +1,8 @@
 package dev.justpizza.shape.triangle;
 
-import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
-import dev.justpizza.shape.circle.Circle;
-import dev.justpizza.translations.TranslationKey;
+import dev.justpizza.shape.ellipse.Circle;
 import dev.justpizza.utils.Utils;
 
 
