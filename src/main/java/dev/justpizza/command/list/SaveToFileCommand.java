@@ -39,7 +39,7 @@ public class SaveToFileCommand extends Command {
                 if (!file.exists()) {
                     file.createNewFile();
                 }
-                shapesManager.printShapesToStream(fop);
+                shapesManager.jsonShapesToStream(fop);
 
                 fop.flush();
                 fop.close();

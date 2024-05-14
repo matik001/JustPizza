@@ -33,6 +33,7 @@ public class CommandManager {
         add(new DoubleCommand());
         add(new RectangularTriangleCommand());
         add(new SaveToFileCommand());
+        add(new RemoveCommand());
     }};
 
     final public static Map<String, Command> commands =

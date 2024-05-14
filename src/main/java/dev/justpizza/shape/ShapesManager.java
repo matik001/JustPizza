@@ -1,5 +1,8 @@
 package dev.justpizza.shape;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -21,6 +24,18 @@ public class ShapesManager {
         shapesList.add(shape);
     }
 
+    synchronized public void jsonShapesToStream(OutputStream stream) throws IOException {
+        var ptv = BasicPolymorphicTypeValidator.builder()
+                .allowIfSubType("com.baeldung.jackson.inheritance")
+                .allowIfSubType("java.util.ArrayList")
+                .build();
+
+        var objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        objectMapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
+
+        objectMapper.writeValue(stream, shapesList);
+    }
     synchronized public void printShapesToStream(OutputStream stream) throws IOException {
         var sw = new OutputStreamWriter(stream);
         for (int i = 0; i < shapesList.size(); i++) {
@@ -38,7 +53,14 @@ public class ShapesManager {
             throw new RuntimeException(e);
         }
     }
-
+    synchronized public void removeShape(int id) {
+        id--;
+        if(id >= shapesList.size() || id < 0){
+            out.println("Shape with given id doesn't exists");
+            return;
+        }
+        shapesList.remove(id);
+    }
     synchronized public void sortShapes(String field, boolean increasing) {
         if (increasing) {
             switch (field) {
