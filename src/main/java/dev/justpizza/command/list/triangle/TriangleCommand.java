@@ -6,12 +6,9 @@ import dev.justpizza.argparser.ParamType;
 import dev.justpizza.command.abstractList.CreateShapeCommand;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.IllegalShapeException;
-import dev.justpizza.shape.ShapesManager;
-import dev.justpizza.shape.triangle.EquilateralTriangle;
-import dev.justpizza.shape.triangle.IsoscelesTriangle;
-import dev.justpizza.shape.triangle.RectangularTriangle;
-import dev.justpizza.shape.triangle.Triangle;
 import dev.justpizza.shape.Shape;
+import dev.justpizza.shape.ShapesManager;
+import dev.justpizza.shape.triangle.Triangle;
 import dev.justpizza.translations.TranslationKey;
 
 import java.util.List;
@@ -40,22 +37,8 @@ public class TriangleCommand extends CreateShapeCommand {
         Double sideC = sides.get(2);
 
         try {
-            if (sideA.equals(sideB) && sideB.equals(sideC)) {
-                return new EquilateralTriangle(sideA);
-            } else if (sideA.equals(sideB)) {
-                return IsoscelesTriangle.fromBaseSide(sideC, sideA);
-            } else if (sideB.equals(sideC)) {
-                return IsoscelesTriangle.fromBaseSide(sideA, sideB);
-            } else if (sideA.equals(sideC)) {
-                return IsoscelesTriangle.fromBaseSide(sideB, sideA);
-            } else if ((sideA * sideA) + (sideB * sideB) == (sideC * sideC)){
-                return new RectangularTriangle(sideA, sideB, sideC);
-            } else {
-                // You need to implement a method to create a general Triangle from three sides
-                return new Triangle(sideA, sideB, sideC);
-            }
-        } catch (
-                IllegalShapeException e) {
+            return Triangle.fromSides(sideA, sideB, sideC);
+        } catch (IllegalShapeException e) {
             out.println(e.getMessage());
             return null;
         }

@@ -19,9 +19,24 @@ public class Triangle extends Shape {
         this.sideB = array[1];
         this.sideC = array[2];
 
-        if (sideA + sideB <= sideC) {
+        if (this.sideA + this.sideB <= this.sideC) {
             throw new IllegalShapeException(paramError("Triangle"));
         }
+    }
+
+    public static Triangle fromSides(double sideA, double sideB, double sideC) throws IllegalShapeException {
+        double[] sides = {sideA, sideB, sideC};
+        Arrays.sort(sides);
+        if (Utils.areClose(sides[0], sides[1]) && Utils.areClose(sides[1], sides[2])) {
+            return EquilateralTriangle.fromSide(sides[1]);
+        } else if (Utils.areClose(sides[0], sides[1])) {
+            return IsoscelesTriangle.fromBaseSide(sides[2], (sides[0] + sides[1]) / 2);
+        } else if (Utils.areClose(sides[1], sides[2])) {
+            return IsoscelesTriangle.fromBaseSide(sides[0], (sides[1] + sides[2]) / 2);
+        } else if (Utils.areClose(Math.sqrt(sides[0] * sides[0] + sides[1] * sides[1]), sides[2])) {
+            return RectangularTriangle.fromBaseAltitude(sides[0], sides[1]);
+        }
+        return new Triangle(sideA, sideB, sideC);
     }
 
     public double getSideA() {
