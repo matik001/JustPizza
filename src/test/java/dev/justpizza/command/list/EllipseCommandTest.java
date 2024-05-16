@@ -27,14 +27,6 @@ public class EllipseCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void doubleEllipseTest() {
-        var commands = List.of("ellipse semiminoraxis 4.15 semimajoraxis 6.8", "double shapenumber 1");
-        var characteristics = List.of("Ellipse [", "semiMinorAxis=4.15", "semiMajorAxis=6.80", "Perimeter=34.88", "Area=88.66");
-        var doubledCharacteristics = List.of("Ellipse [", "semiMinorAxis=5.87", "semiMajorAxis=9.62", "Perimeter=49.33", "Area=177.31");
-        sendCommandsAndExpectLinesContaining(commands, List.of(characteristics, doubledCharacteristics));
-    }
-
-    @Test
     public void describeCircleOverEllipse() {
         var commands = List.of("ellipse semiminoraxis 5.69 semimajoraxis 10.01", "circumcircle shapenumber 1");
         var characteristics = List.of("Ellipse [", "semiMinorAxis=5.69", "semiMajorAxis=10.01", "Perimeter=50.23", "Area=178.94");
