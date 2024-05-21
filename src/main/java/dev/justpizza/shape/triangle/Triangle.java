@@ -27,7 +27,7 @@ public class Triangle extends Shape {
     public static Triangle fromSides(double sideA, double sideB, double sideC) throws IllegalShapeException {
         double[] sides = {sideA, sideB, sideC};
         Arrays.sort(sides);
-        if (Utils.areClose(sides[0], sides[1]) && Utils.areClose(sides[1], sides[2])) {
+        if (Utils.areClose(sides[0], sides[2])) {
             return EquilateralTriangle.fromSide(sides[1]);
         } else if (Utils.areClose(sides[0], sides[1])) {
             return IsoscelesTriangle.fromBaseSide(sides[2], (sides[0] + sides[1]) / 2);
