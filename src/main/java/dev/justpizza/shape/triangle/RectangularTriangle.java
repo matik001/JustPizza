@@ -8,96 +8,74 @@ import java.util.Map;
 
 public class RectangularTriangle extends Triangle {
 
-    public RectangularTriangle(double sideA, double sideB, double sideC) throws IllegalShapeException {
-        super(sideA, sideB, sideC);
+    private RectangularTriangle(double base, double altitude, double hypotenuse) throws IllegalShapeException {
+        super(base, altitude, hypotenuse);
     }
 
+    private static Triangle fromBaseAltitudeHypotenuse(double base, double altitude, double hypotenuse) throws IllegalShapeException {
+        if (Utils.areClose(base, altitude)) return IsoscelesTriangle.fromBaseSide(hypotenuse, (base + altitude) / 2);
+        return new dev.justpizza.shape.triangle.RectangularTriangle(base, altitude, hypotenuse);
+    }
 
-    public static RectangularTriangle fromBaseAltitude(double base, double altitude) {
+    public static Triangle fromBaseAltitude(double base, double altitude) throws IllegalShapeException {
         double hypotenuse = Math.sqrt((base * base) + (altitude * altitude));
-        try {
-            return new RectangularTriangle(base, altitude, hypotenuse);
-        } catch (IllegalShapeException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-
+        return dev.justpizza.shape.triangle.RectangularTriangle.fromBaseAltitudeHypotenuse(base, altitude, hypotenuse);
     }
 
-    public static RectangularTriangle fromBaseHypotenuse(double base, double hypotenuse) throws IllegalShapeException {
-        if (base > hypotenuse) {
-            throw new IllegalShapeException(paramError("Triangle"));
+    public static Triangle fromBaseHypotenuse(double base, double hypotenuse) throws IllegalShapeException {
+        if (base >= hypotenuse) {
+            throw new IllegalShapeException(paramError(dev.justpizza.shape.triangle.RectangularTriangle.class.getSimpleName()));
         }
         double altitude = Math.sqrt((hypotenuse * hypotenuse) - (base * base));
-        try {
-            return new RectangularTriangle(base, altitude, hypotenuse);
-        } catch (IllegalShapeException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        return dev.justpizza.shape.triangle.RectangularTriangle.fromBaseAltitudeHypotenuse(base, altitude, hypotenuse);
     }
 
-    public static RectangularTriangle fromBaseArea(double base, double area) {
+    public static Triangle fromBaseArea(double base, double area) throws IllegalShapeException {
         double altitude = 2 * area / base;
-        double hypotenuse = Math.sqrt((base * base) + (altitude * altitude));
-        try {
-            return new RectangularTriangle(base, altitude, hypotenuse);
-        } catch (IllegalShapeException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        return fromBaseAltitude(base, altitude);
     }
 
-    public static RectangularTriangle fromAltitudeHypotenuse(double altitude, double hypotenuse) throws IllegalShapeException {
-        if (altitude > hypotenuse) {
-            throw new IllegalShapeException(paramError("Triangle"));
-        }
-        double base = Math.sqrt((hypotenuse * hypotenuse) - (altitude * altitude));
-        try {
-            return new RectangularTriangle(base, altitude, hypotenuse);
-        } catch (IllegalShapeException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public static Triangle fromAltitudeHypotenuse(double altitude, double hypotenuse) throws IllegalShapeException {
+        return fromBaseHypotenuse(altitude, hypotenuse);
     }
 
-    public static RectangularTriangle fromAltitudeArea(double altitude, double area) {
-        double base = 2 * area / altitude;
-        double hypotenuse = Math.sqrt((base * base) + (altitude * altitude));
-        try {
-            return new RectangularTriangle(base, altitude, hypotenuse);
-        } catch (IllegalShapeException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public static Triangle fromAltitudeArea(double altitude, double area) throws IllegalShapeException {
+        return fromBaseArea(altitude, area);
     }
 
-    public static RectangularTriangle fromHypotenuseArea(double hypotenuse, double area) throws IllegalShapeException {
+    public static Triangle fromHypotenuseArea(double hypotenuse, double area) throws IllegalShapeException {
         double delta = Math.pow(hypotenuse, 4) - (16 * Math.pow(area, 2));
-        double k_1 = (Math.pow(hypotenuse, 2) - Math.sqrt(delta)) / 2;
-        double k_2 = (Math.pow(hypotenuse, 2) + Math.sqrt(delta)) / 2;
-        if (k_1 > k_2) {
-            double base = Math.sqrt(k_1);
-            double altitude = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(base, 2));
-            return new RectangularTriangle(base, altitude, hypotenuse);
-        } else {
-            double base = Math.sqrt(k_2);
-            double altitude = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(base, 2));
-            return new RectangularTriangle(base, altitude, hypotenuse);
+        if (delta < 0) {
+            throw new IllegalShapeException(paramError(dev.justpizza.shape.triangle.RectangularTriangle.class.getSimpleName()));
         }
+        double base = Math.sqrt((Math.pow(hypotenuse, 2) + Math.sqrt(delta)) / 2);
+        double altitude = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(base, 2));
+        return dev.justpizza.shape.triangle.RectangularTriangle.fromBaseAltitudeHypotenuse(base, altitude, hypotenuse);
+    }
+
+    public double getBase() {
+        return getSideA();
+    }
+
+    public double getAltitude() {
+        return getSideB();
+    }
+
+    public double getHypotenuse() {
+        return getSideC();
     }
 
     public double getArea() {
-        return sideA * sideB * 0.5;
+        return getBase() * getAltitude() * 0.5;
     }
 
     @Override
     protected Map<String, Object> getProperties() {
         return Utils.mergeProperties(
                 Map.of(
-                        "Base", getSideA(),
-                        "Altitude", getSideB(),
-                        "Hypotenuse", getSideC()
+                        "Base", getBase(),
+                        "Altitude", getAltitude(),
+                        "Hypotenuse", getHypotenuse()
                 ),
                 super.getShapeProperties()
         );
@@ -108,7 +86,7 @@ public class RectangularTriangle extends Triangle {
         double sideA = getSideA() * Math.sqrt(2);
         double sideB = getSideB() * Math.sqrt(2);
         double sideC = Math.sqrt((sideA * sideA) + (sideB * sideB));
-        return new RectangularTriangle(sideA, sideB, sideC);
+        return new dev.justpizza.shape.triangle.RectangularTriangle(sideA, sideB, sideC);
     }
 }
 

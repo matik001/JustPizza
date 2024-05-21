@@ -8,6 +8,7 @@ import dev.justpizza.shape.IllegalShapeException;
 import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.shape.triangle.RectangularTriangle;
+import dev.justpizza.shape.triangle.Triangle;
 import dev.justpizza.translations.TranslationKey;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
 
     protected Shape createShape(ShapesManager shapesManager, ArgParser argParser) {
         var options = List.of("base", "altitude", "hypotenuse", "area");
-        RectangularTriangle triangle = null;
+        Triangle triangle = null;
         for (int i = 0; i < options.size(); i++) {
             for (int j = i + 1; j < options.size(); j++) {
                 var key1 = options.get(i);
@@ -54,7 +55,7 @@ public class RectangularTriangleCommand extends CreateShapeCommand {
                     if (Objects.equals(key1, "base") && Objects.equals(key2, "area"))
                         triangle = RectangularTriangle.fromBaseArea(val1, val2);
                     if (Objects.equals(key1, "altitude") && Objects.equals(key2, "hypotenuse"))
-                        triangle = RectangularTriangle.fromAltitudeHypotenuse(val2, val1);
+                        triangle = RectangularTriangle.fromAltitudeHypotenuse(val1, val2);
                     if (Objects.equals(key1, "altitude") && Objects.equals(key2, "area"))
                         triangle = RectangularTriangle.fromAltitudeArea(val1, val2);
                     if (Objects.equals(key1, "hypotenuse") && Objects.equals(key2, "area"))
