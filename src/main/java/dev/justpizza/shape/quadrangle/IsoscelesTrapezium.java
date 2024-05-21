@@ -153,9 +153,7 @@ public class IsoscelesTrapezium extends Shape {
     public boolean equals(Shape other) {
         if (other instanceof IsoscelesTrapezium trapezium) {
             return Utils.areClose(height, trapezium.height) &&
-                    (Utils.areClose(baseA, trapezium.baseA) && Utils.areClose(baseB, trapezium.baseB) ||
-                            Utils.areClose(baseA, trapezium.baseB) && Utils.areClose(baseB, trapezium.baseA)
-                    );
+                   (Utils.areClose(baseA, trapezium.baseA) && Utils.areClose(baseB, trapezium.baseB));
         }
         return false;
     }

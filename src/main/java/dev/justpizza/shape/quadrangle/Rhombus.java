@@ -93,8 +93,7 @@ public class Rhombus extends Shape {
     @Override
     public boolean equals(Shape other) {
         if (other instanceof Rhombus rhombus) {
-            return Utils.areClose(diagonalA, rhombus.diagonalA) && Utils.areClose(diagonalB, rhombus.diagonalB)
-                    || Utils.areClose(diagonalA, rhombus.diagonalB) && Utils.areClose(diagonalB, rhombus.diagonalA);
+            return Utils.areClose(diagonalA, rhombus.diagonalA) && Utils.areClose(diagonalB, rhombus.diagonalB);
         }
         return false;
     }
