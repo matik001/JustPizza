@@ -148,4 +148,15 @@ public class IsoscelesTrapezium extends Shape {
         double sqrt2 = Math.sqrt(2);
         return new IsoscelesTrapezium(baseA * sqrt2, baseB * sqrt2, height * sqrt2, leg * sqrt2);
     }
+
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof IsoscelesTrapezium trapezium) {
+            return Utils.areClose(height, trapezium.height) &&
+                    (Utils.areClose(baseA, trapezium.baseA) && Utils.areClose(baseB, trapezium.baseB) ||
+                            Utils.areClose(baseA, trapezium.baseB) && Utils.areClose(baseB, trapezium.baseA)
+                    );
+        }
+        return false;
+    }
 }

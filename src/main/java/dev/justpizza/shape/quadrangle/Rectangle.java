@@ -88,4 +88,13 @@ public class Rectangle extends Shape {
     public Shape doubleArea() {
         return Rectangle.fromSides(getSideA()*Math.sqrt(2), getSideB()*Math.sqrt(2));
     }
+
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof Rectangle otherRectangle) {
+            return Utils.areClose(sideA, otherRectangle.sideA) && Utils.areClose(sideB, otherRectangle.sideB) ||
+                    Utils.areClose(sideA, otherRectangle.sideB) && Utils.areClose(sideB, otherRectangle.sideA);
+        }
+        return false;
+    }
 }

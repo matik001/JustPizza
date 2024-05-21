@@ -87,6 +87,15 @@ public class Rhombus extends Shape {
 
     @Override
     public Shape doubleArea() {
-        return Rhombus.fromDiagonals(getDiagonalA()*Math.sqrt(2), getDiagonalB()*Math.sqrt(2));
+        return Rhombus.fromDiagonals(getDiagonalA() * Math.sqrt(2), getDiagonalB() * Math.sqrt(2));
+    }
+
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof Rhombus rhombus) {
+            return Utils.areClose(diagonalA, rhombus.diagonalA) && Utils.areClose(diagonalB, rhombus.diagonalB)
+                    || Utils.areClose(diagonalA, rhombus.diagonalB) && Utils.areClose(diagonalB, rhombus.diagonalA);
+        }
+        return false;
     }
 }
