@@ -13,6 +13,7 @@
   "circle_description": "calculates circle characteristics",
   "circumcircle_description": "calculates circumcircle of a shape",
   "rectriangle_description": "calculates rectangular triangle characteristics",
+  "regular_hexagon_description": "calculates regular hexagon characteristics",
   "version_description": "shows current version",
   "double_description": "creates figure with two-fold area",
   "allowed_usages": "Allowed usages",
