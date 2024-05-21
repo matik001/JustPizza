@@ -7,7 +7,11 @@ import dev.justpizza.utils.Utils;
 
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+
+import static java.util.Collections.sort;
 
 public class Triangle extends Shape {
     protected final double sideA, sideB, sideC;
@@ -90,5 +94,27 @@ public class Triangle extends Shape {
                 getSideA() * Math.sqrt(2),
                 getSideB() * Math.sqrt(2),
                 getSideC() * Math.sqrt(2));
+    }
+
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof Triangle otherTriangle) {
+            List<Double> sides = getSides();
+            List<Double> otherSides = otherTriangle.getSides();
+
+            for (int i = 0; i < sides.size(); i++) {
+                if (!Utils.areClose(sides.get(i), otherSides.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public List<Double> getSides() {
+        List<Double> sides = Arrays.asList(getSideA(), getSideB(), getSideC());
+        Collections.sort(sides);
+        return sides;
     }
 }

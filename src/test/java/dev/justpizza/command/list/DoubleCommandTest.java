@@ -46,7 +46,7 @@ public class DoubleCommandTest extends AbstractCommandTest {
     @Test
     public void doubleRectangle() {
         var commands = List.of("rectangle sidea 5.43 sideb 4.13", "double shapenumber 1");
-        var doubledCharacteristics = List.of("Rectangle [ ", "]", "Side A=7.68", "Side B=5.84", "Diagonal=9.65",
+        var doubledCharacteristics = List.of("Rectangle [ ", "]", "Side A=5.84", "Side B=7.68", "Diagonal=9.65",
                 "Perimeter=27.04", "Area=44.85");
         sendCommandsAndExpectLinesContaining(commands, List.of(List.of(), doubledCharacteristics));
     }

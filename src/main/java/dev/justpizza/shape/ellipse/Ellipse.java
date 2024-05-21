@@ -91,6 +91,15 @@ public class Ellipse extends Shape {
         );
     }
 
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof Ellipse otherEllipse) {
+            return Utils.areClose(semiMajorAxis, otherEllipse.semiMajorAxis) &&
+                    Utils.areClose(semiMinorAxis, otherEllipse.semiMinorAxis);
+        }
+        return false;
+    }
+
     public double getEccentricity() {
         return Math.sqrt(1 - Math.pow(semiMinorAxis / semiMajorAxis, 2));
     }

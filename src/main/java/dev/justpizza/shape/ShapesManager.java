@@ -20,7 +20,12 @@ public class ShapesManager {
     }
 //    public static ShapesManager instance = new ShapesManager();
 
-    synchronized public void addShape(Shape shape) {
+    synchronized public void addShape(Shape shape) throws DuplicateShapeException {
+        for (var s : shapesList) {
+            if (s.equals(shape)) {
+                throw new DuplicateShapeException(STR."Shape \{shape.getCharacteristic()} already exists");
+            }
+        }
         shapesList.add(shape);
     }
 

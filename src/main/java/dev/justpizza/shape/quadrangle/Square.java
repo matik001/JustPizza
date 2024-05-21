@@ -63,4 +63,12 @@ public class Square extends Shape {
     public Shape doubleArea() {
         return Square.fromArea(getArea() * 2);
     }
+
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof Square otherSquare) {
+            return Utils.areClose(getSide(), otherSquare.getSide());
+        }
+        return false;
+    }
 }

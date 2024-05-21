@@ -113,4 +113,6 @@ public abstract class Shape {
                 shapeName
         );
     }
+
+    public abstract boolean equals(Shape other);
 }

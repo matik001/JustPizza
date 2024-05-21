@@ -58,4 +58,12 @@ public class Circle extends Shape {
         return Circle.fromArea(getArea() * 2);
     }
 
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof Circle otherCircle) {
+            return Utils.areClose(radius, otherCircle.radius);
+        }
+        return false;
+    }
+
 }

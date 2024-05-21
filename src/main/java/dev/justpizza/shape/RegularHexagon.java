@@ -61,4 +61,12 @@ public class RegularHexagon extends Shape {
     public Shape doubleArea() throws IllegalShapeException {
         return RegularHexagon.fromArea(getArea() * 2);
     }
+
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof RegularHexagon) {
+            return Utils.areClose(side, ((RegularHexagon) other).side);
+        }
+        return false;
+    }
 }

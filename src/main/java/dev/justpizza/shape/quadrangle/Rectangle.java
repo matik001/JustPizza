@@ -14,8 +14,13 @@ public class Rectangle extends Shape {
     private double area;
 
     private Rectangle(double sideA, double sideB) {
-        this.sideA = sideA;
-        this.sideB = sideB;
+        if (sideA <= sideB) {
+            this.sideA = sideA;
+            this.sideB = sideB;
+        } else {
+            this.sideA = sideB;
+            this.sideB = sideA;
+        }
         this.diagonal = Math.sqrt(sideA * sideA + sideB * sideB);
         this.area = sideA * sideB;
     }
@@ -86,6 +91,14 @@ public class Rectangle extends Shape {
 
     @Override
     public Shape doubleArea() {
-        return Rectangle.fromSides(getSideA()*Math.sqrt(2), getSideB()*Math.sqrt(2));
+        return Rectangle.fromSides(getSideA() * Math.sqrt(2), getSideB() * Math.sqrt(2));
+    }
+
+    @Override
+    public boolean equals(Shape other) {
+        if (other instanceof Rectangle otherRectangle) {
+            return Utils.areClose(sideA, otherRectangle.sideA) && Utils.areClose(sideB, otherRectangle.sideB);
+        }
+        return false;
     }
 }
