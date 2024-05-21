@@ -13,13 +13,12 @@ public class AppSettings {
     public static AppSettings global = new AppSettings();
 
     public void loadTranslations(String name){
-        var translationsPath = STR."src/main/java/dev/justpizza/translations/langs/\{name}.json";
+        var translationsPath = STR."/langs/\{name}.json";
 
         try {
-            // TODO wymyśleć coś mąrzejszego, by eng.json było w tym samym katalogu - może samo się kopiowało przy kompilacji
             translations = Translations.load(translationsPath);
         } catch (IOException e) {
-            System.err.println(STR."Could not load translations file: \{translationsPath}");
+            System.err.println(STR."Could not load translations resource file: \{translationsPath}");
             throw new RuntimeException(e);
         }
     }
