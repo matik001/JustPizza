@@ -7,8 +7,8 @@ import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ShapesManager;
 
 public abstract class CreateShapeCommand extends Command {
-    protected CreateShapeCommand(String name, String description) {
-        super(name, description);
+    protected CreateShapeCommand(String name) {
+        super(name);
     }
 
     protected abstract Shape createShape(ShapesManager shapesManager, ArgParser argParser);

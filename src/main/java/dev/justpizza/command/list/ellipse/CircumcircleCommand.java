@@ -12,11 +12,12 @@ import dev.justpizza.translations.TranslationKey;
 
 public class CircumcircleCommand extends CreateShapeCommand {
     public static final String name = "circumcircle";
-    public static final String description =
-            AppSettings.global.translations.get(TranslationKey.circumcircle_description);
-
     public CircumcircleCommand() {
-        super(name, description);
+        super(name);
+    }
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.circumcircle_description);
     }
 
     @Override

@@ -12,12 +12,14 @@ import java.util.HashSet;
 
 public class SortCommand extends Command {
     public static final String name = "sort";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.sort_description);
-
     public SortCommand() {
-        super(name, description);
+        super(name);
     }
 
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.sort_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema(new HashSet<>(Arrays.asList("area", "perimeter", "date"))));

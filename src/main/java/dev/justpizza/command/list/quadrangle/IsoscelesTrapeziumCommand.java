@@ -12,12 +12,13 @@ import dev.justpizza.translations.TranslationKey;
 
 public class IsoscelesTrapeziumCommand extends CreateShapeCommand {
     public static final String name = "isotrapezium";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.isosceles_trapezium_description);
-
     public IsoscelesTrapeziumCommand() {
-        super(name, description);
+        super(name);
     }
-
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.isosceles_trapezium_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("basea"));

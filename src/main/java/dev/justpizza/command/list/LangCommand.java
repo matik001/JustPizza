@@ -2,33 +2,37 @@ package dev.justpizza.command.list;
 
 import dev.justpizza.argparser.ArgParser;
 import dev.justpizza.argparser.ParamSchema;
-import dev.justpizza.argparser.ParamType;
 import dev.justpizza.command.Command;
+import dev.justpizza.command.CommandManager;
 import dev.justpizza.config.AppSettings;
 import dev.justpizza.shape.ShapesManager;
 import dev.justpizza.translations.TranslationKey;
 
-public class RemoveCommand extends Command {
-    public static final String name = "remove";
-    public RemoveCommand() {
+import java.util.Arrays;
+import java.util.HashSet;
+
+public class LangCommand extends Command {
+    public static final String name = "lang";
+
+    public LangCommand() {
         super(name);
     }
     @Override
     public String getDescription() {
-        return AppSettings.global.translations.get(TranslationKey.remove_description);
+        return AppSettings.global.translations.get(TranslationKey.lang_description);
     }
     @Override
     protected void initArgParser(ArgParser argParser) {
-        argParser.addParamSchema(new ParamSchema("number", ParamType.INT));
+        argParser.addParamSchema(new ParamSchema(new HashSet<>(Arrays.asList("eng", "pl"))));
         argParser.minNumberOfArgs = 1;
         argParser.maxNumberOfArgs = 1;
     }
 
     @Override
     protected boolean handleExecute(ShapesManager shapesManager, ArgParser argParser) {
-        var id = argParser.getValue("number").getInt();
-        shapesManager.removeShape(id);
+        /// TODO we can change argparser to get value in better way
+        AppSettings.global.loadTranslations(argParser.hasArg("pl") ? "pl" : "eng");
+        out.println(AppSettings.global.translations.get(TranslationKey.changed_language));
         return true;
     }
-
 }

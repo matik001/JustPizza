@@ -12,12 +12,14 @@ import dev.justpizza.translations.TranslationKey;
 
 public class DoubleCommand extends CreateShapeCommand {
     public static final String name = "double";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.double_description);
 
     public DoubleCommand() {
-        super(name, description);
+        super(name);
     }
-
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.double_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("shapenumber", ParamType.INT));

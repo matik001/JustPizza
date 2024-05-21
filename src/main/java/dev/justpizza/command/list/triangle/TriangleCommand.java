@@ -15,13 +15,14 @@ import java.util.List;
 
 public class TriangleCommand extends CreateShapeCommand {
     public static final String name = "triangle";
-    public static final String description =
-            AppSettings.global.translations.get(TranslationKey.triangle_description);
 
     public TriangleCommand() {
-        super(name, description);
+        super(name);
     }
-
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.triangle_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("sides", ParamType.POSITIVE_DOUBLE, false, true, 3));

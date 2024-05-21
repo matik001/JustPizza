@@ -47,6 +47,7 @@ public class CommandManager {
         add(new EllipseCommand());
         add(new RemoveCommand());
         add(new RegularHexagonCommand());
+        add(new LangCommand());
     }};
 
     final public static Map<String, Command> commands =

@@ -13,10 +13,13 @@ import dev.justpizza.translations.TranslationKey;
 
 public class EllipseCommand extends CreateShapeCommand {
     private static final String name = "ellipse";
-    private static final String description = AppSettings.global.translations.get(TranslationKey.ellipse_description);
 
     public EllipseCommand() {
-        super(name, description);
+        super(name);
+    }
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.ellipse_description);
     }
 
     @Override

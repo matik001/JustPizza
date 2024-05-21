@@ -18,9 +18,13 @@ public class SaveToFileCommand extends Command {
     public static final String name = "save";
 
     public SaveToFileCommand() {
-        super(name, AppSettings.global.translations.get(TranslationKey.save_description));
+        super(name);
     }
 
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.save_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("filename", ParamType.STRING));
@@ -34,7 +38,7 @@ public class SaveToFileCommand extends Command {
         File file = new File(filename.getString());
         (new Thread(() -> {
             try (FileOutputStream fop = new FileOutputStream(file)) {
-                out.println("Saving...");
+                out.println(AppSettings.global.translations.get(TranslationKey.saving));
 
                 if (!file.exists()) {
                     file.createNewFile();
@@ -43,9 +47,9 @@ public class SaveToFileCommand extends Command {
 
                 fop.flush();
                 fop.close();
-                out.println("Saved!");
+                out.println(AppSettings.global.translations.get(TranslationKey.saved));
             } catch (IOException e) {
-                out.println("Couldn't save to file");
+                out.println(AppSettings.global.translations.get(TranslationKey.couldnt_save));
             }
         })).start();
         return true;

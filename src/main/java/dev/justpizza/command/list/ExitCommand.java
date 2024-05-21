@@ -10,9 +10,13 @@ public class ExitCommand extends Command {
     public static final String name = "exit";
 
     public ExitCommand() {
-        super(name, AppSettings.global.translations.get(TranslationKey.exit_description));
+        super(name);
     }
 
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.exit_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
     }

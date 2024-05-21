@@ -34,5 +34,10 @@
   "sort_description": "Sorts shapes by area or perimeter",
   "save_description": "Saves figures to file",
   "ellipse_description": "calculates ellipse characteristics",
-  "remove_description": "Remove the shape"
+  "remove_description": "Remove the shape",
+  "lang_description": "Change language",
+  "saving": "Saving...",
+  "saved": "Saved!",
+  "couldnt_save": "Couldn't save to file",
+  "changed_language": "Language was changed!"
 }

@@ -10,10 +10,12 @@ import dev.justpizza.translations.TranslationKey;
 
 public class RectangleCommand extends CreateShapeCommand {
     public static final String name = "rectangle";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.rectangle_description);
-
     public RectangleCommand() {
-        super(name, description);
+        super(name);
+    }
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.rectangle_description);
     }
 
     @Override

@@ -16,13 +16,13 @@ import java.util.Objects;
 public class RectangularTriangleCommand extends CreateShapeCommand {
 
     public static final String name = "rectriangle";
-    public static final String description =
-            AppSettings.global.translations.get(TranslationKey.rectriangle_description);
-
     public RectangularTriangleCommand() {
-        super(name, description);
+        super(name);
     }
-
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.rectriangle_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("base"));
