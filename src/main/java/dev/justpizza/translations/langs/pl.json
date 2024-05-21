@@ -34,5 +34,10 @@
   "sort_description": "Sortuje kształty według pola lub obwodu",
   "save_description": "Zapisuje figury do pliku",
   "ellipse_description": "oblicza cechy elipsy",
-  "remove_description": "Usuń figurę"
+  "remove_description": "Usuń figurę",
+  "lang_description": "Zmień język",
+  "saving": "Zapisywanie...",
+  "saved": "Zapisano",
+  "couldnt_save": "Nie udało się zapisać do pliku",
+  "changed_language": "Zmieniono język!"
 }

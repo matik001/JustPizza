@@ -13,12 +13,14 @@ import dev.justpizza.translations.TranslationKey;
 
 public class RegularHexagonCommand extends CreateShapeCommand {
     public static final String name = "reghexagon";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.regular_hexagon_description);
-
     public RegularHexagonCommand() {
-        super(name, description);
+        super(name);
     }
 
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.regular_hexagon_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("side"));

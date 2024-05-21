@@ -12,12 +12,14 @@ import dev.justpizza.translations.TranslationKey;
 
 public class RhombusCommand extends CreateShapeCommand {
     public static final String name = "rhombus";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.rhombus_description);
 
     public RhombusCommand() {
-        super(name, description);
+        super(name);
     }
-
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.rhombus_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("side"));

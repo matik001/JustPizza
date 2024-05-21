@@ -11,9 +11,13 @@ public class HelpCommand extends Command {
     public static final String name = "help";
 
     public HelpCommand() {
-        super(name, AppSettings.global.translations.get(TranslationKey.help_description));
+        super(name);
     }
 
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.help_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
     }

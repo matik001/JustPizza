@@ -38,4 +38,9 @@ public enum TranslationKey {
     save_description,
     ellipse_description,
     regular_hexagon_description,
+    lang_description,
+    saving,
+    saved,
+    couldnt_save,
+    changed_language
 }

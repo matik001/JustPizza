@@ -12,12 +12,13 @@ import dev.justpizza.translations.TranslationKey;
 public class SquareCommand extends CreateShapeCommand {
 
     public static final String name = "square";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.square_description);
-
     public SquareCommand() {
-        super(name, description);
+        super(name);
     }
-
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.square_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
         argParser.addParamSchema(new ParamSchema("side"));

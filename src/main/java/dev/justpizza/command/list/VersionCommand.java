@@ -10,11 +10,16 @@ public class VersionCommand extends Command {
     public static final String name = "version";
 
     public VersionCommand() {
-        super(name, AppSettings.global.translations.get(TranslationKey.version_description));
+        super(name);
     }
 
     @Override
     protected void initArgParser(ArgParser argParser) {
+    }
+
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.version_description);
     }
 
     @Override

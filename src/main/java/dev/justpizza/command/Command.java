@@ -8,13 +8,11 @@ import java.io.PrintStream;
 abstract public class Command {
     protected PrintStream out;
     final protected String name;
-    final protected String description;
 
     protected abstract void initArgParser(ArgParser argParser);
 
-    protected Command(String name, String description){
+    protected Command(String name){
         this.name = name;
-        this.description = description;
     }
 
     public void setOut(PrintStream out) {
@@ -25,9 +23,7 @@ abstract public class Command {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public abstract String getDescription();
 
     protected abstract boolean handleExecute(ShapesManager shapesManager, ArgParser argParser);
 

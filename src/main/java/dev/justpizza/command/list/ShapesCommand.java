@@ -8,12 +8,13 @@ import dev.justpizza.translations.TranslationKey;
 
 public class ShapesCommand extends Command {
     public static final String name = "shapes";
-    public static final String description = AppSettings.global.translations.get(TranslationKey.shapes_description);
-
     public ShapesCommand() {
-        super(name, description);
+        super(name);
     }
-
+    @Override
+    public String getDescription() {
+        return AppSettings.global.translations.get(TranslationKey.shapes_description);
+    }
     @Override
     protected void initArgParser(ArgParser argParser) {
     }
