@@ -13,6 +13,7 @@
   "circle_description": "oblicza cechy koła",
   "circumcircle_description": "oblicza okrąg opisany na figurze",
   "rectriangle_description": "oblicza cechy trójkąta prostokątnego",
+  "regular_hexagon_description": "oblicza cechy sześciokąta foremnego",
   "version_description": "wyświetla aktualną wersję",
   "double_description": "tworzy figurę o dwukrotnie większym polu",
   "allowed_usages": "Dozwolone użycia",

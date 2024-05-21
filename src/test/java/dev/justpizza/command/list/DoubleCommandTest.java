@@ -10,6 +10,13 @@ import java.util.List;
 
 public class DoubleCommandTest extends AbstractCommandTest {
     @Test
+    public void doubleRegularHexagon() {
+        var commands = List.of("reghexagon side 8.53", "double shapenumber 1");
+        var doubledCharacteristics = List.of("RegularHexagon [", "Side=12.06", "Perimeter=72.38", "Area=378.08");
+        sendCommandsAndExpectLinesContaining(commands, List.of(List.of(), doubledCharacteristics));
+    }
+
+    @Test
     public void doubleSquare() {
         var commands = List.of("square side 9.1", "square side 18.8", "square side 17.3", "double shapenumber 2");
         List<List<String>> expectedSubstringsInLines = List.of(

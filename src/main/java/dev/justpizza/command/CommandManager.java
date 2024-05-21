@@ -46,6 +46,7 @@ public class CommandManager {
         add(new SaveToFileCommand());
         add(new EllipseCommand());
         add(new RemoveCommand());
+        add(new RegularHexagonCommand());
     }};
 
     final public static Map<String, Command> commands =
