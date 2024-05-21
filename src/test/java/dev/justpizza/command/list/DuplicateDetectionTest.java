@@ -94,7 +94,7 @@ public class DuplicateDetectionTest extends AbstractCommandTest {
                 "equtriangle side 11.73",
                 "equtriangle area 59.57947339018592",
                 "equtriangle height 10.15847798639",
-//                "isotriangle base 11.73 side 11.73", TODO fix isotriangle
+                "isotriangle base 11.73 side 11.73",
                 "triangle sides 11.73 11.73 11.73"
         );
         sendCommandsAndExpectLinesContaining(commands,
@@ -102,7 +102,7 @@ public class DuplicateDetectionTest extends AbstractCommandTest {
                         List.of(),
                         List.of("Shape EquilateralTriangle", "already exists"),
                         List.of("Shape EquilateralTriangle", "already exists"),
-//                        List.of("Shape EquilateralTriangle", "already exists"), TODO fix isotriangle
+                        List.of("Shape EquilateralTriangle", "already exists"),
                         List.of("Shape EquilateralTriangle", "already exists")
                 )
         );
