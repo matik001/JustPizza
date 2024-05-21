@@ -9,6 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CircumcircleCommandTest extends AbstractCommandTest {
     @Test
+    public void createCircumcircleForRegularHexagon() {
+        var commands = List.of("reghexagon side 14.39", "circumcircle shapenumber 1");
+        var circleCharacteristics = List.of("Circle [ ", "]", "Radius=14.39", "Perimeter=90.42", "Area=650.54");
+        sendCommandsAndExpectLinesContaining(commands, List.of(List.of(), circleCharacteristics));
+    }
+
+    @Test
     public void createCircumcircleForSquare() {
         var commands = List.of("square side 19.22", "circumcircle shapenumber 1");
         var circleCharacteristics = List.of("Circle [ ", "]", "Radius=13.59", "Perimeter=85.39", "Area=580.27");
