@@ -5,23 +5,24 @@ import dev.justpizza.shape.Shape;
 import dev.justpizza.shape.ellipse.Circle;
 import dev.justpizza.utils.Utils;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Collections.sort;
-
 public class Triangle extends Shape {
     protected final double sideA, sideB, sideC;
 
-    public Triangle(double sideA, double sideB, double sideC) throws IllegalShapeException {
+    protected Triangle(double sideA, double sideB, double sideC) throws IllegalShapeException {
         double[] array = {sideA, sideB, sideC};
         Arrays.sort(array);
         this.sideA = array[0];
         this.sideB = array[1];
         this.sideC = array[2];
+
+        if (Utils.areClose(0, this.sideA)) {
+            throw new IllegalShapeException("Side cannot be 0");
+        }
 
         if (this.sideA + this.sideB <= this.sideC) {
             throw new IllegalShapeException(paramError("Triangle"));
