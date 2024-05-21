@@ -13,7 +13,7 @@ import java.util.Map;
 public class Triangle extends Shape {
     protected final double sideA, sideB, sideC;
 
-    public Triangle(double sideA, double sideB, double sideC) throws IllegalShapeException {
+    protected Triangle(double sideA, double sideB, double sideC) throws IllegalShapeException {
         double[] array = {sideA, sideB, sideC};
         Arrays.sort(array);
         this.sideA = array[0];

@@ -11,7 +11,7 @@ public class IsoscelesTriangle extends Triangle {
     private final double height;
     private final double side;
 
-    public IsoscelesTriangle(double base, double side, double height) throws IllegalShapeException {
+    private IsoscelesTriangle(double base, double side, double height) throws IllegalShapeException {
         super(base, side, side);
         this.side = side;
         this.base = base;
